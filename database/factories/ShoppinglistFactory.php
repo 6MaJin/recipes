@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Shoppinglist;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class ShoppinglistFactory extends Factory
 {
@@ -22,7 +23,8 @@ class ShoppinglistFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->realText(12),
+            'note' => Str::random(10),
         ];
     }
 }

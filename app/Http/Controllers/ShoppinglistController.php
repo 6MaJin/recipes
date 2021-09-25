@@ -14,7 +14,8 @@ class ShoppinglistController extends Controller
      */
     public function index()
     {
-        $shoppinglist = Shoppinglist::paginate(5);
+        /*$shoppinglist = Shoppinglist::paginate(5);*/
+        $shoppinglist = Shoppinglist::all();
         return view('shoppinglist.index')->with('shoppinglists', $shoppinglist);
     }
 
@@ -25,7 +26,7 @@ class ShoppinglistController extends Controller
      */
     public function create()
     {
-        //
+        return view ('Shoppinglist.create');
     }
 
     /**
@@ -36,7 +37,18 @@ class ShoppinglistController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /*dd($request);*/
+        $request->validate([
+            'name' => 'required|min:2'
+        ]);
+        $shoppinglist = new Shoppinglist([
+            'name' => $request['name'],
+            'note' => $request['note']
+        ]);
+        $shoppinglist->save();
+        return redirect('/shoppinglist');
+
+
     }
 
     /**
