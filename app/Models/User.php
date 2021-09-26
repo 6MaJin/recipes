@@ -22,7 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
     ];
-    public function get_lists() {
+    public function shoppinglists() {
         return $this->hasMany(Shoppinglist::class);
     }
 

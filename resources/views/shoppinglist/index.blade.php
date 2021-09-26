@@ -13,8 +13,8 @@
                                 <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>ID</th>
-                                    <th>User-ID</th>
+                                    <th>ListenID</th>
+                                    <th>UserID</th>
 <!--                                    <th>Test</th>-->
                                     <th>Edit</th>
                                     <th>Delete</th>
@@ -27,9 +27,15 @@
                                 <tr>
                                     <td><a href="/shoppinglist/{{$shoppinglist -> id}}">{{$shoppinglist -> name}}</a></td>
                                     <td>{{$shoppinglist->id}}</td>
-                                    <td>{{$shoppinglist -> user_id}}</td>
+                                    <td>{{$shoppinglist->user_id}}</td>
+                                    <td>
+                                        @foreach($shoppinglist->products()->pluck('name') as $name)
+                                            <div class="btn btn-outline-secondary btn-sm mt-1">{{$name}}</div>
+                                        @endforeach
+                                    </td>
 
-<!--                                    <td>{{ print ($shoppinglist) }}</td>-->
+
+
                                     <td><a href="/shoppinglist/{{$shoppinglist->id}}/edit" class="btn btn-primary btn-sm rounded-circle"><i class="fa fa-edit"></i></a></td>
                                     <td>
                                         <form method="POST" action="/shoppinglist/{{$shoppinglist->id}}">
@@ -51,8 +57,9 @@
                 </div>
             </div>
         </div>
-
-        <a class="btn btn-success" href="shoppinglist/create"><i class="fa fa-plus"></i></a>
+        @auth
+        <a class="btn btn-success" href="/shoppinglist/create"><i class="fa fa-plus"></i></a>
+        @endauth
         <div class="container">
             {{ $shoppinglists->links("pagination::bootstrap-4") }}
         </div>

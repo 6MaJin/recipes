@@ -10,3 +10,18 @@ a.nav-link.active {
     color:blue!important;
     background-color: orange;
 }
+.livesearch-container {
+    position: relative;
+    z-index: 1;
+    width: 227px;
+    height: 40px;
+}
+.livesearch {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    z-index: 2;
+    height: auto;
+    max-height: 100vh;
+    overflow-y: auto;
+}

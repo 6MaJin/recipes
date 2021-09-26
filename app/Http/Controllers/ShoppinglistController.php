@@ -26,7 +26,7 @@ class ShoppinglistController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function create()
     {
@@ -37,23 +37,22 @@ class ShoppinglistController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
         /*dd($request);*/
-        $request->validate([
-            'name' => 'required|min:2'
-        ]);
+        $request->validate(Shoppinglist::$rules);
         $shoppinglist = new Shoppinglist([
             'name' => $request['name'],
-            'note' => $request['note']
+            'note' => $request['note'],
+            'user_id' => auth()->id()
         ]);
         $shoppinglist->save();
-        /*return redirect('/shoppinglist');*/
-        return $this->index()->with([
-            'meldung_success' => 'Die Liste '.$shoppinglist->name.' wurde angelegt'
-        ]);
+        return redirect('/shoppinglist')->with([
+        'meldung_success' => 'Die Liste '.$shoppinglist->name.' wurde angelegt'
+    ]);
+
 
     }
 
@@ -89,9 +88,8 @@ class ShoppinglistController extends Controller
      */
     public function update(Request $request, Shoppinglist $shoppinglist)
     {
-        $request->validate([
-            'name' => 'required|min:2'
-        ]);
+        $request->validate(Shoppinglist::$rules);
+
         $shoppinglist->update([
             'name' => $request->name,
             'note' => $request->note

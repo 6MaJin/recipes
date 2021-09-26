@@ -13,16 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/info', [App\Http\Controllers\HomeController::class, 'info'])->name('info');
-Route::get('/startseite', [App\Http\Controllers\HomeController::class, 'start'])->name('startseite');
-Route::resource('shoppinglist', 'App\Http\Controllers\ShoppinglistController');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('startseite');
+Route::resource('shoppinglist', 'App\Http\Controllers\ShoppinglistController')->middleware('auth');
+Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('user.index');
+Route::get('/user/{user}', [App\Http\Controllers\UserController::class, 'show'])->name('user.show');
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

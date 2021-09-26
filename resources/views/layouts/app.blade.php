@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Request;
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 ?>
@@ -30,6 +28,7 @@ use Illuminate\Support\Facades\Route;
             color: red!important;
         }
     </style>
+    @livewireStyles
 </head>
 <body>
 <div id="app">
@@ -43,22 +42,16 @@ use Illuminate\Support\Facades\Route;
                     aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item" >
-                        <a class="nav-link {{ Request::is('startseite') ? 'active' : '' }}" href="/startseite" >Startseite</a>
-                    </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('info') ? 'active' : '' }}"  href="/info">Information</a>
                     </li>
+                    <a class="nav-link {{Request::is('shoppinglist*')  ? 'active' : '' }}"  href="/shoppinglist">Shoppinglists</a>
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('shoppinglist*') ? 'active' : '' }}"  href="/shoppinglist">Your Lists</a>
+                        <a class="nav-link {{ Request::is('user*') ? 'active' : '' }}"  href="/users">Users</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ Request::is('home') ? 'active' : '' }}"  href="/home">Home</a>
-                    </li>
+
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -107,5 +100,7 @@ use Illuminate\Support\Facades\Route;
         @yield('content')
     </main>
 </div>
+@livewireScripts
+@yield('after_script')
 </body>
 </html>
