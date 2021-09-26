@@ -20,6 +20,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+
                                 @foreach($shoppinglists AS $shoppinglist)
                                 <tr>
                                     <td><a href="/shoppinglist/{{$shoppinglist -> id}}">{{$shoppinglist -> name}}</a></td>
