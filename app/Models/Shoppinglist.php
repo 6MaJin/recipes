@@ -22,5 +22,6 @@ class Shoppinglist extends Model
     public function list_products()
     {
         return $this->belongsToMany(Product::class);
+        dd($this);
     }
 }

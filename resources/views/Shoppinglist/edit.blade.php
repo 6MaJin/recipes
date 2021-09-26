@@ -19,7 +19,7 @@
                             </div>
                             <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i></button>
                         </form>
-                        <a class="btn btn-secondary float-right" href="shoppinglist"><i class="fa fa-arrow-circle-up"></i></a>
+                        <a class="btn btn-secondary float-right" href="{{ URL::previous() }}"><i class="fa fa-arrow-circle-up"></i></a>
                     </div>
                 </div>
             </div>

@@ -14,8 +14,8 @@ class ShoppinglistController extends Controller
      */
     public function index()
     {
-        /*$shoppinglist = Shoppinglist::paginate(5);*/
-        $shoppinglists = Shoppinglist::all();
+        $shoppinglists = Shoppinglist::paginate(5);
+        /*$shoppinglists = Shoppinglist::all();*/
         return view('shoppinglist.index')->with('shoppinglists', $shoppinglists);
     }
 
