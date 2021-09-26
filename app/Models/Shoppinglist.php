@@ -14,7 +14,7 @@ class Shoppinglist extends Model
         'note'
     ];
 
-    public function list_user()
+    public function has_user()
     {
         return $this->belongsTo(User::class);
     }

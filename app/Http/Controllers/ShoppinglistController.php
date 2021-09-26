@@ -15,8 +15,8 @@ class ShoppinglistController extends Controller
     public function index()
     {
         /*$shoppinglist = Shoppinglist::paginate(5);*/
-        $shoppinglist = Shoppinglist::all();
-        return view('shoppinglist.index')->with('shoppinglists', $shoppinglist);
+        $shoppinglists = Shoppinglist::all();
+        return view('shoppinglist.index')->with('shoppinglists', $shoppinglists);
     }
 
     /**
@@ -46,8 +46,10 @@ class ShoppinglistController extends Controller
             'note' => $request['note']
         ]);
         $shoppinglist->save();
-        return redirect('/shoppinglist');
-
+        /*return redirect('/shoppinglist');*/
+        return $this->index()->with([
+            'meldung_success' => 'Die Liste '.$shoppinglist->name.' wurde angelegt'
+        ]);
 
     }
 
@@ -59,7 +61,7 @@ class ShoppinglistController extends Controller
      */
     public function show(Shoppinglist $shoppinglist)
     {
-        //
+        return view('shoppinglist.show')->with('shoppinglist', $shoppinglist);
     }
 
     /**
@@ -70,7 +72,8 @@ class ShoppinglistController extends Controller
      */
     public function edit(Shoppinglist $shoppinglist)
     {
-        //
+        return view('shoppinglist.edit')->with('shoppinglist', $shoppinglist);
+
     }
 
     /**
@@ -82,7 +85,16 @@ class ShoppinglistController extends Controller
      */
     public function update(Request $request, Shoppinglist $shoppinglist)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:2'
+        ]);
+        $shoppinglist->update([
+            'name' => $request->name,
+            'note' => $request->note
+        ]);
+        return $this->index()->with([
+            'meldung success' => 'Die Liste '.$request->name.' wurde editiert'
+        ]);
     }
 
     /**
@@ -93,6 +105,9 @@ class ShoppinglistController extends Controller
      */
     public function destroy(Shoppinglist $shoppinglist)
     {
-        //
+        $shoppinglist->delete();
+        return $this->index()->with([
+            'meldung_success' => 'Die Liste wurde gelöscht'
+        ]);
     }
 }

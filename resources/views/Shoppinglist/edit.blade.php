@@ -6,15 +6,16 @@
                 <div class="card">
                     <div class="card-header">Alle Listen</div>
                     <div class="card-body">
-                        <form action="/shoppinglist" method="POST">
+                        <form action="/shoppinglist/{{$shoppinglist->id}}" method="POST">
                             @csrf
+                            @method('PUT')
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input value="{{old('name')}}" type="text" class="form-control" id="name" name="name">
+                                <input value="{{old('name') ?? $shoppinglist->name}}" type="text" class="form-control" id="name" name="name">
                             </div>
                             <div class="form-group">
                                 <label for="note">Notes</label>
-                                <textarea name="note" id="note" cols="30" rows="10">{{old('note')}}</textarea>
+                                <textarea name="note" id="note" cols="30" rows="10">{{old('note') ?? $shoppinglist->note}}</textarea>
                             </div>
                             <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i></button>
                         </form>
