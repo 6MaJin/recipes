@@ -2,7 +2,8 @@
 @section('content')
     <div class="container">
         <h1>Index ShoppingList</h1>
-        {{DB::table('shoppinglists')->where('id','=','5')->get()}}
+
+        {{--{{DB::table('shoppinglists')->where('id','=','5')->get()}}--}}
         <div class="row justifiy-content-center">
             <div class="col-md-12">
                 <div class="card">
@@ -17,6 +18,7 @@
 <!--                                    <th>Test</th>-->
                                     <th>Edit</th>
                                     <th>Delete</th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -26,6 +28,7 @@
                                     <td><a href="/shoppinglist/{{$shoppinglist -> id}}">{{$shoppinglist -> name}}</a></td>
                                     <td>{{$shoppinglist->id}}</td>
                                     <td>{{$shoppinglist -> user_id}}</td>
+
 <!--                                    <td>{{ print ($shoppinglist) }}</td>-->
                                     <td><a href="/shoppinglist/{{$shoppinglist->id}}/edit" class="btn btn-primary btn-sm rounded-circle"><i class="fa fa-edit"></i></a></td>
                                     <td>
@@ -34,7 +37,9 @@
                                             @method('DELETE')
                                             <button class="btn btn-danger btn-sm rounded-circle"><i class="fa fa-minus"></i></button>
                                         </form>
+<!--                                        <div class="d-flex float-right">{{$shoppinglist -> created_at->diffForHumans()}}</div>-->
                                     </td>
+                                    <td>{{$shoppinglist -> created_at->diffForHumans()}}</td>
                                 </tr>
                                 @endforeach
                                 </tbody>

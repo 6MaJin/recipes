@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Shoppinglist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class ShoppinglistController extends Controller
 {
@@ -14,9 +15,12 @@ class ShoppinglistController extends Controller
      */
     public function index()
     {
-        $shoppinglists = Shoppinglist::paginate(5);
+       /* $shoppinglists = Shoppinglist::paginate(5);*/
+        $now = Carbon::now();
+        $shoppinglists = Shoppinglist::orderBy('id', 'ASC')->paginate(5);
         /*$shoppinglists = Shoppinglist::all();*/
         return view('shoppinglist.index')->with('shoppinglists', $shoppinglists);
+
     }
 
     /**
