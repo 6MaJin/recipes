@@ -17,5 +17,5 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('st
 Route::resource('shoppinglist', 'App\Http\Controllers\ShoppinglistController')->middleware('auth');
 Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('user.index');
 Route::get('/user/{user}', [App\Http\Controllers\UserController::class, 'show'])->name('user.show');
-
+Route::resource('product', 'App\Http\Controllers\ProductController');
 Auth::routes();

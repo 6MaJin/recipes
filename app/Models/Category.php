@@ -12,6 +12,10 @@ class Category extends Model
         'name',
         'note'
     ];
+    public static $rules = [
+        'name'=> 'string|required',
+        'note'=> 'string|nullable',
+    ];
     public function category_product() {
         return $this->belongsToMany(Product::class);
     }

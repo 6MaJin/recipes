@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\Shoppinglist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -60,18 +61,18 @@ class ShoppinglistController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Shoppinglist  $shoppinglist
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function show(Shoppinglist $shoppinglist)
+    public function show(Shoppinglist $shoppinglist, Product $product)
     {
-        return view('shoppinglist.show')->with('shoppinglist', $shoppinglist);
+        return view('shoppinglist.show')->with('shoppinglist', $shoppinglist)->with('product', $product);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Shoppinglist  $shoppinglist
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function edit(Shoppinglist $shoppinglist)
     {

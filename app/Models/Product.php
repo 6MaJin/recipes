@@ -12,6 +12,10 @@ class Product extends Model
         'name',
         'note'
     ];
+    public static $rules = [
+        'name'=> 'string|required',
+        'note'=> 'string|nullable'
+    ];
     public function product_list () {
         return $this->belongsToMany(Shoppinglist::class);
     }
