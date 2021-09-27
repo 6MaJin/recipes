@@ -10013,8 +10013,7 @@ span.message {
 }
 
 a.nav-link.active {
-  color: blue !important;
-  background-color: orange;
+  color: orange !important;
 }
 
 .livesearch-container {
