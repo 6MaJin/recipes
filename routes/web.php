@@ -14,8 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('startseite');
-Route::resource('shoppinglist', 'App\Http\Controllers\ShoppinglistController')->middleware('auth');
+Route::resource('shoppinglist', 'App\Http\Controllers\ShoppinglistController')/*->middleware('auth')*/;
 Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('user.index');
-Route::get('/user/{user}', [App\Http\Controllers\UserController::class, 'show'])->name('user.show');
+Route::get('/user/{user}', [App\Http\Controllers\UserController::class, 'show'])->name('user.show')->middleware('auth');
+Route::get('/user/{user}/edit', [App\Http\Controllers\UserController::class, 'show'])->name('user.show')->middleware('auth');
 
 Auth::routes();

@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
             )->each(function ($shoppinglist) {
                 $product_ids = range(1, 8);
                 shuffle($product_ids);
-                $product_ids = array_slice($product_ids, 0, rand(0, 12));
+                $product_ids = array_slice($product_ids, 0, rand(0, 33));
                 foreach ($product_ids as $product_id) {
 
                     DB::table('product_shoppinglist')
@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
             })->each(function ($product) {
                 $category_ids = range(1, 8);
                 shuffle($category_ids);
-                $category_ids = array_slice($category_ids, 0, rand(0, 12));
+                $category_ids = array_slice($category_ids, 0, rand(0, 3));
 
                 foreach ($category_ids as $category_id) {
                     DB::table('category_product')

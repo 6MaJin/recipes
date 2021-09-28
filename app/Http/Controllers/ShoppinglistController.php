@@ -103,13 +103,16 @@ class ShoppinglistController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Shoppinglist  $shoppinglist
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function destroy(Shoppinglist $shoppinglist)
     {
         $shoppinglist->delete();
-        return $this->index()->with([
+        return redirect('/shoppinglist')->with([
             'meldung_success' => 'Die Liste wurde gelöscht'
         ]);
+       /* return $this->index()->with([
+            'meldung_success' => 'Die Liste wurde gelöscht'
+        ]);*/
     }
 }
