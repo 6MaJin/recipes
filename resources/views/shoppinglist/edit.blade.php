@@ -47,7 +47,7 @@
             }
         }
         function removeProduct(product_id) {
-            $('.product-list').find("[data-id="+product_id+"]").remove();
+            $('.product-list').find('[data-id="+product_id+"]').remove();
         }
     </script>
 @endsection
