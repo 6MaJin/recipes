@@ -14,6 +14,7 @@
 
                                 <th>Produkt</th>
                                 <th>Kategorien</th>
+                                <th>asd</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -27,7 +28,9 @@
 
                                             <li>{{$category->name}}</li>
                                         </ul>
+                                        <td>{{$product->shoppinglists->count('name')}}</td>
                                     @endforeach
+
                                 </td>
                             </tr>
                             </tbody>
