@@ -6,11 +6,14 @@
                 <div class="card">
                     <div class="card-header">Alle Listen</div>
                     <div class="card-body">
+
                         <table class="table table-striped">
                             <thead>
                             <tr>
                                 <th>Name</th>
                                 <th>Notes</th>
+                                <th>Besitzer</th>
+                                <th>Anzahl_Listen</th>
                                 <th>Produkte</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
@@ -20,16 +23,14 @@
                             <tr>
                                 <td>{{$shoppinglist->name}}</td>
                                 <td>{{$shoppinglist->note}}</td>
-                                <td>@foreach($shoppinglist->products()->pluck('id') as $shame)
-                                        <li><a href="/product/{{$shame}}">{{$shame}}</a></li>
-                                    @endforeach</td>
-                                <td>
-                                    <ul>
-                                        @foreach($shoppinglist->products()->pluck('name') as $name)
-                                            <li><a href="/product/{{$shoppinglist->products()->pluck('id')}}">{{$name}}</a></li>
+                                <td>{{{$shoppinglist->user->name}}}</td>
+                                <td> {{ $shoppinglist->user->shoppinglists->count('name') }}</td>
+                                   <td> <ul>
+                                        @foreach($shoppinglist->products as $product)
+                                            <li><a href="/product/{{$product->id}}">{{$product->name}}</a></li>
                                         @endforeach
                                     </ul>
-                                <!--                                        <div class="btn btn-outline-secondary btn-sm mt-1">{{$name}}</div>-->
+
                                 </td>
                                 <td><a href="/shoppinglist/{{$shoppinglist->id}}/edit"
                                        class="btn btn-primary btn-sm rounded-circle"><i class="fa fa-edit"></i></a></td>
@@ -44,8 +45,7 @@
                             </tr>
                             </tbody>
                         </table>
-                        <a class="btn btn-secondary float-right" href="{{ URL::previous() }}"><i
-                                class="fa fa-arrow-circle-up"></i></a>
+                        <a class="btn btn-secondary float-right" href="{{ URL::previous() }}"><i class="fa fa-arrow-circle-up"></i></a>
                     </div>
                 </div>
             </div>

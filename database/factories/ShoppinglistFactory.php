@@ -23,8 +23,8 @@ class ShoppinglistFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->realText(12),
-            'note' => Str::random(10),
+            'name' => $this->faker->realText(10),
+            'note' => $this->faker->realText(32),
         ];
     }
 }

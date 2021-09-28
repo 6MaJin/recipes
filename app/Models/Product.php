@@ -16,10 +16,10 @@ class Product extends Model
         'name'=> 'string|required',
         'note'=> 'string|nullable'
     ];
-    public function product_list () {
+    public function shoppinglists () {
         return $this->belongsToMany(Shoppinglist::class);
     }
-    public function product_category() {
+    public function categories() {
         return $this->belongsToMany(Category::class);
     }
 }
