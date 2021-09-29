@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Route;
             color: red!important;
         }
     </style>
-    @livewireStyles
+
 </head>
 <body>
 <div id="app">

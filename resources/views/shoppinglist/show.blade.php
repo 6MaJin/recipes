@@ -23,7 +23,7 @@
                             <tr>
                                 <td>{{$shoppinglist->name}}</td>
                                 <td>{{$shoppinglist->note}}</td>
-                                <td>{{{$shoppinglist->user->name}}}</td>
+                                <td><a href="/user/{{$shoppinglist->user_id}}">{{$shoppinglist->user->name}}</a></td>
                                 <td> {{ $shoppinglist->user->shoppinglists->count('name') }}</td>
                                    <td> <ul>
                                         @foreach($shoppinglist->products as $product)

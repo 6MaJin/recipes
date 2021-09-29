@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Product::factory(50)->create();
-        Category::factory(50)->create();
+        Category::factory(10)->create();
         User::factory(10)->create()->each(function ($user) {
             Shoppinglist::factory(rand(1, 8))->create(
                 [

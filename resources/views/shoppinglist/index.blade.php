@@ -12,27 +12,25 @@
                             <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>ListenID</th>
+
                                 <th>UserName</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
                             </thead>
                             <tbody>
-
                             @foreach($shoppinglists AS $shoppinglist)
                                 <tr>
-                                    <td><a href="/shoppinglist/{{$shoppinglist -> id}}">{{$shoppinglist -> name}}</a>
+                                    <td>
+                                        <a href="/shoppinglist/{{$shoppinglist -> id}}">{{$shoppinglist -> name}}</a>
                                     </td>
-                                    <td>{{$shoppinglist->id}}</td>
-                                    <td>{{$shoppinglist->user->name}}</td>
+                                    <td>
+                                        <a href="/user/{{$shoppinglist->user_id}}">{{$shoppinglist->user->name}}</a></td>
                                     <td>
                                         @foreach($shoppinglist->products()->pluck('name') as $name)
                                             <div class="btn btn-outline-secondary btn-sm mt-1">{{$name}}</div>
                                         @endforeach
                                     </td>
-
-
                                     <td><a href="/shoppinglist/{{$shoppinglist->id}}/edit"
                                            class="btn btn-primary btn-sm rounded-circle"><i class="fa fa-edit"></i></a>
                                     </td>
@@ -59,7 +57,5 @@
         <div class="container">
             {{ $shoppinglists->links("pagination::bootstrap-4") }}
         </div>
-
-
     </div>
 @endsection
