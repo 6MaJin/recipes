@@ -15,9 +15,9 @@
                                        id="name" name="name">
                             </div>
                             <div class="form-group">
-                                <div class="product-list">
+                                <div id="sortable" class="product-list">
                                     @foreach($shoppinglist->products as $product)
-                                        <div class="btn btn-outline-secondary btn-sm mt-1"
+                                        <div class="btn btn-outline-secondary btn-sm mt-1 ui-sortable-handle"
                                              onclick="removeProduct({{$product->id}})"
                                              data-id={{$product->id}}>{{$product->name}}</div>
                                     @endforeach
@@ -60,13 +60,13 @@
 
 
         function addProduct(product_id, product_name) {
-            if ($('.product-list').find('[data-id="+product_id+"]').length === 0) {
+            if ($('.product-list').find("[data-id="+product_id+"]").length === 0) {
                 $('.product-list').prepend('<div class="btn btn-outline-secondary btn-sm mt-1" onclick="removeProduct(' + product_id + ')" data-id="' + product_id + '">' + product_name + '</div>');
             }
         }
 
         function removeProduct(product_id) {
-            $('.product-list').find('[data-id="+product_id+"]').remove();
+            $('.product-list').find("[data-id="+product_id+"]").remove();
         }
     </script>
 @endsection

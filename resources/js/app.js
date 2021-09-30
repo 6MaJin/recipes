@@ -5,7 +5,9 @@
  */
 
 require('./bootstrap');
-
+import $ from 'jquery';
+window.$ = window.jQuery = $;
+import 'jquery-ui/ui/widgets/sortable.js';
 window.Vue = require('vue').default;
 
 /**
@@ -30,3 +32,5 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
 });
+
+$( "#sortable" ).sortable();

@@ -17,12 +17,6 @@ use Illuminate\Support\Facades\Route;
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-
-    <script src="https://unpkg.com/jquery@2.2.4/dist/jquery.js"></script>
-    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-
-
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -31,16 +25,6 @@ use Illuminate\Support\Facades\Route;
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-
-    <link href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css"/>
-
-    <!-- drabable head start -->
-
-    <title>jQuery UI Sortable - Example</title>
-    <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
-          rel = "stylesheet">
-    <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
     <style>
         #sortable-1 { list-style-type: none; margin: 0;
@@ -54,11 +38,7 @@ use Illuminate\Support\Facades\Route;
         }
     </style>
 
-    <script>
-        $(function() {
-            $( "#sortable-1" ).sortable();
-        });
-    </script>
+
 
     <!-- drabable head end -->
 
