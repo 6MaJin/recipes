@@ -11,9 +11,9 @@
                         <table class="border-left border-right table-striped table">
                             <thead>
                             <tr>
-                                <th>Name</th>
-
-                                <th>UserName</th>
+                                <th>Liste</th>
+                                <th>Besitzer</th>
+                                <th>Produkte</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
@@ -47,6 +47,8 @@
                             @endforeach
                             </tbody>
                         </table>
+
+
                     </div>
                 </div>
             </div>
@@ -58,4 +60,15 @@
             {{ $shoppinglists->links("pagination::bootstrap-4") }}
         </div>
     </div>
+
+
+    <ul id = "sortable-1">
+        <li class = "default">Product 1</li>
+        <li class = "default">Product 2</li>
+        <li class = "default">Product 3</li>
+        <li class = "default">Product 4</li>
+        <li class = "default">Product 5</li>
+        <li class = "default">Product 6</li>
+        <li class = "default">Product 7</li>
+    </ul>
 @endsection

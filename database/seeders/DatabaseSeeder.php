@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
                     'user_id' => $user->id
                 ]
             )->each(function ($shoppinglist) {
-                $product_ids = range(1, 8);
+                $product_ids = range(1, 12);
                 shuffle($product_ids);
                 $product_ids = array_slice($product_ids, 0, rand(0, 33));
                 foreach ($product_ids as $product_id) {
