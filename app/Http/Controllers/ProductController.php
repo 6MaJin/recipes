@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Shoppinglist;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -22,9 +23,17 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $request->validate(Product::$rules);
+        $product = new Product([
+            'name' => $request['name'],
+            'note' => "Notiz"
+        ]);
+        $product->save();
+        return $this->with([
+            'meldung_success' => 'Das Produkt '.$product->name.' wurde angelegt'
+        ]);
     }
 
     /**

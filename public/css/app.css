@@ -10056,3 +10056,7 @@ a.nav-link.active {
   position: absolute;
   margin-left: -1.3em;
 }
+
+.btn-outline-success {
+  width: 150px;
+}

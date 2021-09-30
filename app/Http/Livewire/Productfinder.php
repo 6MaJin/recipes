@@ -14,7 +14,7 @@ class Productfinder extends Component
 
     public function render()
     {
-        if(strlen($this->search)>2) {
+        if(strlen($this->search)>1) {
             $products = Product::where('name', 'LIKE', '%' . $this->search . '%')->get();
         } else {
             $products = Array();

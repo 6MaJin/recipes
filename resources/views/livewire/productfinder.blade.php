@@ -1,6 +1,5 @@
 <div class="livesearch">
-
-    <input wire:model="search" type="text" placeholder="Search Products..."/>
+    <input wire:model="search" type="text" name="add_product" id="add_product" placeholder="Add Products..."/>
     <ul class="list-group">
         @foreach($products as $product)
 

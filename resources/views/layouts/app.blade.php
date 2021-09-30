@@ -17,6 +17,12 @@ use Illuminate\Support\Facades\Route;
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+
+    <script src="https://unpkg.com/jquery@2.2.4/dist/jquery.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+
+
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -25,7 +31,10 @@ use Illuminate\Support\Facades\Route;
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    //drabable head start
+
+    <link href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css"/>
+
+    <!-- drabable head start -->
 
     <title>jQuery UI Sortable - Example</title>
     <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
@@ -51,7 +60,7 @@ use Illuminate\Support\Facades\Route;
         });
     </script>
 
-    //dragable head end
+    <!-- drabable head end -->
 
 
 
@@ -78,7 +87,7 @@ use Illuminate\Support\Facades\Route;
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('user*') ? 'active' : '' }}"  href="/users">Users</a>
                     </li>
-                    <li><a class="nav-link {{Request::is('test') ? 'active' : ''}}" href="/test">Test</a></li>
+                    <li><a class="nav-link {{Request::is('menu') ? 'active' : ''}}" href="/menu">Menu</a></li>
 
                 </ul>
 

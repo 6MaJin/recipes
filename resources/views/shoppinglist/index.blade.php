@@ -28,7 +28,7 @@
                                         <a href="/user/{{$shoppinglist->user_id}}">{{$shoppinglist->user->name}}</a></td>
                                     <td>
                                         @foreach($shoppinglist->products()->pluck('name') as $name)
-                                            <div class="btn btn-outline-secondary btn-sm mt-1">{{$name}}</div>
+                                            <td class="btn btn-outline-secondary btn-sm mt-1">{{$name}}</td>
                                         @endforeach
                                     </td>
                                     <td><a href="/shoppinglist/{{$shoppinglist->id}}/edit"
@@ -60,15 +60,4 @@
             {{ $shoppinglists->links("pagination::bootstrap-4") }}
         </div>
     </div>
-
-
-    <ul id = "sortable-1">
-        <li class = "default">Product 1</li>
-        <li class = "default">Product 2</li>
-        <li class = "default">Product 3</li>
-        <li class = "default">Product 4</li>
-        <li class = "default">Product 5</li>
-        <li class = "default">Product 6</li>
-        <li class = "default">Product 7</li>
-    </ul>
 @endsection

@@ -27,6 +27,7 @@
                             </div>
                             <div style="clear:both"></div>
                             <div class="form-group">
+
                                 <label for="note">Notes</label><br/>
                                 <textarea name="note" id="note" cols="30" rows="10">{{old('note') ?? $shoppinglist->note}}</textarea>
                             </div>
@@ -39,6 +40,7 @@
         </div>
     </div>
 @endsection
+
 @section('after_script')
     <script>
         function addProduct(product_id,product_name) {
