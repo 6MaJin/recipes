@@ -125,8 +125,6 @@ class ShoppinglistController extends Controller
             'meldung success' => 'Die Liste '.$request->name.' wurde sortiert'
         ]);*/
 
-
-
         $order = $request->get('order');
         foreach($order as $key => $value)
         {
@@ -135,5 +133,4 @@ class ShoppinglistController extends Controller
         }
         return "success";
     }
-
 }
