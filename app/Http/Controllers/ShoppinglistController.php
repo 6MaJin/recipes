@@ -116,4 +116,14 @@ class ShoppinglistController extends Controller
             'meldung_success' => 'Die Liste wurde gelöscht'
         ]);*/
     }
+
+    public function updateOrder(Request $request, Shoppinglist $shoppinglist)
+    {
+        return json_encode(request()->toArray());
+
+        return response()->with([
+            'meldung success' => 'Die Liste '.$request->name.' wurde sortiert'
+        ]);
+    }
+
 }

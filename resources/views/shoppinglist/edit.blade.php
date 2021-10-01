@@ -15,28 +15,19 @@
                                        id="name" name="name">
                             </div>
                             <div class="form-group">
-                                <div id="sortable" class="product-list">
+                                <div id="sortable" class="product-list" data-id="{{$shoppinglist->id}}">
                                     @foreach($shoppinglist->products as $product)
                                         <div class="btn btn-outline-secondary btn-sm mt-1 ui-sortable-handle"
-                                             onclick="removeProduct({{$product->id}})"
                                              data-id={{$product->id}}>{{$product->name}}</div>
                                     @endforeach
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <div class="livesearch-container">
                                     <livewire:productfinder :shoppinglist="$shoppinglist"/>
                                 </div>
+
                             </div>
-
-
-                            <!-- <form method="POST" action="/product">
-
-                                   <input name="name" id="name" type="text">
-                                   <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i></button>
-
-                            </form>-->
-
 
                             <div style="clear:both"></div>
                             <div class="form-group">
@@ -54,19 +45,34 @@
         </div>
     </div>
 @endsection
-@livewire('productfinder')
 @section('after_script')
     <script>
-
-
         function addProduct(product_id, product_name) {
-            if ($('.product-list').find("[data-id="+product_id+"]").length === 0) {
-                $('.product-list').prepend('<div class="btn btn-outline-secondary btn-sm mt-1" onclick="removeProduct(' + product_id + ')" data-id="' + product_id + '">' + product_name + '</div>');
+            if ($('.product-list').find("[data-id=" + product_id + "]").length === 0) {
+                $('.product-list').append('<div class="btn btn-outline-secondary btn-sm mt-1" onclick="removeProduct(' + product_id + ')" data-id="' + product_id + '">' + product_name + '</div>');
+
             }
         }
 
+        function ajaxStore() {
+            let product_name = $("#add_product").val();
+            $.ajax({
+                method: "POST",
+                dataType: 'json',
+                url: "{{route('product.ajax-store')}}",
+                data: {_token: "{{ csrf_token() }}", name: product_name, shoppinglist_id: {{ $shoppinglist->id }}}
+            })
+                .done(function (data) {
+                    console.log(data);
+                    if (data.status == 'success') {
+                        $('.product-list').append('<div class="btn btn-outline-secondary btn-sm mt-1" onclick="removeProduct(' + data.product_id + ')" data-id="' + data.product_id + '">' + data.product_name + '</div>');
+                    }
+                });
+        }
+
         function removeProduct(product_id) {
-            $('.product-list').find("[data-id="+product_id+"]").remove();
+            return;
+            $('.product-list').find("[data-id=" + product_id + "]").remove();
         }
     </script>
 @endsection

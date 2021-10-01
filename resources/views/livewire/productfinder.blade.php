@@ -1,12 +1,16 @@
-<div class="livesearch">
-    <input wire:model="search" type="text" name="add_product" id="add_product" placeholder="Add Products..."/>
+<div class="livesearch input-group">
+    <input wire:model="search" class="form-control" type="text" name="add_product" id="add_product" placeholder="Add Products..."/>
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="ajaxStore()"><i class="fa fa-plus"></i>
+        </button>
+    </div>
     <ul class="list-group">
         @foreach($products as $product)
 
             <li class="list-group-item" onclick="addProduct({{$product->id}},'{{$product->name}}')">{{ $product->name }}</li>
 
         @endforeach
-
     </ul>
+
 
 </div>

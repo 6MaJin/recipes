@@ -2132,7 +2132,32 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 var app = new Vue({
   el: '#app'
 });
-jquery__WEBPACK_IMPORTED_MODULE_0___default()("#sortable").sortable();
+jquery__WEBPACK_IMPORTED_MODULE_0___default()(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default().ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': jquery__WEBPACK_IMPORTED_MODULE_0___default()('meta[name="csrf-token"]').attr('content')
+    }
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#sortable").sortable({
+    update: function update(event, ui) {
+      var order = [];
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#sortable").find('[data-id]').each(function () {
+        order[jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data('id')] = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data('id');
+      });
+      console.log(order);
+      var shoppinglist_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#sortable').data('id'); // POST to server using $.post or $.ajax
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default().ajax({
+        data: {
+          order: order
+        },
+        type: 'POST',
+        dataType: 'json',
+        url: '/shoppinglist/' + shoppinglist_id + '/update-order'
+      });
+    }
+  });
+});
 
 /***/ }),
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Shoppinglist;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -25,15 +27,7 @@ class ProductController extends Controller
      */
     public function create(Request $request)
     {
-        $request->validate(Product::$rules);
-        $product = new Product([
-            'name' => $request['name'],
-            'note' => "Notiz"
-        ]);
-        $product->save();
-        return $this->with([
-            'meldung_success' => 'Das Produkt '.$product->name.' wurde angelegt'
-        ]);
+
     }
 
     /**
@@ -44,7 +38,15 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(Product::$rules);
+        $product = new Product([
+            'name' => $request['name'],
+            'note' => "Notiz"
+        ]);
+        $product->save();
+        return $this->with([
+            'meldung_success' => 'Das Produkt '.$product->name.' wurde angelegt'
+        ]);
     }
 
     /**
@@ -91,4 +93,24 @@ class ProductController extends Controller
     {
         //
     }
+
+    public function ajaxStore(Request $request)
+    {
+        $request->validate(Product::$rules);
+        $product = new Product([
+            'name' => $request['name'],
+            'note' => "Notiz"
+        ]);
+        $product->save();
+        $shoppinglist = Shoppinglist::find($request['shoppinglist_id']);
+        $shoppinglist->products()->save($product);
+        return json_encode(
+            [
+                'status' => 'success',
+                'product_id' => $product->id,
+                'product_name' => $product->name
+            ]
+        );
+    }
+
 }

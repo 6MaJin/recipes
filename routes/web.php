@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,14 +18,9 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('st
 Route::resource('shoppinglist', 'App\Http\Controllers\ShoppinglistController')/*->middleware('auth')*/;
 Route::resource('user', 'App\Http\Controllers\UserController')/*->middleware('auth')*/;
 Route::resource('product', 'App\Http\Controllers\ProductController');
-Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('user.index');
-Route::get('/user/{user}', [App\Http\Controllers\UserController::class, 'show'])->name('user.show');
+Route::post('/product/ajax-store','App\Http\Controllers\ProductController@ajaxStore')->name('product.ajax-store');
 
-Route::get('/menu','App\Http\Controllers\MenuController@index');
-Route::post('/menu/update-order','App\Http\Controllers\MenuController@updateOrder');
+Route::post('/shoppinglist/{id}/update-order','App\Http\Controllers\ShoppinglistController@updateOrder')->name('shoppinglist.update-order');
 
-Route::get('/test', function() {
-    return view('test');
-});
 
 Auth::routes();

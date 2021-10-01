@@ -33,4 +33,39 @@ const app = new Vue({
     el: '#app',
 });
 
-$( "#sortable" ).sortable();
+$(function () {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $("#sortable").sortable(
+
+        {
+            update: function (event, ui) {
+                let order = [];
+                let i = 0;
+                $("#sortable").find('[data-id]').each(function() {
+                    if($(this).data('id') != null) {
+                        order[i] = $(this).data('id');
+                        i++;
+                    }
+
+                })
+                console.log(order);
+                console.log(i);
+                let shoppinglist_id = $(this).data('id');
+                // POST to server using $.post or $.ajax
+                $.ajax({
+                    data: {
+                        order: order,
+                    },
+                    type: 'POST',
+                    dataType: 'json',
+                    url: '/shoppinglist/'+shoppinglist_id+'/update-order'
+                });
+            }
+        }
+    );
+});
+
