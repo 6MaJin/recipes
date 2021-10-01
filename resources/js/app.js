@@ -6,8 +6,10 @@
 
 require('./bootstrap');
 import $ from 'jquery';
+
 window.$ = window.jQuery = $;
 import 'jquery-ui/ui/widgets/sortable.js';
+
 window.Vue = require('vue').default;
 
 /**
@@ -40,21 +42,14 @@ $(function () {
         }
     });
     $("#sortable").sortable(
-
         {
             update: function (event, ui) {
-                let order = [];
-                let i = 0;
-                $("#sortable").find('[data-id]').each(function() {
-                    if($(this).data('id') != null) {
-                        order[i] = $(this).data('id');
-                        i++;
-                    }
-
+                var order = [];
+                $("#sortable").find('[data-id]').each(function () {
+                        order.push($(this).data('id'));
                 })
                 console.log(order);
-                console.log(i);
-                let shoppinglist_id = $(this).data('id');
+                                let shoppinglist_id = $(this).data('id');
                 // POST to server using $.post or $.ajax
                 $.ajax({
                     data: {
@@ -62,7 +57,7 @@ $(function () {
                     },
                     type: 'POST',
                     dataType: 'json',
-                    url: '/shoppinglist/'+shoppinglist_id+'/update-order'
+                    url: '/shoppinglist/' + shoppinglist_id + '/update-order'
                 });
             }
         }
