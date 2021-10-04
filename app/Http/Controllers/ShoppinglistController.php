@@ -119,17 +119,11 @@ class ShoppinglistController extends Controller
 
     public function updateOrder(Request $request, Shoppinglist $shoppinglist)
     {
-        /*return json_encode(request()->toArray());
-
-        return response()->with([
-            'meldung success' => 'Die Liste '.$request->name.' wurde sortiert'
-        ]);*/
-
         $order = $request->get('order');
         foreach($order as $key => $value)
         {
             $shoppinglist->products()
-                ->updateExistingPivot($value, ['order' => 100-$key]);
+                ->updateExistingPivot($value, ['sort' => $key]);
         }
         return "success";
     }

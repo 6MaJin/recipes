@@ -19,6 +19,13 @@ class Product extends Model
     public function shoppinglists () {
         return $this->belongsToMany(Shoppinglist::class);
     }
+
+    public function sortedProducts() {
+        return $this->belongsToMany('App\Models\Shoppinglist')
+            ->wherePivot('sort', $this->id)
+            ->orderBy('sort');
+    }
+
     public function categories() {
         return $this->belongsToMany(Category::class);
     }

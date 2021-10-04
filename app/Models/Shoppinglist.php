@@ -28,6 +28,6 @@ class Shoppinglist extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class)->withPivot('order');
+        return $this->belongsToMany(Product::class, 'product_shoppinglist', 'shoppinglist_id', 'product_id')->withPivot('sort');
     }
 }

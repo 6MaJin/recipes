@@ -22,6 +22,11 @@
                                     @endforeach
                                 </div>
                             </div>
+
+
+
+                            {{$product -> sortedProducts}}
+
                             <div class="mb-3">
                                 <div class="livesearch-container">
                                     <livewire:productfinder :shoppinglist="$shoppinglist"/>
