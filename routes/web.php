@@ -21,6 +21,6 @@ Route::resource('product', 'App\Http\Controllers\ProductController');
 Route::post('/product/ajax-store','App\Http\Controllers\ProductController@ajaxStore')->name('product.ajax-store');
 
 Route::post('/shoppinglist/{id}/update-order','App\Http\Controllers\ShoppinglistController@updateOrder')->name('shoppinglist.update-order');
-
+/*Route::get('/users', 'App\Http\Controllers\UserController@index')->name('index');*/
 
 Auth::routes();

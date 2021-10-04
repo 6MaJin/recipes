@@ -5,11 +5,9 @@
  */
 
 require('./bootstrap');
-import $ from 'jquery';
-
+/*import $ from 'jquery';*/
 window.$ = window.jQuery = $;
-import 'jquery-ui/ui/widgets/sortable.js';
-
+/*import 'jquery-ui/ui/widgets/sortable.js';*/
 window.Vue = require('vue').default;
 
 /**

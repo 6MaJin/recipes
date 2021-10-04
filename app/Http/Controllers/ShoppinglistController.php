@@ -85,7 +85,7 @@ class ShoppinglistController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Shoppinglist  $shoppinglist
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function update(Request $request, Shoppinglist $shoppinglist)
     {
@@ -95,9 +95,11 @@ class ShoppinglistController extends Controller
             'name' => $request->name,
             'note' => $request->note
         ]);
-        return $this->index()->with([
-            'meldung success' => 'Die Liste '.$request->name.' wurde editiert'
+        return view('shoppinglist.edit')->with('shoppinglist', $shoppinglist)->with([
+            'meldung_success' => 'Die Liste '.$shoppinglist->name.' wurde editiert'
         ]);
+
+
     }
 
     /**

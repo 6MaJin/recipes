@@ -65,7 +65,7 @@ use Illuminate\Support\Facades\Route;
                     </li>
                     <a class="nav-link {{Request::is('shoppinglist*')  ? 'active' : '' }}"  href="/shoppinglist">Shoppinglists</a>
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('user*') ? 'active' : '' }}"  href="/users">Users</a>
+                        <a class="nav-link {{ Request::is('user*') ? 'active' : '' }}"  href="/user">User</a>
                     </li>
                     <li><a class="nav-link {{Request::is('menu') ? 'active' : ''}}" href="/menu">Menu</a></li>
 
