@@ -108,6 +108,7 @@ class ProductController extends Controller
             [
                 'status' => 'success',
                 'product_id' => $product->id,
+                'shoppinglist_id' => $shoppinglist->id,
                 'product_name' => $product->name
             ]
         );

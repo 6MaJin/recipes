@@ -54,7 +54,7 @@
     <script>
         function addProduct(product_id, product_name) {
             if ($('.product-list').find("[data-id=" + product_id + "]").length === 0) {
-                $('.product-list').append('<div class="btn btn-outline-secondary btn-sm mt-1" onclick="removeProduct(' + product_id + ')" data-id="' + product_id + '">' + product_name + '</div>');
+                $('.product-list').append('<div class="btn btn-outline-secondary btn-sm mt-1">' + product_name + '</div>').append("terter");
 
             }
         }

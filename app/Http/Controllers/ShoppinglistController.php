@@ -125,7 +125,7 @@ class ShoppinglistController extends Controller
         foreach($order as $key => $value)
         {
             $shoppinglist->products()
-                ->updateExistingPivot($value, ['sort' => $key]);
+                ->syncExistingPivot($value, ['sort' => $key]);
         }
         return "success";
     }
