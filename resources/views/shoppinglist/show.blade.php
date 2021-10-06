@@ -48,4 +48,33 @@
 @endsection
 
 @section('after_script')
+                        <script>
+                            function addProduct(product_id, product_name) {
+                                if ($('.product-list').find("[data-id=" + product_id + "]").length === 0) {
+                                    $('.product-list').append('<div class="btn btn-outline-secondary btn-sm mt-1">' + product_name + '</div>').append("terter");
+
+                                }
+                            }
+
+                            function ajaxStore() {
+                                let product_name = $("#add_product").val();
+                                $.ajax({
+                                    method: "POST",
+                                    dataType: 'json',
+                                    url: "{{route('product.ajax-store')}}",
+                                    data: {_token: "{{ csrf_token() }}", name: product_name, shoppinglist_id: {{ $shoppinglist->id }}}
+                                })
+                                    .done(function (data) {
+                                        console.log(data);
+                                        if (data.status == 'success') {
+                                            $('.product-list').append('<div class="btn btn-outline-secondary btn-sm mt-1" onclick="removeProduct(' + data.product_id + ')" data-id="' + data.product_id + '">' + data.product_name + '</div>');
+                                        }
+                                    });
+                            }
+
+                            function removeProduct(product_id) {
+                                return;
+                                $('.product-list').find("[data-id=" + product_id + "]").remove();
+                            }
+                        </script>
 @endsection
