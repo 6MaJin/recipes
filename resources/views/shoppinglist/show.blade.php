@@ -28,7 +28,7 @@
 
                                             <div id="sortable" class="product-list" data-id="{{$shoppinglist->id}}">
 
-                                                @foreach($shoppinglist->products as $product)
+                                                @foreach($shoppinglist->products()->orderBy('product_shoppinglist.sort','ASC')->get() as $product)
                                                     <div class="btn btn-outline-secondary btn-sm mt-1 ui-sortable-handle"
                                                          data-id={{$product->id}}>{{$product->name}}</div>
                                                 @endforeach

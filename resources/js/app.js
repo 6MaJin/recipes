@@ -41,7 +41,7 @@ $(function () {
     });
     $("#sortable").sortable(
         {
-            update: function (event, ui) {
+            update: function () {
                 var order = [];
                 $("#sortable").find('[data-id]').each(function () {
                         order.push($(this).data('id'));

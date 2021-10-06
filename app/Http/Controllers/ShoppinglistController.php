@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Shoppinglist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class ShoppinglistController extends Controller
 {
@@ -119,13 +120,16 @@ class ShoppinglistController extends Controller
         ]);*/
     }
 
-    public function updateOrder(Request $request, Shoppinglist $shoppinglist)
+    public function updateOrder(Request $request, $id)
     {
-        $order = $request->get('order');
+        $shoppinglist = Shoppinglist::find($id);
+        $order = $request->input('order');
         foreach($order as $key => $value)
         {
-            $shoppinglist->products()
-                ->syncExistingPivot($value, ['sort' => $key]);
+            /*$shoppinglist->products()->updateExistingPivot([$key => ['sort' => $value]]);*/
+            $shoppinglist->products()->updateExistingPivot($value, ['sort' => $key]);
+            /*Log::debug($key."-".$value);*/
+            Log::debug(print_r($request->all(),true));
         }
         return "success";
     }
