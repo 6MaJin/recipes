@@ -4,7 +4,7 @@
         <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="ajaxStore()"><i class="fa fa-plus"></i>
         </button>
     </div>
-    <ul class="list-group">
+    <ul>
         @foreach($products as $product)
 
             <li class="list-group-item" onclick="addProduct({{$product->id}},'{{$product->name}}')">{{ $product->name }}</li>

@@ -23,8 +23,6 @@
                                 </div>
                             </div>
 
-
-
                             {{$product -> sortedProducts}}
 
                             <div class="mb-3">
