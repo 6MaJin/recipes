@@ -29,7 +29,7 @@
                                             <div id="sortable" class="product-list" data-id="{{$shoppinglist->id}}">
 
                                                 @foreach($shoppinglist->products()->orderBy('product_shoppinglist.sort','ASC')->get() as $product)
-                                                    <div class="btn btn-outline-secondary btn-sm mt-1 ui-sortable-handle"
+                                                    <div class="list-button btn btn-outline-secondary btn-sm mt-1 ui-sortable-handle"
                                                          data-id={{$product->id}}>{{$product->name}}</div>
                                                 @endforeach
                                             </div>
@@ -51,7 +51,7 @@
                         <script>
                             function addProduct(product_id, product_name) {
                                 if ($('.product-list').find("[data-id=" + product_id + "]").length === 0) {
-                                    $('.product-list').append('<div class="btn btn-outline-secondary btn-sm mt-1">' + product_name + '</div>').append("terter");
+                                    $('.product-list').append('<div class="list-button btn btn-outline-secondary btn-sm mt-1">' + product_name + '</div>');
 
                                 }
                             }
@@ -67,7 +67,7 @@
                                     .done(function (data) {
                                         console.log(data);
                                         if (data.status == 'success') {
-                                            $('.product-list').append('<div class="btn btn-outline-secondary btn-sm mt-1" onclick="removeProduct(' + data.product_id + ')" data-id="' + data.product_id + '">' + data.product_name + '</div>');
+                                            $('.product-list').append('<div class="list-button btn btn-outline-secondary btn-sm mt-1" onclick="removeProduct(' + data.product_id + ')" data-id="' + data.product_id + '">' + data.product_name + '</div>');
                                         }
                                     });
                             }

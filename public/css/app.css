@@ -10060,3 +10060,8 @@ a.nav-link.active {
 .btn-outline-success {
   width: 150px;
 }
+
+.list-button {
+  cursor: pointer;
+  display: block;
+}
