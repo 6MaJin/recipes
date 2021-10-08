@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('startseite');
 Route::resource('shoppinglist', 'App\Http\Controllers\ShoppinglistController')/*->middleware('auth')*/;
+Route::resource('recipe', 'App\Http\Controllers\RecipeController')/*->middleware('auth')*/;
 Route::resource('user', 'App\Http\Controllers\UserController')/*->middleware('auth')*/;
 Route::resource('product', 'App\Http\Controllers\ProductController');
 Route::post('/product/ajax-store','App\Http\Controllers\ProductController@ajaxStore')->name('product.ajax-store');

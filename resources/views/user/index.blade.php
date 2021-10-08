@@ -46,9 +46,9 @@
                                             @method('DELETE')
                                             <button class="btn btn-danger btn-sm rounded-circle"><i class="fa fa-minus"></i></button>
                                         </form>
-<!--                                        <div class="d-flex float-right">{{$user->created_at->diffForHumans()}}</div>-->
+<!--                                        <div class="d-flex float-right">{{$user->created_at}}</div>-->
                                     </td>
-                                    <td>{{$shoppinglist -> created_at->diffForHumans()}}</td>
+                                    <td>{{$shoppinglist -> created_at}}</td>
                                 </tr>
                                 @endforeach
                                 </tbody>

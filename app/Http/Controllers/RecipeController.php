@@ -2,22 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Shoppinglist;
-use App\Models\User;
+use App\Models\recipe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
-class UserController extends Controller
+class RecipeController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @return \Illuminate\Http\Response
      */
-    public function index(shoppinglist $shoppinglist)
+    public function index()
     {
-        $users = User::paginate(5);
-
-        return view('user.index', compact('users', 'shoppinglist'));
+        /* $shoppinglists = Shoppinglist::paginate(5);*/
+        $now = Carbon::now();
+        $recipes = Recipe::orderBy('id', 'ASC')->paginate(5);
+        /*$shoppinglists = Shoppinglist::all();*/
+        return view('recipe.index')->with('recipes', $recipes);
     }
 
     /**
@@ -27,7 +29,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view ('recipe.create');
     }
 
     /**
@@ -44,21 +46,21 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @param  \App\Models\recipe  $recipe
+     * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(recipe $recipe)
     {
-        return view('user.show', compact('user'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(recipe $recipe)
     {
         //
     }
@@ -67,10 +69,10 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, recipe $recipe)
     {
         //
     }
@@ -78,10 +80,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(recipe $recipe)
     {
         //
     }
