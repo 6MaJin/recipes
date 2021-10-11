@@ -6,7 +6,7 @@
         <div class="row justifiy-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Alle Listen</div>
+                    <div class="card-header">Rezepte</div>
                     <div class="card-body">
                         <table class="border-left border-right table-striped table">
                             <thead>
@@ -22,7 +22,7 @@
                             @foreach($recipes AS $recipe)
                                 <tr>
                                     <td>
-                                        <a href="/shoppinglist/{{$recipe -> id}}/edit">{{$recipe -> name}}</a>
+                                        <a href="/recipe/{{$recipe -> id}}/edit">{{$recipe -> name}}</a>
                                     </td>
                                     <td>
                                         <a href="/user/{{$recipe->user_id}}">{{$recipe->user->name}}</a></td>
@@ -31,7 +31,7 @@
                                             <td class="btn btn-outline-secondary btn-sm mt-1">{{$name}}</td>
                                         @endforeach
                                     </td>
-                                    <td><a href="/shoppinglist/{{$recipe->id}}/edit"
+                                    <td><a href="/recipe/{{$recipe->id}}/edit"
                                            class="btn btn-primary btn-sm rounded-circle"><i class="fa fa-edit"></i></a>
                                     </td>
                                     <td>
@@ -42,7 +42,7 @@
                                                     class="fa fa-minus"></i></button>
                                         </form>
                                     </td>
-                                    <td>{{$shoppinglist -> updated_at  ?? $shoppinglist -> created_at}}</td>
+                                    <td>{{$recipe -> updated_at  ?? $recipe -> created_at}}</td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -57,7 +57,7 @@
             <a class="btn btn-success" href="/shoppinglist/create"><i class="fa fa-plus"></i></a>
         @endauth
         <div class="container">
-            {{ $shoppinglists->links("pagination::bootstrap-4") }}
+            {{ $recipes->links("pagination::bootstrap-4") }}
         </div>
     </div>
 @endsection

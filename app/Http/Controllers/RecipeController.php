@@ -10,11 +10,13 @@ class RecipeController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $recipes = Recipe::orderBy('id', 'ASC')->paginate(5);
+        /*$shoppinglists = Shoppinglist::all();*/
+        return view('recipe.index')->with('recipes', $recipes);
     }
 
     /**
