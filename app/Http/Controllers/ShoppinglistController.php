@@ -55,7 +55,6 @@ class ShoppinglistController extends Controller
         'meldung_success' => 'Die Liste '.$shoppinglist->name.' wurde angelegt'
     ]);
 
-
     }
 
     /**
