@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\recipe;
+use App\Models\Recipe;
+use App\Models\Shoppinglist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
@@ -15,10 +16,7 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        /* $shoppinglists = Shoppinglist::paginate(5);*/
-        $now = Carbon::now();
         $recipes = Recipe::orderBy('id', 'ASC')->paginate(5);
-        /*$shoppinglists = Shoppinglist::all();*/
         return view('recipe.index')->with('recipes', $recipes);
     }
 
@@ -40,8 +38,20 @@ class RecipeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /*dd($request);*/
+        $request->validate(Recipe::$rules);
+        $recipe = new Recipe([
+            'name' => $request['name'],
+            'note' => $request['note'],
+//            'user_id' => auth()->id()
+        ]);
+        $recipe->save();
+        return redirect('/recipe')->with([
+            'meldung_success' => 'Das Rezept '.$recipe->name.' wurde angelegt'
+        ]);
+
     }
+
 
     /**
      * Display the specified resource.

@@ -16,19 +16,20 @@
                                 <th>Produkte</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
+
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($shoppinglists AS $shoppinglist)
                                 <tr>
                                     <td>
-                                        <a href="/shoppinglist/{{$shoppinglist -> id}}/edit">{{$shoppinglist -> name}}</a>
+                                        <a href="/shoppinglist/{{$shoppinglist -> id}}">{{$shoppinglist -> name}}</a>
                                     </td>
                                     <td>
                                         <a href="/user/{{$shoppinglist->user_id}}">{{$shoppinglist->user->name}}</a></td>
                                     <td>
                                         @foreach($shoppinglist->products()->pluck('name') as $name)
-                                            <td class="btn btn-outline-secondary btn-sm mt-1">{{$name}}</td>
+                                            {{$name}}<br>
                                         @endforeach
                                     </td>
                                     <td><a href="/shoppinglist/{{$shoppinglist->id}}/edit"

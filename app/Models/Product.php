@@ -20,8 +20,12 @@ class Product extends Model
         return $this->belongsToMany(Shoppinglist::class)->withTimestamps();
     }
 
+    public function recipes () {
+        return $this->belongsToMany(Recipe::class)->withTimestamps();
+    }
+
     public function sortedProducts() {
-        return $this->belongsToMany('App\Models\Shoppinglist')
+        return $this->belongsToMany(Shoppinglist::class)
             ->wherePivot('sort', $this->id)
             ->orderBy('sort');
     }
