@@ -52,7 +52,6 @@
                     }
                 })
             }
-
             var target = $('.sort_menu');
             target.sortable({
                 handle: '.handle',
@@ -63,8 +62,6 @@
                     updateToDatabase(sortData.join(','))
                 }
             })
-
         })
     </script>
-
 @endsection
