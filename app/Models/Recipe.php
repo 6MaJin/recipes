@@ -23,4 +23,11 @@ class recipe extends Model
     {
         return $this->belongsToMany(Product::class, 'product_recipe', 'recipe_id', 'product_id')->withTimestamps();
     }
+    public function create_shoppinglist() {
+        $shoppinglist = new Shoppinglist([
+            'name' => $this['name'],
+            'note' => $this['note'],
+            'user_id' => auth()->id()
+        ]);
+    }
 }

@@ -34,7 +34,7 @@ class RecipeController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
@@ -49,7 +49,6 @@ class RecipeController extends Controller
         return redirect('/recipe')->with([
             'meldung_success' => 'Das Rezept '.$recipe->name.' wurde angelegt'
         ]);
-
     }
 
 
@@ -96,5 +95,12 @@ class RecipeController extends Controller
     public function destroy(recipe $recipe)
     {
         //
+    }
+    public function create_shoppinglist() {
+        $shoppinglist = new Shoppinglist([
+            'name' => $this['name'],
+            'note' => $this['note'],
+            'user_id' => auth()->id()
+        ]);
     }
 }

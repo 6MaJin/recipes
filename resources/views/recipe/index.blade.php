@@ -56,6 +56,10 @@
                 </div>
             </div>
         </div>
+        <form method="post" action="recipe.create_shoppinglist">
+            @csrf
+            <button class="btn btn-primary"><i class="fa fa-plus"></i></button>
+        </form>
 {{--        @auth--}}
             <a class="btn btn-success" href="/recipe/create"><i class="fa fa-plus"></i></a>
 {{--        @endauth--}}
