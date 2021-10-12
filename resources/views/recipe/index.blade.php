@@ -25,12 +25,12 @@
                             @foreach($recipes AS $recipe)
                                 <tr>
                                     <td>
-                                        <a href="/recipe/{{$recipe -> id}}/edit">{{$recipe -> name}}</a>
+                                        <a href="/recipe/{{$recipe -> id}}">{{$recipe -> name}}</a>
                                     </td>
 
                                     <td>
                                     @foreach($recipe->products()->pluck('name') as $name)
-                                        <div class="btn btn-outline-success">{{$name}}</div>
+                                        <a href="/recipe/{{$recipe->id}}" class="btn btn-outline-success">{{$name}}</div>
                                         @endforeach
                                         </td>
 
@@ -56,12 +56,12 @@
                 </div>
             </div>
         </div>
-        <form method="post" action="recipe.create_shoppinglist">
+        <form class="float-left" method="post" action="recipe.create_shoppinglist">
             @csrf
-            <button class="btn btn-primary"><i class="fa fa-plus"></i></button>
+            <button class="btn btn-primary"><i class="fa fa-plus">Als Einkaufsliste speichern</i></button>
         </form>
 {{--        @auth--}}
-            <a class="btn btn-success" href="/recipe/create"><i class="fa fa-plus"></i></a>
+            <a class="float-right btn btn-success" href="/recipe/create"><i class="fa fa-plus"></i></a>
 {{--        @endauth--}}
         <div class="container">
             {{ $recipes->links("pagination::bootstrap-4") }}

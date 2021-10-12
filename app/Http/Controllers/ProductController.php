@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Recipe;
 use App\Models\Shoppinglist;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -34,9 +35,9 @@ class ProductController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Recipe $recipe)
     {
         $request->validate(Product::$rules);
         $product = new Product([
@@ -44,9 +45,7 @@ class ProductController extends Controller
             'note' => "Notiz"
         ]);
         $product->save();
-        return $this->with([
-            'meldung_success' => 'Das Produkt '.$product->name.' wurde angelegt'
-        ]);
+        return redirect('/recipe')->with('recipe', $recipe);
     }
 
     /**

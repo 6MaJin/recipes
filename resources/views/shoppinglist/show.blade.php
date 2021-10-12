@@ -4,10 +4,8 @@
         <div class="row justifiy-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Alle Listen</div>
+                    <div class="card-header">{{$shoppinglist->name}}</div>
                     <div class="card-body">
-
-
                         <!-- Trigger the modal with a button -->
                         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
 

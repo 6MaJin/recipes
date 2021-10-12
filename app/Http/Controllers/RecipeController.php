@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Recipe;
+use App\Models\Product;
 use App\Models\Shoppinglist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -56,11 +57,11 @@ class RecipeController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\recipe  $recipe
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function show(recipe $recipe)
+    public function show(recipe $recipe, product $product)
     {
-        //
+        return view('recipe.show')->with('recipe', $recipe)->with('product', $product);
     }
 
     /**

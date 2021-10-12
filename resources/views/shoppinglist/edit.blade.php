@@ -23,7 +23,6 @@
                                 </div>
                             </div>
 
-                            {{$product -> sortedProducts}}
 
                             <div class="mb-3">
                                 <div class="livesearch-container">
@@ -52,7 +51,7 @@
     <script>
         function addProduct(product_id, product_name) {
             if ($('.product-list').find("[data-id=" + product_id + "]").length === 0) {
-                $('.product-list').append('<div class="btn btn-outline-secondary btn-sm mt-1">' + product_name + '</div>').append("terter");
+                $('.product-list').append('<div class="btn btn-outline-secondary btn-sm mt-1">' + product_name + '</div>');
 
             }
         }
