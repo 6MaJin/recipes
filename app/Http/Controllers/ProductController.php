@@ -47,7 +47,7 @@ class ProductController extends Controller
         $product->save();
         return redirect('/recipe')->with('recipe', $recipe);
     }
-    
+
     /**
      * Display the specified resource.
      *
@@ -108,6 +108,26 @@ class ProductController extends Controller
                 'status' => 'success',
                 'product_id' => $product->id,
                 'shoppinglist_id' => $shoppinglist->id,
+                'product_name' => $product->name
+            ]
+        );
+    }
+
+    public function ajaxStoreRecipe(Request $request)
+    {
+        $request->validate(Product::$rules);
+        $product = new Product([
+            'name' => $request['name'],
+            'note' => "Notiz"
+        ]);
+        $product->save();
+        $recipe = Recipe::find($request['recipe_id']);
+        $recipe->products()->save($product);
+        return json_encode(
+            [
+                'status' => 'success',
+                'product_id' => $product->id,
+                'recipe_id' => $recipe->id,
                 'product_name' => $product->name
             ]
         );

@@ -70,9 +70,9 @@ class RecipeController extends Controller
      * @param  \App\Models\recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function edit(recipe $recipe)
+    public function edit(recipe $recipe, product $product, shoppinglist $shoppinglist)
     {
-        //
+        return view('recipe.edit')->with('recipe', $recipe)->with('product', $product)->with('shoppinglist', $shoppinglist);
     }
 
     /**

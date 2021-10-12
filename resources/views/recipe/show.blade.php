@@ -8,9 +8,7 @@
                     <div class="card-body">
 
 
-                    <div class="card-header">
                         <h4>Add Product</h4>
-                    </div>
                         <div class="card-body">
                             <form method="POST" action="/product">
                                 @csrf
@@ -18,10 +16,13 @@
                                 <button class="btn btn-success" type="text"><i class="fa fa-plus"></i></button>
                             </form>
                         </div>
-
-
-
                     </div>
+
+                    <form class="float-left" method="post" action="/recipe/create_shoppinglist">
+                        @csrf
+                        @method('put')
+                        <button class="btn btn-primary"><i class="fa fa-plus">Als Einkaufsliste speichern</i></button>
+                    </form>
 
                     @endsection
 

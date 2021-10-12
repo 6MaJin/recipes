@@ -7,7 +7,8 @@
     <ul>
         @foreach($products as $product)
 
-            <li class="list-group-item" onclick="addProduct({{$product->id}},'{{$product->name}}')">{{ $product->name }}</li>
+<!--            <li class="list-group-item" onclick="addProduct({{$product->id}},'{{$product->name}}')">{{ $product->name }}</li>-->
+            <li class="list-group-item">{{ $product->name }}</li>
 
         @endforeach
     </ul>
