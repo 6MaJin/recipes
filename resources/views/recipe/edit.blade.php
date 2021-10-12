@@ -4,20 +4,20 @@
         <div class="row justifiy-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Alle Listen</div>
+                    <div class="card-header"><h3>{{$shoppinglist->name}}</h3></div>
                     <div class="card-body">
-                        <form action="/recipe/{{$recipe->id}}" method="POST">
+                        <form action="/shoppinglist/{{$shoppinglist->id}}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input value="{{old('name') ?? $recipe->name}}" type="text" class="form-control"
+                                <input value="{{old('name') ?? $shoppinglist->name}}" type="text" class="form-control"
                                        id="name" name="name">
                             </div>
                             <div class="form-group">
                                 <div id="sortable" class="product-list" data-id="{{$recipe->id}}">
                                     @foreach($recipe->products()->orderBy('product_recipe.sort','ASC')->get() as $product)
-                                        <div class="btn btn-outline-secondary btn-sm mt-1 ui-sortable-handle"
+                                        <div class="btn btn-outline-success btn-sm mt-1 ui-sortable-handle"
                                              data-id={{$product->id}}>{{$product->name}}</div>
                                     @endforeach
                                 </div>
@@ -31,7 +31,7 @@
 
                             </div>
 
-
+                            <div style="clear:both"></div>
                             <div class="form-group">
                                 <label for="note">Notes</label><br/>
                                 <textarea name="note" id="note" cols="30"
