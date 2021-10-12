@@ -69,7 +69,7 @@ $(function () {
                     order.push($(this).data('id'));
                 })
                 console.log(order);
-                let shoppinglist_id = $(this).data('id');
+                let recipe_id = $(this).data('id');
                 // POST to server using $.post or $.ajax
                 $.ajax({
                     data: {
@@ -77,7 +77,7 @@ $(function () {
                     },
                     type: 'POST',
                     dataType: 'json',
-                    url: '/shoppinglist/' + shoppinglist_id + '/update-order'
+                    url: '/recipe/' + recipe_id + '/update-order'
                 });
             }
         }

@@ -30,6 +30,12 @@ class Product extends Model
             ->orderBy('sort');
     }
 
+    public function sortedProductsRecipes() {
+        return $this->belongsToMany(Recipe::class)
+            ->wherePivot('sort', $this->id)
+            ->orderBy('sort');
+    }
+
     public function categories() {
         return $this->belongsToMany(Category::class);
     }

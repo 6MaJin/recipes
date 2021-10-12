@@ -16,7 +16,7 @@
                             </div>
                             <div class="form-group">
                                 <div id="sortable" class="product-list" data-id="{{$recipe->id}}">
-                                    @foreach($recipe->products()->get() as $product)
+                                    @foreach($recipe->products()->orderBy('product_recipe.sort','ASC')->get() as $product)
                                         <div class="btn btn-outline-secondary btn-sm mt-1 ui-sortable-handle"
                                              data-id={{$product->id}}>{{$product->name}}</div>
                                     @endforeach
