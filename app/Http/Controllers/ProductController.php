@@ -47,6 +47,7 @@ class ProductController extends Controller
         $product->save();
         return redirect('/recipe')->with('recipe', $recipe);
     }
+    
     /**
      * Display the specified resource.
      *
