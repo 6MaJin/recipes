@@ -28,7 +28,7 @@
                                 <div class="container<!--livesearch-container-->">
 {{--                                    <livewire:productfinder :shoppinglist="$shoppinglist"/>--}}
                                     <form action="">
-                                        <input type="text" id="name" id="name">
+                                        <input type="text" id="add_product" id="name">
                                         <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="ajaxStore()"><i class="fa fa-plus">Speichere Produkt</i>
                                     </form>
                                 </div>
@@ -66,12 +66,11 @@
                 method: "POST",
                 dataType: 'json',
                 url: "{{route('product.ajax-store')}}",
-                data: {_token: "{{ csrf_token() }}", name: product_name, shoppinglist_id: {{ $shoppinglist->id }}}
-            })
+                data: {_token: "{{ csrf_token() }}" , name: product_name, shoppinglist_id: {{ $shoppinglist->id }}, product_id: {{ $product->id }} }})
                 .done(function (data) {
                     console.log(data);
                     if (data.status == 'success') {
-                        $('.product-list').append('<div class="btn btn-outline-success btn-sm mt-1"  data-id="' + data.product_id + '">' + data.product_name + '<i onclick="removeProduct(' + data.product_id + ')" class="float-right btn-sm btn btn-outline-danger fa fa-minus"></i></div>');
+                        $('.product-list').append('<div class="btn btn-outline-success btn-sm mt-1" data-list_id="'+data.shoppinglist_id+'"  data-id="' + data.product_id + '">' + data.product_name + '<i onclick="removeProduct(' + data.product_id + ')" class="float-right btn-sm btn btn-outline-danger fa fa-minus"></i></div>');
                     }
                 });
         }
@@ -81,8 +80,12 @@
 
 
         function removeProduct(product_id) {
-            alert("test");
+            console.log(data);
+            // $('.btn').find("[data-id=" + product_id + "]").remove();
             $('.product-list').find("[data-id=" + product_id + "]").remove();
+            $.ajax({
+
+            })
         }
     </script>
 @endsection
