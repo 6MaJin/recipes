@@ -61,5 +61,27 @@ $(function () {
         }
     );
 
+    $("#sortable").sortable(
+        {
+            update: function () {
+                var order = [];
+                $("#sortable").find('[data-id]').each(function () {
+                    order.push($(this).data('id'));
+                })
+                console.log(order);
+                let recipe_id = $(this).data('id');
+                // POST to server using $.post or $.ajax
+                $.ajax({
+                    data: {
+                        order: order,
+                    },
+                    type: 'POST',
+                    dataType: 'json',
+                    url: '/recipe/' + recipe_id + '/update-order'
+                });
+            }
+        }
+    );
+
 });
 

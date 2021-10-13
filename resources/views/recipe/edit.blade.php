@@ -4,7 +4,7 @@
         <div class="row justifiy-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Alle Listen</div>
+                    <div class="card-header"><h3>{{$shoppinglist->name}}</h3></div>
                     <div class="card-body">
                         <form action="/shoppinglist/{{$shoppinglist->id}}" method="POST">
                             @csrf
@@ -15,19 +15,18 @@
                                        id="name" name="name">
                             </div>
                             <div class="form-group">
-                                <div id="sortable" class="product-list" data-id="{{$shoppinglist->id}}">
-                                    @foreach($shoppinglist->products()->orderBy('product_shoppinglist.sort','ASC')->get() as $product)
-                                        <div class="btn btn-outline-secondary btn-sm mt-1 ui-sortable-handle"
+                                <div id="sortable" class="product-list" data-id="{{$recipe->id}}">
+                                    @foreach($recipe->products()->orderBy('product_recipe.sort','ASC')->get() as $product)
+                                        <div class="btn btn-outline-success btn-sm mt-1 ui-sortable-handle"
                                              data-id={{$product->id}}>{{$product->name}}</div>
                                     @endforeach
                                 </div>
                             </div>
 
-                            {{$product -> sortedProducts}}
 
                             <div class="mb-3">
                                 <div class="livesearch-container">
-                                    <livewire:productfinder :shoppinglist="$shoppinglist"/>
+                                    <livewire:productfinder :recipe="$recipe"/>
                                 </div>
 
                             </div>
@@ -36,7 +35,7 @@
                             <div class="form-group">
                                 <label for="note">Notes</label><br/>
                                 <textarea name="note" id="note" cols="30"
-                                          rows="10">{{old('note') ?? $shoppinglist->note}}</textarea>
+                                          rows="10">{{old('note') ?? $recipe->note}}</textarea>
                             </div>
                             <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i></button>
                         </form>
@@ -50,20 +49,13 @@
 @endsection
 @section('after_script')
     <script>
-        function addProduct(product_id, product_name) {
-            if ($('.product-list').find("[data-id=" + product_id + "]").length === 0) {
-                $('.product-list').append('<div class="btn btn-outline-secondary btn-sm mt-1">' + product_name + '</div>').append("terter");
-
-            }
-        }
-
         function ajaxStore() {
             let product_name = $("#add_product").val();
             $.ajax({
                 method: "POST",
                 dataType: 'json',
-                url: "{{route('product.ajax-store')}}",
-                data: {_token: "{{ csrf_token() }}", name: product_name, shoppinglist_id: {{ $shoppinglist->id }}}
+                url: "{{route('product.ajax-store-recipe')}}",
+                data: {_token: "{{ csrf_token() }}", name: product_name, recipe_id: {{ $recipe->id }}}
             })
                 .done(function (data) {
                     console.log(data);
@@ -71,11 +63,6 @@
                         $('.product-list').append('<div class="btn btn-outline-secondary btn-sm mt-1" onclick="removeProduct(' + data.product_id + ')" data-id="' + data.product_id + '">' + data.product_name + '</div>');
                     }
                 });
-        }
-
-        function removeProduct(product_id) {
-            return;
-            $('.product-list').find("[data-id=" + product_id + "]").remove();
         }
     </script>
 @endsection

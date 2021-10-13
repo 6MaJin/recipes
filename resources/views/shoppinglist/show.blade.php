@@ -47,12 +47,12 @@
 
 @section('after_script')
                         <script>
-                            function addProduct(product_id, product_name) {
+                            /*function addProduct(product_id, product_name) {
                                 if ($('.product-list').find("[data-id=" + product_id + "]").length === 0) {
                                     $('.product-list').append('<div class="list-button btn btn-outline-secondary btn-sm mt-1">' + product_name + '</div>');
 
                                 }
-                            }
+                            }*/
 
                             function ajaxStore() {
                                 let product_name = $("#add_product").val();

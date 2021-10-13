@@ -21,7 +21,8 @@ Route::resource('user', 'App\Http\Controllers\UserController')/*->middleware('au
 Route::resource('product', 'App\Http\Controllers\ProductController');
 Route::resource('recipe', 'App\Http\Controllers\RecipeController');
 Route::post('/product/ajax-store','App\Http\Controllers\ProductController@ajaxStore')->name('product.ajax-store');
-
+Route::post('/product/ajax-store-recipe','App\Http\Controllers\ProductController@ajaxStoreRecipe')->name('product.ajax-store-recipe');
+Route::post('/recipe/create_shoppinglist', 'App\Http\RecipeController@createShoppinglist');
 Route::post('/shoppinglist/{shoppinglist_id}/update-order','App\Http\Controllers\ShoppinglistController@updateOrder')->name('shoppinglist.update-order');
 /*Route::get('/users', 'App\Http\Controllers\UserController@index')->name('index');*/
 

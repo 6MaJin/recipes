@@ -4,7 +4,7 @@
         <div class="row justifiy-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Alle Listen</div>
+                    <div class="card-header"><h3>{{$shoppinglist->name}}</h3></div>
                     <div class="card-body">
                         <form action="/shoppinglist/{{$shoppinglist->id}}" method="POST">
                             @csrf
@@ -17,8 +17,8 @@
                             <div class="form-group">
                                 <div id="sortable" class="product-list" data-id="{{$shoppinglist->id}}">
                                     @foreach($shoppinglist->products()->orderBy('product_shoppinglist.sort','ASC')->get() as $product)
-                                        <div class="btn btn-outline-secondary btn-sm mt-1 ui-sortable-handle"
-                                             data-id={{$product->id}}>{{$product->name}}</div>
+                                        <div class="btn btn-outline-success btn-sm mt-1 ui-sortable-handle"
+                                             data-id={{$product->id}}>{{$product->name}} <i onclick="removeProduct(' + data.product_id + ')" class="float-right btn-sm btn btn-outline-danger fa fa-minus"></i> </div>
                                     @endforeach
                                 </div>
                             </div>
@@ -49,12 +49,12 @@
 @endsection
 @section('after_script')
     <script>
-        function addProduct(product_id, product_name) {
+        /*function addProduct(product_id, product_name) {
             if ($('.product-list').find("[data-id=" + product_id + "]").length === 0) {
                 $('.product-list').append('<div class="btn btn-outline-secondary btn-sm mt-1">' + product_name + '</div>');
 
             }
-        }
+        }*/
 
         function ajaxStore() {
             let product_name = $("#add_product").val();
@@ -67,13 +67,17 @@
                 .done(function (data) {
                     console.log(data);
                     if (data.status == 'success') {
-                        $('.product-list').append('<div class="btn btn-outline-secondary btn-sm mt-1" onclick="removeProduct(' + data.product_id + ')" data-id="' + data.product_id + '">' + data.product_name + '</div>');
+                        $('.product-list').append('<div class="btn btn-outline-success btn-sm mt-1"  data-id="' + data.product_id + '">' + data.product_name + '<i onclick="removeProduct(' + data.product_id + ')" class="float-right btn-sm btn btn-outline-danger fa fa-minus"></i></div>');
                     }
                 });
         }
 
+
+
+
+
         function removeProduct(product_id) {
-            return;
+            alert("test");
             $('.product-list').find("[data-id=" + product_id + "]").remove();
         }
     </script>

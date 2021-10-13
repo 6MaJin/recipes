@@ -29,6 +29,6 @@ class recipe extends Model
             'note' => $this['note'],
             'user_id' => auth()->id()
         ]);
-        return view('recipe.{{$this->id')->with('shoppinglist', $shoppinglist);
+        return view('recipe.{{$this->id')->with('recipe', $recipe);
     }
 }
