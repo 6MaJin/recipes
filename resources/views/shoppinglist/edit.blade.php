@@ -25,8 +25,12 @@
 
 
                             <div class="mb-3">
-                                <div class="livesearch-container">
-                                    <livewire:productfinder :shoppinglist="$shoppinglist"/>
+                                <div class="container<!--livesearch-container-->">
+{{--                                    <livewire:productfinder :shoppinglist="$shoppinglist"/>--}}
+                                    <form action="">
+                                        <input type="text" id="name" id="name">
+                                        <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="ajaxStore()"><i class="fa fa-plus">Speichere Produkt</i>
+                                    </form>
                                 </div>
 
                             </div>
