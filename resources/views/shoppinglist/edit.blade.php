@@ -18,7 +18,7 @@
                                 <div id="sortable" class="product-list" data-id="{{$shoppinglist->id}}">
                                     @foreach($shoppinglist->products()->orderBy('product_shoppinglist.sort','ASC')->get() as $product)
                                         <div class="btn btn-outline-success btn-sm mt-1 ui-sortable-handle"
-                                             data-id={{$product->id}}>{{$product->name}}</div>
+                                             data-id={{$product->id}}>{{$product->name}} <i onclick="removeProduct(' + data.product_id + ')" class="float-right btn-sm btn btn-outline-danger fa fa-minus"></i> </div>
                                     @endforeach
                                 </div>
                             </div>
@@ -67,7 +67,7 @@
                 .done(function (data) {
                     console.log(data);
                     if (data.status == 'success') {
-                        $('.product-list').append('<div class="btn btn-outline-secondary btn-sm mt-1" onclick="removeProduct(' + data.product_id + ')" data-id="' + data.product_id + '">' + data.product_name + '</div>');
+                        $('.product-list').append('<div class="btn btn-outline-success btn-sm mt-1"  data-id="' + data.product_id + '">' + data.product_name + '<i onclick="removeProduct(' + data.product_id + ')" class="float-right btn-sm btn btn-outline-danger fa fa-minus"></i></div>');
                     }
                 });
         }
@@ -76,9 +76,9 @@
 
 
 
-        /*function removeProduct(product_id) {
-            return;
+        function removeProduct(product_id) {
+            alert("test");
             $('.product-list').find("[data-id=" + product_id + "]").remove();
-        }*/
+        }
     </script>
 @endsection
