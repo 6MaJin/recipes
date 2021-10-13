@@ -80,12 +80,10 @@
 
 
         function removeProduct(product_id) {
-            console.log(data);
-            // $('.btn').find("[data-id=" + product_id + "]").remove();
-            $('.product-list').find("[data-id=" + product_id + "]").remove();
-            $.ajax({
+            console.log("data");
+            // $('.product-list').find("[data-id=" + product_id + "]").remove();
+            $('.product-list').find('.btn').remove();
 
-            })
         }
     </script>
 @endsection
