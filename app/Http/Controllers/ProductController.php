@@ -132,5 +132,11 @@ class ProductController extends Controller
             ]
         );
     }
+    public function ajaxDelete($id) {
+        $this->destroy($id);
+        return \response()->json([
+            'success' => 'Product successfully deleted from Shoppinglist'
+        ]);
+    }
 
 }

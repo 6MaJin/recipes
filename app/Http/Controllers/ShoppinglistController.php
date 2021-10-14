@@ -17,12 +17,8 @@ class ShoppinglistController extends Controller
      */
     public function index()
     {
-       /* $shoppinglists = Shoppinglist::paginate(5);*/
-        $now = Carbon::now();
         $shoppinglists = Shoppinglist::orderBy('id', 'ASC')->paginate(5);
-        /*$shoppinglists = Shoppinglist::all();*/
         return view('shoppinglist.index')->with('shoppinglists', $shoppinglists);
-
     }
 
     /**
@@ -76,8 +72,8 @@ class ShoppinglistController extends Controller
      */
     public function edit(Shoppinglist $shoppinglist)
     {
-        return view('shoppinglist.edit')->with('shoppinglist', $shoppinglist);
-
+        $products = $shoppinglist->products()->get();
+        return view('shoppinglist.edit')->with('shoppinglist', $shoppinglist)->with('products', $products);
     }
 
     /**

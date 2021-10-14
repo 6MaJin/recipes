@@ -17,7 +17,7 @@ class Product extends Model
         'note'=> 'string|nullable'
     ];
     public function shoppinglists () {
-        return $this->belongsToMany(Shoppinglist::class)->withTimestamps();
+        return $this->belongsToMany(Shoppinglist::class, 'product_shoppinglist', 'product_id', 'shoppinglist_id')->withTimestamps();
     }
 
     public function recipes () {
