@@ -86,12 +86,17 @@ class ProductController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|Response|\Illuminate\Routing\Redirector
      */
-    public function destroy(Product $product)
+    public function destroy(Product $product, Shoppinglist $shoppinglist)
     {
-        //
+        $product->delete();
+
+        return redirect('/shoppinglist')->with([
+            'meldung_success' => 'Die Liste wurde gelöscht']
+        );
     }
+
 
     public function ajaxStore(Request $request)
     {

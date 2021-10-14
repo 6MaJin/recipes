@@ -16,12 +16,23 @@
                             </div>
                             <div class="form-group">
                                 <div id="sortable" class="product-list" data-id="{{$shoppinglist->id}}">
-{{--                                    @foreach($shoppinglist->products()->orderBy('product_shoppinglist.sort','ASC')->get() as $product)--}}
+                                    {{--                                    @foreach($shoppinglist->products()->orderBy('product_shoppinglist.sort','ASC')->get() as $product)--}}
                                     @foreach($products AS $product)
-                                        <div data-token="{{ csrf_token() }}" id="{{ $product->id }}"  class="btn btn-outline-success btn-sm mt-1 ui-sortable-handle"
-                                             data-id={{$product->id}}>{{$product->name}} <i
-                                                onclick="removeProduct(' + data.product_id + ')"
-                                                class="float-right btn-sm btn btn-outline-danger fa fa-minus"></i></div>
+
+
+                                        <form method="POST" action="/product/{{$product->id}}">
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <div data-token="{{ csrf_token() }}" id="{{ $product->id }}"
+                                                 class="btn btn-outline-success btn-sm mt-1 ui-sortable-handle"
+                                                 data-id={{$product->id}}>{{$product->name}} >
+                                                <button  class="btn btn-danger btn-sm rounded-circle"><i
+                                                        class="fa fa-minus"> </i> </button>
+<!--                                                <i onclick="removeProduct(' + data.product_id + ')"
+                                                   class="float-right btn-sm btn btn-outline-danger fa fa-minus"></i>-->
+                                            </div>
+                                        </form>
                                     @endforeach
                                 </div>
                             </div>
@@ -33,7 +44,8 @@
                                     <form action="">
                                         <input type="text" id="add_product" id="name">
                                         <button class="btn btn-outline-secondary" type="button" id="button-addon2"
-                                                onclick="ajaxStore()"><i class="fa fa-plus">Speichere Produkt</i></button>
+                                                onclick="ajaxStore()"><i class="fa fa-plus">Speichere Produkt</i>
+                                        </button>
                                     </form>
                                 </div>
 
@@ -85,7 +97,7 @@
                     }
 
                 });
-console.log(data);
+            console.log(data);
         }
 
 
@@ -98,23 +110,23 @@ console.log(data);
             // $('.btn').attr("[data-id=" + product_id + "]").remove();
             var id = $(this).data('id');
             var token = $(this).data("token");
-           /* $.ajax({
-                method: "DELETE",
-                url: "{{route('product.ajax-delete')}}",
+            /* $.ajax({
+                 method: "DELETE",
+                 url: "{{route('product.ajax-delete')}}",
                 data: {
                     _token: "{{ csrf_token() }}",
                     name: product_name,
                     shoppinglist_id: {{ $shoppinglist->id }},
                     product_id: {{ $product->id }}
-                },
-                success: function ()
-                {
-                    console.log("It works");
-                },
-                error: function (response) {
-                    console.log('Error:', response);
-                }
-            });*/
+            },
+            success: function ()
+            {
+                console.log("It works");
+            },
+            error: function (response) {
+                console.log('Error:', response);
+            }
+        });*/
 
 
         }
