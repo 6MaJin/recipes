@@ -136,11 +136,5 @@ class ProductController extends Controller
             ]
         );
     }
-    public function ajaxDelete(product $product) {
-        $product->delete();
-        return response()->json([
-            'success' => 'Product successfully deleted from Shoppinglist'
-        ]);
-    }
 
 }
