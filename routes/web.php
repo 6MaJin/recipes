@@ -15,15 +15,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('startseite');
-
-Route::post('/product/ajax-store','App\Http\Controllers\ProductController@ajaxStore')->name('product.ajax-store');
-
-Route::post('/shoppinglist/{shoppinglist}/update-order','App\Http\Controllers\ShoppinglistController@updateOrder')->name('shoppinglist.update-order');
-Route::post('/shoppinglist/ajax-delete','App\Http\Controllers\ShoppinglistController@ajaxDelete')->name('shoppinglist.ajax-delete');
-Route::post('/shoppinglist/ajax-set-public','App\Http\Controllers\ShoppinglistController@ajaxSetPublic')->name('shoppinglist.ajax-set-public');
-
 Route::resource('shoppinglist', 'App\Http\Controllers\ShoppinglistController')/*->middleware('auth')*/;
+Route::resource('recipe', 'App\Http\Controllers\RecipeController')/*->middleware('auth')*/;
 Route::resource('user', 'App\Http\Controllers\UserController')/*->middleware('auth')*/;
 Route::resource('product', 'App\Http\Controllers\ProductController');
+Route::resource('recipe', 'App\Http\Controllers\RecipeController');
+Route::post('/product/ajax-store','App\Http\Controllers\ProductController@ajaxStore')->name('product.ajax-store');
+
+Route::delete('/product/ajax-delete','App\Http\Controllers\ProductController@ajaxDelete')->name('product.ajax-delete');
+
+Route::post('/product/ajax-store-recipe','App\Http\Controllers\ProductController@ajaxStoreRecipe')->name('product.ajax-store-recipe');
+Route::post('/recipe/create_shoppinglist', 'App\Http\Controllers\RecipeController@createShoppinglist');
+Route::post('/shoppinglist/{shoppinglist_id}/update-order','App\Http\Controllers\ShoppinglistController@updateOrder')->name('shoppinglist.update-order');
+/*Route::get('/users', 'App\Http\Controllers\UserController@index')->name('index');*/
 
 Auth::routes();

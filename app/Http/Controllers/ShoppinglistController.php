@@ -28,13 +28,13 @@ class ShoppinglistController extends Controller
      */
     public function create()
     {
-        return view('Shoppinglist.create');
+        return view ('Shoppinglist.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
@@ -48,15 +48,15 @@ class ShoppinglistController extends Controller
         ]);
         $shoppinglist->save();
         return redirect('/shoppinglist')->with([
-            'meldung_success' => 'Die Liste ' . $shoppinglist->name . ' wurde angelegt'
-        ]);
+        'meldung_success' => 'Die Liste '.$shoppinglist->name.' wurde angelegt'
+    ]);
 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\Shoppinglist $shoppinglist
+     * @param  \App\Models\Shoppinglist  $shoppinglist
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function show(Shoppinglist $shoppinglist, Product $product)
@@ -67,20 +67,20 @@ class ShoppinglistController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Models\Shoppinglist $shoppinglist
+     * @param  \App\Models\Shoppinglist  $shoppinglist
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function edit(Shoppinglist $shoppinglist)
     {
-        $products = $shoppinglist->products()->orderBy('product_shoppinglist.sort', 'ASC')->get();
+        $products = $shoppinglist->products()->get();
         return view('shoppinglist.edit')->with('shoppinglist', $shoppinglist)->with('products', $products);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Shoppinglist $shoppinglist
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Shoppinglist  $shoppinglist
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function update(Request $request, Shoppinglist $shoppinglist)
@@ -92,7 +92,7 @@ class ShoppinglistController extends Controller
             'note' => $request->note
         ]);
         return view('shoppinglist.edit')->with('shoppinglist', $shoppinglist)->with([
-            'meldung_success' => 'Die Liste ' . $shoppinglist->name . ' wurde editiert'
+            'meldung_success' => 'Die Liste '.$shoppinglist->name.' wurde editiert'
         ]);
 
 
@@ -101,7 +101,7 @@ class ShoppinglistController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Shoppinglist $shoppinglist
+     * @param  \App\Models\Shoppinglist  $shoppinglist
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function destroy(Shoppinglist $shoppinglist)
@@ -110,34 +110,22 @@ class ShoppinglistController extends Controller
         return redirect('/shoppinglist')->with([
             'meldung_success' => 'Die Liste wurde gelöscht'
         ]);
-        /* return $this->index()->with([
-             'meldung_success' => 'Die Liste wurde gelöscht'
-         ]);*/
+       /* return $this->index()->with([
+            'meldung_success' => 'Die Liste wurde gelöscht'
+        ]);*/
     }
 
-    public function updateOrder(Request $request, Shoppinglist $shoppinglist)
+    public function updateOrder(Request $request, $id)
     {
+        $shoppinglist = Shoppinglist::find($id);
         $order = $request->input('order');
-        foreach ($order as $key => $value) {
+        foreach($order as $key => $value)
+        {
+            /*$shoppinglist->products()->updateExistingPivot([$key => ['sort' => $value]]);*/
             $shoppinglist->products()->updateExistingPivot($value, ['sort' => $key]);
-            Log::debug(print_r($request->all(), true));
+            /*Log::debug($key."-".$value);*/
+            Log::debug(print_r($request->all(),true));
         }
         return "success";
-    }
-
-    public function ajaxDelete(Request $request)
-    {
-
-        $product_id = $request->input('product_id');
-        $shoppinglist_id = $request->input('shoppinglist_id');
-        $shoppinglist = Shoppinglist::find($shoppinglist_id);
-        $shoppinglist->products()->detach([$product_id]);
-        return response()->json([
-            'success' => 'Product successfully deleted from Shoppinglist'
-        ]);
-    }
-
-    public function ajaxSetPublic() {
-
     }
 }

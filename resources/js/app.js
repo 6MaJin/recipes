@@ -47,7 +47,7 @@ $(function () {
                         order.push($(this).data('id'));
                 })
                 console.log(order);
-                let shoppinglist_id = $(this).data('id');
+                                let shoppinglist_id = $(this).data('id');
                 // POST to server using $.post or $.ajax
                 $.ajax({
                     data: {

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\Shoppinglist;
 use App\Models\Product;
 use App\Models\User;
@@ -18,6 +19,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Product::factory(50)->create();
+        Category::factory(10)->create();
         User::factory(10)->create()->each(function ($user) {
             Shoppinglist::factory(rand(1, 8))->create(
                 [
@@ -41,6 +43,23 @@ class DatabaseSeeder extends Seeder
 
 
                 }
+            })->each(function ($product) {
+                $category_ids = range(1, 8);
+                shuffle($category_ids);
+                $category_ids = array_slice($category_ids, 0, rand(0, 3));
+
+                foreach ($category_ids as $category_id) {
+                    DB::table('category_product')
+                        ->insert(
+                            [
+                                'category_id' => $category_id,
+                                'product_id' => $product->id,
+                                'created_at' => now(),
+                                'updated_at' => now()
+                            ]
+                        );
+                }
+
             });
         });
     }

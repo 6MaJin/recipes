@@ -13,14 +13,12 @@ class Shoppinglist extends Model
     protected $fillable = [
         'name',
         'note',
-        'user_id',
-        'public'
+        'user_id'
     ];
     public static $rules = [
         'name'=> 'string|required',
         'note'=> 'string|nullable',
-        'user_id' => 'integer',
-        'public' => 'boolean'
+        'user_id' => 'integer'
     ];
 
     public function user()
