@@ -18,14 +18,18 @@
                                 <div id="sortable" class="product-list" data-id="{{$shoppinglist->id}}">
                                     {{--                                    @foreach($shoppinglist->products()->orderBy('product_shoppinglist.sort','ASC')->get() as $product)--}}
                                     @foreach($products AS $product)
+
+
+
                                             <div data-token="{{ csrf_token() }}" id="{{ $product->id }}"
                                                  class="btn btn-outline-success btn-sm mt-1 ui-sortable-handle"
                                                  data-id={{$product->id}}>{{$product->name}}
-                                                <button type="button" onclick="removeProduct()" class="float-right btn btn-outline-danger btn-sm" data-id={{$product->id}}><i
+                                                <button onclick="removeProduct()" class="btn btn-danger btn-sm rounded-circle" data-id={{$product->id}}><i
                                                         class="fa fa-minus"> </i></button>
 <!--                                                <i onclick="removeProduct(' + data.product_id + ')"
                                                    class="float-right btn-sm btn btn-outline-danger fa fa-minus"></i>-->
                                             </div>
+
                                     @endforeach
                                 </div>
                             </div>
