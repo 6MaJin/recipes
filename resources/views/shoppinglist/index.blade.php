@@ -1,4 +1,4 @@
-@extends('layouts/app')
+@extends('layouts.app')
 @section('content')
     <div class="container">
         <h1>Index ShoppingList</h1>
@@ -13,7 +13,7 @@
                             <tr>
                                 <th>Liste</th>
                                 <th>Besitzer</th>
-                                <th>Produkte</th>
+                                <th>Öffentlich</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
 
@@ -26,11 +26,17 @@
                                         <a href="/shoppinglist/{{$shoppinglist -> id}}">{{$shoppinglist -> name}}</a>
                                     </td>
                                     <td>
-                                        <a href="/user/{{$shoppinglist->user_id}}">{{$shoppinglist->user->name}}</a></td>
+                                        <a href="/user/{{$shoppinglist->user_id}}">{{$shoppinglist->user->name}}</a>
+                                    </td>
                                     <td>
-                                        @foreach($shoppinglist->products()->pluck('name') as $name)
-                                            {{$name}}<br>
-                                        @endforeach
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" data-id="{{$shoppinglist -> id}}"
+                                                   class="public_switch custom-control-input"
+                                                   name="public_{{$shoppinglist -> id}}"
+                                                   id="public_{{$shoppinglist -> id}}">
+                                            <label class="custom-control-label"
+                                                   for="public_{{$shoppinglist -> id}}"></label>
+                                        </div>
                                     </td>
                                     <td><a href="/shoppinglist/{{$shoppinglist->id}}/edit"
                                            class="btn btn-primary btn-sm rounded-circle"><i class="fa fa-edit"></i></a>
@@ -59,4 +65,30 @@
             {{ $shoppinglists->links("pagination::bootstrap-4") }}
         </div>
     </div>
+@endsection
+@section('after_script')
+    <script>
+        $(function () {
+
+
+            $('.public_switch').change(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    method: "POST",
+                    url: "/shoppinglist/ajax-set-public",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        shoppinglist_id: $(this).data('id'),
+                        public: $(this).is(':checked')==true?1:0
+                    },
+                    success: function () {
+                        console.log("It works");
+                    },
+                    error: function (response) {
+                        console.log('Error:', response);
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

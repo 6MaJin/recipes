@@ -16,16 +16,16 @@
                             </div>
                             <div class="form-group">
                                 <div id="sortable" class="product-list" data-id="{{$shoppinglist->id}}">
-                                    {{--                                    @foreach($shoppinglist->products()->orderBy('product_shoppinglist.sort','ASC')->get() as $product)--}}
                                     @foreach($products AS $product)
-                                            <div data-token="{{ csrf_token() }}" id="{{ $product->id }}"
-                                                 class="btn btn-outline-success btn-sm mt-1 ui-sortable-handle"
-                                                 data-id={{$product->id}}>{{$product->name}}
-                                                <button type="button" onclick="removeProduct()" class="float-right btn btn-outline-danger btn-sm" data-id={{$product->id}}><i
-                                                        class="fa fa-minus"> </i></button>
-<!--                                                <i onclick="removeProduct(' + data.product_id + ')"
-                                                   class="float-right btn-sm btn btn-outline-danger fa fa-minus"></i>-->
-                                            </div>
+                                        <div id="product_{{ $product->id }}"
+                                             class="btn btn-outline-success btn-sm mt-1 ui-sortable-handle">{{$product->name}}
+                                            <button type="button" onclick="removeProduct({{$product->id}})"
+                                                    class="float-right btn btn-outline-danger btn-sm"
+                                                    data-id={{$product->id}}><i
+                                                    class="fa fa-minus"> </i></button>
+                                            <!--                                                <i onclick="removeProduct(' + data.product_id + ')"
+                                                                                               class="float-right btn-sm btn btn-outline-danger fa fa-minus"></i>-->
+                                        </div>
                                     @endforeach
                                 </div>
                             </div>
@@ -90,38 +90,29 @@
                     }
 
                 });
-            console.log(data);
         }
 
 
-        function removeProduct() {
 
-
-            console.log($(this));
-            // $('#product_id').remove();
-            // $('.product-list').find("[data-id=" + product_id + "]").remove();
-            // $('.btn').attr("[data-id=" + product_id + "]").remove();
-        {{--    var id = $(this).data('id');--}}
-        {{--    var token = $(this).data("token");--}}
-        {{--    $.ajax({--}}
-        {{--         method: "DELETE",--}}
-        {{--         url: "{{route('product.ajax-delete')}}",--}}
-        {{--        data: {--}}
-        {{--            _token: "{{ csrf_token() }}",--}}
-        {{--            name: product_name,--}}
-        {{--            shoppinglist_id: {{ $shoppinglist->id }},--}}
-        {{--            product_id: {{ $product->id }},--}}
-        {{--            "id": id,--}}
-        {{--    },--}}
-        {{--    success: function ()--}}
-        {{--    {--}}
-        {{--        console.log("It works");--}}
-        {{--    },--}}
-        {{--    error: function (response) {--}}
-        {{--        console.log('Error:', response);--}}
-        {{--    }--}}
-        {{--});--}}
-
+        function removeProduct(product_id) {
+            console.log('product_id:'+product_id);
+            $('#product_' + product_id).remove();
+            $.ajax({
+                method: "POST",
+                url: "/shoppinglist/ajax-delete",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    shoppinglist_id: {{ $shoppinglist->id }},
+                    product_id: product_id
+                },
+                success: function () {
+                    console.log("It works");
+                },
+                error: function (response) {
+                    console.log('Error:', response);
+                }
+            });
+            return false;
 
         }
     </script>
