@@ -137,7 +137,11 @@ class ShoppinglistController extends Controller
         ]);
     }
 
-    public function ajaxSetPublic() {
-
+    public function ajaxSetPublic(Request $request) {
+        $shoppinglist_id = $request->input('shoppinglist_id');
+        $public = $request->input('public');
+        $shoppinglist = Shoppinglist::find($shoppinglist_id);
+        $shoppinglist->public = $public;
+        $shoppinglist->save();
     }
 }
