@@ -90,10 +90,11 @@ class ProductController extends Controller
      */
     public function destroy(Product $product, Shoppinglist $shoppinglist)
     {
-//        $product->delete();
-//        return redirect('/shoppinglist/ajax-delete')->with([
-//            'meldung_success' => 'Das Produkt wurde gelöscht']
-//        );
+        $product->delete();
+
+        return redirect('/shoppinglist')->with([
+            'meldung_success' => 'Die Liste wurde gelöscht']
+        );
     }
 
 
@@ -136,9 +137,9 @@ class ProductController extends Controller
             ]
         );
     }
-    public function ajaxDelete(product $product) {
-        $product->delete();
-        return response()->json([
+    public function ajaxDelete($id) {
+        $this->destroy($id);
+        return \response()->json([
             'success' => 'Product successfully deleted from Shoppinglist'
         ]);
     }
