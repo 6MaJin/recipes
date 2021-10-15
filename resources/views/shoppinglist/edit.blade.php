@@ -20,19 +20,16 @@
                                     @foreach($products AS $product)
 
 
-                                        <form method="POST" action="/product/{{$product->id}}">
-                                            @csrf
-                                            @method('DELETE')
 
                                             <div data-token="{{ csrf_token() }}" id="{{ $product->id }}"
                                                  class="btn btn-outline-success btn-sm mt-1 ui-sortable-handle"
-                                                 data-id={{$product->id}}>{{$product->name}} >
-                                                <button  class="btn btn-danger btn-sm rounded-circle"><i
-                                                        class="fa fa-minus"> </i> </button>
+                                                 data-id={{$product->id}}>{{$product->name}}
+                                                <button onclick="removeProduct()" class="btn btn-danger btn-sm rounded-circle" data-id={{$product->id}}><i
+                                                        class="fa fa-minus"> </i></button>
 <!--                                                <i onclick="removeProduct(' + data.product_id + ')"
                                                    class="float-right btn-sm btn btn-outline-danger fa fa-minus"></i>-->
                                             </div>
-                                        </form>
+
                                     @endforeach
                                 </div>
                             </div>
@@ -101,32 +98,33 @@
         }
 
 
-        function removeProduct(product_id) {
+        function removeProduct() {
 
 
             console.log($(this));
-            $('#product_id').remove();
+            // $('#product_id').remove();
             // $('.product-list').find("[data-id=" + product_id + "]").remove();
             // $('.btn').attr("[data-id=" + product_id + "]").remove();
-            var id = $(this).data('id');
-            var token = $(this).data("token");
-            /* $.ajax({
-                 method: "DELETE",
-                 url: "{{route('product.ajax-delete')}}",
-                data: {
-                    _token: "{{ csrf_token() }}",
-                    name: product_name,
-                    shoppinglist_id: {{ $shoppinglist->id }},
-                    product_id: {{ $product->id }}
-            },
-            success: function ()
-            {
-                console.log("It works");
-            },
-            error: function (response) {
-                console.log('Error:', response);
-            }
-        });*/
+        {{--    var id = $(this).data('id');--}}
+        {{--    var token = $(this).data("token");--}}
+        {{--    $.ajax({--}}
+        {{--         method: "DELETE",--}}
+        {{--         url: "{{route('product.ajax-delete')}}",--}}
+        {{--        data: {--}}
+        {{--            _token: "{{ csrf_token() }}",--}}
+        {{--            name: product_name,--}}
+        {{--            shoppinglist_id: {{ $shoppinglist->id }},--}}
+        {{--            product_id: {{ $product->id }},--}}
+        {{--            "id": id,--}}
+        {{--    },--}}
+        {{--    success: function ()--}}
+        {{--    {--}}
+        {{--        console.log("It works");--}}
+        {{--    },--}}
+        {{--    error: function (response) {--}}
+        {{--        console.log('Error:', response);--}}
+        {{--    }--}}
+        {{--});--}}
 
 
         }
