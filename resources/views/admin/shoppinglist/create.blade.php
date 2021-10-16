@@ -1,4 +1,4 @@
-@extends('layouts/app')
+@extends('admin.layouts.app')
 @section('content')
     <div class="container">
         <div class="row justifiy-content-center">
@@ -6,7 +6,7 @@
                 <div class="card">
                     <div class="card-header">Alle Listen</div>
                     <div class="card-body">
-                        <form action="/shoppinglist" method="POST">
+                        <form action="/admin/shoppinglist" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label for="name">Name</label>
@@ -14,12 +14,12 @@
                                 <small class="form-text text-danger">{!!  $errors->first('name') !!}</small>
                             </div>
                             <div class="form-group">
-                                <label for="note">Notes</label>
+                                <label for="note">Zubereitung</label>
                                 <textarea class="form-control" name="note" id="note" cols="30" rows="10">{{old('note')}}</textarea>
                             </div>
                             <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i></button>
                         </form>
-                        <a class="btn btn-secondary float-right" href="/shoppinglist"><i class="fa fa-arrow-circle-up"></i></a>
+                        <a class="btn btn-secondary float-right" href="/admin/shoppinglist"><i class="fa fa-arrow-circle-up"></i></a>
                     </div>
                 </div>
             </div>
