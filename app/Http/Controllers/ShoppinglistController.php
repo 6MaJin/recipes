@@ -107,6 +107,11 @@ class ShoppinglistController extends Controller
      */
     public function destroy(Shoppinglist $shoppinglist)
     {
+        foreach($shoppinglist->products AS $product) {
+            $productIds[] = $product->id;
+            $product->delete();
+        }
+        $shoppinglist->products()->detach();
         $shoppinglist->delete();
         return redirect('/shoppinglist')->with([
             'meldung_success' => 'Die Liste wurde gelöscht'
@@ -128,7 +133,6 @@ class ShoppinglistController extends Controller
 
     public function ajaxDelete(Request $request)
     {
-
         $product_id = $request->input('product_id');
         $shoppinglist_id = $request->input('shoppinglist_id');
         $shoppinglist = Shoppinglist::find($shoppinglist_id);
