@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Shoppinglist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class ShoppinglistController extends Controller
@@ -143,5 +144,20 @@ class ShoppinglistController extends Controller
         $shoppinglist = Shoppinglist::find($shoppinglist_id);
         $shoppinglist->public = $public;
         $shoppinglist->save();
+    }
+    public function ajaxAdd(Shoppinglist $shoppinglist) {
+        $productNewIds = array();
+        $shoppinglistNew = $shoppinglist->replicate();
+        $shoppinglistNew->user_id = Auth::user()->id;
+        $shoppinglistNew->push();
+        foreach($shoppinglist->products AS $product) {
+            $productNew = $product->replicate();
+            $productNew->push();
+            $productNewIds[] = $productNew->id;
+        }
+        $shoppinglistNew->products()->sync($productNewIds);
+        return response()->json([
+            'success' => 'Product successfully deleted from Shoppinglist'
+        ]);
     }
 }
