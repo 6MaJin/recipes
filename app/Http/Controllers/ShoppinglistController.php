@@ -121,6 +121,11 @@ class ShoppinglistController extends Controller
          ]);*/
     }
 
+    public function recipes(Shoppinglist $shoppinglist) {
+        $shoppinglists = Shoppinglist::where('public', '=', 1);
+        return view('shoppinglist.recipes')->with('shoppinglists', $shoppinglists);
+    }
+
     public function updateOrder(Request $request, Shoppinglist $shoppinglist)
     {
         $order = $request->input('order');

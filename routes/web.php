@@ -20,6 +20,7 @@ Route::post('/shoppinglist/{shoppinglist}/update-order','App\Http\Controllers\Sh
 Route::get('/shoppinglist/{shoppinglist}/ajax-add','App\Http\Controllers\ShoppinglistController@ajaxAdd')->name('shoppinglist.ajax-add');
 Route::post('/shoppinglist/ajax-delete','App\Http\Controllers\ShoppinglistController@ajaxDelete')->name('shoppinglist.ajax-delete');
 Route::post('/shoppinglist/ajax-set-public','App\Http\Controllers\ShoppinglistController@ajaxSetPublic')->name('shoppinglist.ajax-set-public');
+Route::get('/recipes', 'App\Http\Controllers\ShoppinglistController@recipes')->name('shoppinglist.recipes');
 
 Route::resource('shoppinglist', 'App\Http\Controllers\ShoppinglistController')/*->middleware('auth')*/;
 Route::resource('user', 'App\Http\Controllers\UserController')/*->middleware('auth')*/;
