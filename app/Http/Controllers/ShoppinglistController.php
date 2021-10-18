@@ -14,11 +14,12 @@ class ShoppinglistController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function index()
     {
-        $shoppinglists = Shoppinglist::orderBy('id', 'ASC')->paginate(5);
+//        $shoppinglists = Shoppinglist::orderBy('id', 'ASC')->paginate(5);
+        $shoppinglists = Shoppinglist::where('public', '=', 1)->paginate(5);
         return view('shoppinglist.index')->with('shoppinglists', $shoppinglists);
     }
 
@@ -122,7 +123,7 @@ class ShoppinglistController extends Controller
     }
 
     public function recipes(Shoppinglist $shoppinglist) {
-        $shoppinglists = Shoppinglist::where('public', '=', 1);
+        $shoppinglists = Shoppinglist::where(['public', '=', 1])->paginate(5);
         return view('shoppinglist.recipes')->with('shoppinglists', $shoppinglists);
     }
 

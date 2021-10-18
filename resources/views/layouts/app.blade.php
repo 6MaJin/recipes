@@ -67,9 +67,7 @@ use Illuminate\Support\Facades\Route;
                         <a class="nav-link {{ Request::is('user*') ? 'active' : '' }}"  href="/user">User</a>
                     </li>
                     <li><a class="nav-link {{Request::is('recipes*') ? 'active' : ''}}" href="/recipes">Rezepte</a></li>
-
                 </ul>
-
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
