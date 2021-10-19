@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\Admin;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,13 +21,18 @@ Route::post('/shoppinglist/{shoppinglist}/update-order','App\Http\Controllers\Sh
 Route::get('/shoppinglist/{shoppinglist}/ajax-add','App\Http\Controllers\ShoppinglistController@ajaxAdd')->name('shoppinglist.ajax-add');
 Route::post('/shoppinglist/ajax-delete','App\Http\Controllers\ShoppinglistController@ajaxDelete')->name('shoppinglist.ajax-delete');
 Route::post('/shoppinglist/ajax-set-public','App\Http\Controllers\ShoppinglistController@ajaxSetPublic')->name('shoppinglist.ajax-set-public');
-Route::get('/recipes', 'App\Http\Controllers\ShoppinglistController@recipes')->name('shoppinglist.recipes');
+
+Route::get('/recipes', 'App\Http\Controllers\ShoppinglistController@recipes')->middleware('admin')->middleware('auth');
+//Route::get('/recipes', ['middleware' => 'admin', function(){
+//
+//}]);
+
 
 Route::resource('shoppinglist', 'App\Http\Controllers\ShoppinglistController')/*->middleware('auth')*/;
 Route::resource('user', 'App\Http\Controllers\UserController')/*->middleware('auth')*/;
 Route::resource('product', 'App\Http\Controllers\ProductController');
 
-Route::name('admin.')->prefix('admin')->group(function () {
+Route::name('admin.')->middleware('admin')->prefix('admin')->group(function () {
 
     Route::get('/', 'App\Http\Controllers\Admin\HomeController@index')->name('startseite');
     Route::post('/product/ajax-store','App\Http\Controllers\Admin\ProductController@ajaxStore')->name('product.ajax-store');
@@ -34,8 +40,8 @@ Route::name('admin.')->prefix('admin')->group(function () {
     Route::post('/shoppinglist/ajax-delete','App\Http\Controllers\Admin\ShoppinglistController@ajaxDelete')->name('shoppinglist.ajax-delete');
     Route::post('/shoppinglist/ajax-set-public','App\Http\Controllers\Admin\ShoppinglistController@ajaxSetPublic')->name('shoppinglist.ajax-set-public');
 
-    Route::resource('shoppinglist', 'App\Http\Controllers\Admin\ShoppinglistController')/*->middleware('auth')*/;
-    Route::resource('user', 'App\Http\Controllers\Admin\UserController')/*->middleware('auth')*/;
+    Route::resource('shoppinglist', 'App\Http\Controllers\Admin\ShoppinglistController');
+    Route::resource('user', 'App\Http\Controllers\Admin\UserController');
     Route::resource('product', 'App\Http\Controllers\Admin\ProductController');
 });
 

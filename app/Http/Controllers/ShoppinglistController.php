@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\User;
 use App\Models\Shoppinglist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -18,9 +19,10 @@ class ShoppinglistController extends Controller
      */
     public function index()
     {
-//        $shoppinglists = Shoppinglist::orderBy('id', 'ASC')->paginate(5);
-        $shoppinglists = Shoppinglist::where('public', '=', 1)->paginate(5);
-        return view('shoppinglist.index')->with('shoppinglists', $shoppinglists);
+        $admins = User::where('is_admin', '=', '1')->get();
+//        $admins = User::all();
+        $shoppinglists = Shoppinglist::orderBy('id', 'ASC')->paginate(5);
+        return view('shoppinglist.index')->with('shoppinglists', $shoppinglists)->with('admins', $admins);
     }
 
     /**
@@ -123,8 +125,8 @@ class ShoppinglistController extends Controller
     }
 
     public function recipes(Shoppinglist $shoppinglist) {
-        $shoppinglists = Shoppinglist::where(['public', '=', 1])->paginate(5);
-        return view('shoppinglist.recipes')->with('shoppinglists', $shoppinglists);
+        $shoppinglists = Shoppinglist::where('public', '=', 1)->paginate(5);;
+        return view('shoppinglist.recipes')->with('shoppinglist', $shoppinglist)->with('shoppinglists', $shoppinglists);
     }
 
     public function updateOrder(Request $request, Shoppinglist $shoppinglist)

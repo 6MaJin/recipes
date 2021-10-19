@@ -10,19 +10,11 @@
                             <thead>
                             <tr>
                                 <th>Produkt</th>
-                                <th>Kategorien</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
                                 <td>{{$product->name}}</td>
-                                <td>@foreach($product->categories as $category)
-                                        <ul>
-                                            <li>{{$category->name}}</li>
-                                        </ul>
-                                </td>
-                                @endforeach
-
                             </tr>
                             </tbody>
                         </table>

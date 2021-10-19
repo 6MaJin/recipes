@@ -1,8 +1,11 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
+
         <h1>Index ShoppingList</h1>
-        {{--{{DB::table('shoppinglists')->where('id','=','5')->get()}}--}}
+@foreach($admins AS $admin)
+    {{$admin->name}} <br>
+@endforeach
         <div class="row justifiy-content-center">
             <div class="col-md-12">
                 <div class="card">
