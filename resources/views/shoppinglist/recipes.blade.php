@@ -6,10 +6,10 @@
     <div class="mt-5 container">
         <ul>
             @foreach($shoppinglists AS $shoppinglist)
-                <li><a href="">{{$shoppinglist->name}}</a></li>
+                <li><a href="shoppinglist/{{$shoppinglist->id}}/edit">{{$shoppinglist->name}}</a></li>
             @endforeach
         </ul>
-        <img class="img-thumbnail" src="http://localhost:8000/images/gruene_sauce.jpeg" alt="">
+        <img class="img-thumbnail" src="{{ asset('images/gruene_soße .jpeg') }}" alt="">
         <div class="mt-5 recipe container-fluid">
             <h1>Rezept: Grüne Soße</h1>
             <p>Grüne Soße, ein Klassiker der regionalen Küche. Sobald im Frühsommer die Kräuter sprießen werden
@@ -28,7 +28,6 @@
                 regionalen Kräutern
                 Schnittlauch, Borretsch, Pimpinelle, Kerbel, Sauerampfer, Petersilie und Kresse.</p>
         </div>
-
     </div>
 
 @endsection

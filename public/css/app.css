@@ -10065,3 +10065,15 @@ a.nav-link.active {
   cursor: pointer;
   display: block;
 }
+
+#note {
+  min-width: 90%;
+  min-height: 400px;
+}
+
+@media screen and (max-width: 800px) {
+  #note {
+    min-width: 40%;
+    min-height: 200px;
+  }
+}

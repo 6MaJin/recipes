@@ -14,7 +14,7 @@
                                 <input value="{{old('name') ?? $shoppinglist->name}}" type="text" class="form-control"
                                        id="name" name="name">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group ml-5">
                                 <div id="sortable" class="product-list" data-id="{{$shoppinglist->id}}">
                                     @foreach($products AS $product)
                                         <div id="product_{{ $product->id }}"
@@ -35,9 +35,9 @@
                                 <div class="container<!--livesearch-container-->">
                                     {{--                                    <livewire:productfinder :shoppinglist="$shoppinglist"/>--}}
                                     <form action="">
-                                        <input type="text" id="add_product" id="name">
+                                        <input onfocus="this.value=''" type="text" id="add_product" id="name" value="">
                                         <button class="btn btn-outline-secondary" type="button" id="button-addon2"
-                                                onclick="ajaxStore()"><i class="fa fa-plus">Speichere Produkt</i>
+                                                onclick="ajaxStore()"><i class="fa fa-plus">Produkt hinzufügen</i>
                                         </button>
                                     </form>
                                 </div>
@@ -47,8 +47,7 @@
                             <div style="clear:both"></div>
                             <div class="form-group">
                                 <label for="note">Notes</label><br/>
-                                <textarea name="note" id="note" cols="30"
-                                          rows="10">{{old('note') ?? $shoppinglist->note}}</textarea>
+                                <textarea class="flex-column" name="note" id="note" >{{old('note') ?? $shoppinglist->note}}</textarea>
                             </div>
                             <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i></button>
                         </form>

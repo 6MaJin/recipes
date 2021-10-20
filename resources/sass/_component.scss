@@ -1,20 +1,24 @@
 body {
-    background-color: lightgrey!important;
+    background-color: lightgrey !important;
     color: black;
 }
+
 span.message {
     font-weight: bold;
     text-transform: capitalize;
 }
+
 a.nav-link.active {
-    color:orange!important;
+    color: orange !important;
 }
+
 .livesearch-container {
     position: relative;
     z-index: 1;
     width: 227px;
     height: 40px;
 }
+
 .livesearch {
     position: absolute;
     top: 5px;
@@ -24,17 +28,47 @@ a.nav-link.active {
     max-height: 100vh;
     overflow-y: auto;
 }
+
 .card-header {
     border-bottom: none;
 }
-#sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
-#sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
-#sortable li span { position: absolute; margin-left: -1.3em; }
+
+#sortable {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 60%;
+}
+
+#sortable li {
+    margin: 0 3px 3px 3px;
+    padding: 0.4em;
+    padding-left: 1.5em;
+    font-size: 1.4em;
+    height: 18px;
+}
+
+#sortable li span {
+    position: absolute;
+    margin-left: -1.3em;
+}
 
 .btn-outline-success {
     width: 150px;
 }
+
 .list-button {
     cursor: pointer;
     display: block;
+}
+
+#note {
+    min-width:90%;
+    min-height:400px;
+}
+@media screen and (max-width: 800px) {
+    #note {
+        min-width:40%;
+        min-height:200px;
+    }
 }

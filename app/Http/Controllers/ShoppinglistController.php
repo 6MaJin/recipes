@@ -19,9 +19,11 @@ class ShoppinglistController extends Controller
      */
     public function index()
     {
+
+        $user = Auth::user();
         $admins = User::where('is_admin', '=', '1')->get();
-//        $admins = User::all();
-        $shoppinglists = Shoppinglist::orderBy('id', 'ASC')->paginate(5);
+        $shoppinglists = Auth::user()->shoppinglists()->paginate(5);;
+/*        $shoppinglists = Shoppinglist::orderBy('id', 'ASC')->paginate(5);*/
         return view('shoppinglist.index')->with('shoppinglists', $shoppinglists)->with('admins', $admins);
     }
 
@@ -110,7 +112,7 @@ class ShoppinglistController extends Controller
      */
     public function destroy(Shoppinglist $shoppinglist)
     {
-        foreach($shoppinglist->products AS $product) {
+        foreach ($shoppinglist->products as $product) {
             $productIds[] = $product->id;
             $product->delete();
         }
@@ -124,7 +126,8 @@ class ShoppinglistController extends Controller
          ]);*/
     }
 
-    public function recipes(Shoppinglist $shoppinglist) {
+    public function recipes(Shoppinglist $shoppinglist)
+    {
         $shoppinglists = Shoppinglist::where('public', '=', 1)->paginate(5);;
         return view('shoppinglist.recipes')->with('shoppinglist', $shoppinglist)->with('shoppinglists', $shoppinglists);
     }
@@ -150,19 +153,22 @@ class ShoppinglistController extends Controller
         ]);
     }
 
-    public function ajaxSetPublic(Request $request) {
+    public function ajaxSetPublic(Request $request)
+    {
         $shoppinglist_id = $request->input('shoppinglist_id');
         $public = $request->input('public');
         $shoppinglist = Shoppinglist::find($shoppinglist_id);
         $shoppinglist->public = $public;
         $shoppinglist->save();
     }
-    public function ajaxAdd(Shoppinglist $shoppinglist) {
+
+    public function ajaxAdd(Shoppinglist $shoppinglist)
+    {
         $productNewIds = array();
         $shoppinglistNew = $shoppinglist->replicate();
         $shoppinglistNew->user_id = Auth::user()->id;
         $shoppinglistNew->push();
-        foreach($shoppinglist->products AS $product) {
+        foreach ($shoppinglist->products as $product) {
             $productNew = $product->replicate();
             $productNew->push();
             $productNewIds[] = $productNew->id;

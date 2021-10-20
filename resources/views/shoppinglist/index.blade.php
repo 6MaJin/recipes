@@ -3,6 +3,9 @@
     <div class="container">
 
         <h1>Index ShoppingList</h1>
+        @foreach(Auth::user()->shoppinglists AS $test)
+        {{$test->name}}
+        @endforeach
 @foreach($admins AS $admin)
     {{$admin->name}} <br>
 @endforeach
@@ -93,5 +96,23 @@
                 });
             });
         });
+        $(function (e) {
+            e.preventDefault();
+            $.ajax({
+                method: "POST",
+                url: "/shoppinglist/ajax-add",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    shoppinglist_id: $(this).data('id'),
+                    public: $(this).is(':checked')==true?1:0
+                },
+                success: function () {
+                    console.log("It works");
+                },
+                error: function (response) {
+                    console.log('Error:', response);
+                }
+            });
+        };
     </script>
 @endsection

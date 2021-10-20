@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 ?>
     <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -26,22 +27,19 @@ use Illuminate\Support\Facades\Route;
 
 
     <style>
-        #sortable-1 { list-style-type: none; margin: 0;
-            padding: 0; width: 25%; }
-        #sortable-1 li { margin: 0 3px 3px 3px; padding: 0.4em;
-            padding-left: 1.5em; font-size: 17px; height: 16px; }
-        .default {
-            background: #cedc98;
-            border: 1px solid #DDDDDD;
-            color: #333333;
+
+        #sortable-1 li {
+            margin: 0 3px 3px 3px;
+            padding: 0.4em;
+            padding-left: 1.5em;
+            font-size: 17px;
+            height: 16px;
         }
+
     </style>
 
 
-
     <!-- drabable head end -->
-
-
 
 
 </head>
@@ -62,12 +60,18 @@ use Illuminate\Support\Facades\Route;
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                     </li>
-                    <a class="nav-link {{Request::is('shoppinglist*')  ? 'active' : '' }}"  href="/shoppinglist">Shoppinglists</a>
+                    @auth
+                    <a class="nav-link {{Request::is('shoppinglist*')  ? 'active' : '' }}" href="/shoppinglist">Shoppinglists</a>
+                    @endauth
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('user*') ? 'active' : '' }}"  href="/user">User</a>
+                        <a class="nav-link {{ Request::is('user*') ? 'active' : '' }}" href="/user">User</a>
                     </li>
-                    <li><a class="nav-link {{Request::is('recipes*') ? 'active' : ''}}" href="/recipes">Rezepte</a></li>
+                    @auth
+                        <li><a class="nav-link {{Request::is('recipes*') ? 'active' : ''}}" href="/recipes">Rezepte</a>
+                        </li>
+                    @endauth
                 </ul>
+
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
