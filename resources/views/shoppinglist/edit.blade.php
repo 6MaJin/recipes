@@ -107,8 +107,8 @@
                     shoppinglist_id: {{ $shoppinglist->id }},
                     product_id: product_id
                 },
-                success: function () {
-                    console.log("It works");
+                success: function (data) {
+                    ajaxStatus(data);
                 },
                 error: function (response) {
                     console.log('Error:', response);
@@ -116,6 +116,10 @@
             });
             return false;
 
+        }
+        function ajaxStatus (data) {
+            $('.ajax-status').removeClass('d-none').append(data['success']);
+            console.log('Kuckuck!');
         }
     </script>
 @endsection

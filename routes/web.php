@@ -20,7 +20,7 @@ Route::resource('shoppinglist', 'App\Http\Controllers\ShoppinglistController')/*
 Route::get('/', 'App\Http\Controllers\HomeController@index' )->name('startseite');
 Route::post('/product/ajax-store','App\Http\Controllers\ProductController@ajaxStore')->name('product.ajax-store');
 Route::post('/shoppinglist/{shoppinglist}/update-order','App\Http\Controllers\ShoppinglistController@updateOrder')->name('shoppinglist.update-order');
-Route::get('/shoppinglist/{shoppinglist}/ajax-add','App\Http\Controllers\ShoppinglistController@ajaxAdd')->name('shoppinglist.ajax-add');
+Route::get('/shoppinglist/{shoppinglist}/ajax-add-recipe','App\Http\Controllers\ShoppinglistController@ajaxAddRecipe')->name('shoppinglist.ajax-add-recipe');
 Route::post('/shoppinglist/ajax-delete','App\Http\Controllers\ShoppinglistController@ajaxDelete')->name('shoppinglist.ajax-delete');
 Route::post('/shoppinglist/ajax-set-public','App\Http\Controllers\ShoppinglistController@ajaxSetPublic')->name('shoppinglist.ajax-set-public');
 

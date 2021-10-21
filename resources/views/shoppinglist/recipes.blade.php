@@ -102,7 +102,7 @@
 
                 $.ajax({
                     method: "GET",
-                    url: "/shoppinglist/"+shoppinglist_id+"/ajax-add",
+                    url: "/shoppinglist/"+shoppinglist_id+"/ajax-add-recipe",
                     data: {
                         _token: "{{ csrf_token() }}",
                         shoppinglist_id: $(this).data('id'),

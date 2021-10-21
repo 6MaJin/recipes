@@ -49,7 +49,7 @@
                                                     class="fa fa-minus"></i></button>
                                         </form>
                                     </td>
-                                    <td>{{$shoppinglist -> updated_at  ?? $shoppinglist -> created_at}}</td>
+                                    <td><button type="button" class="btn btn-outline-danger fa fa-minus" onclick="removeShoppinglist({{$shoppinglist->id}})" data-shoppinglist_id={{$shoppinglist->id}} id="shoppinglist_id={{$shoppinglist->id}}" ></button></td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -91,6 +91,31 @@
             });
         });
 
+
+        function removeShoppinglist(shoppinglist_id) {
+            /*var shoppinglist_id = $(this).data('shoppinglist_id');*/
+            var shoppinglist_id = {{ $shoppinglist->id }};
+            console.log('shoppinglist_id:'+shoppinglist_id);
+            /*$('#shoppinglist_id_' + shoppinglist_id).remove();*/
+            $.ajax({
+                method: "POST",
+                url: "/shoppinglist/"+shoppinglist_id,
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    shoppinglist_id: {{ $shoppinglist->id }},
+                },
+                success: function (data) {
+                    ajaxStatus(data);
+                },
+            });
+            return false;
+
+        }
+
+        function ajaxStatus (data) {
+            $('.ajax-status').removeClass('d-none').append(data['success']);
+            console.log('Kuckuck!');
+        }
 
     </script>
 @endsection

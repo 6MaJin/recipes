@@ -137,6 +137,19 @@ class ShoppinglistController extends Controller
         ]);
     }
 
+    public function ajaxDeleteShoppinglist(Request $request)
+    {
+
+
+        $shoppinglist_id = $request->input('shoppinglist_id');
+        $shoppinglist = Shoppinglist::find($shoppinglist_id);
+        $shoppinglist->delete();
+        /*$shoppinglist->products()->detach([$product_id]);*/
+        return response()->json([
+            'success' => 'Shoppinglistt successfully deleted'
+        ]);
+    }
+
     public function ajaxSetPublic(Request $request) {
         $shoppinglist_id = $request->input('shoppinglist_id');
         $public = $request->input('public');

@@ -151,6 +151,15 @@ class ShoppinglistController extends Controller
             'success' => 'Product successfully deleted from Shoppinglist'
         ]);
     }
+    public function ajaxDeleteShoppinglist(Request $request, Shoppinglist $shoppinglist)
+    {
+
+        $shoppinglist::find($shoppinglist->id)->delete($shoppinglist->id);
+        /*$shoppinglist->products()->detach([$product_id]);*/
+        return response()->json([
+            'success' => 'Shoppinglist successfully deleted'
+        ]);
+    }
 
     public function ajaxSetPublic(Request $request)
     {
@@ -161,7 +170,7 @@ class ShoppinglistController extends Controller
         $shoppinglist->save();
     }
 
-    public function ajaxAdd(Shoppinglist $shoppinglist)
+    public function ajaxAddRecipe(Shoppinglist $shoppinglist)
     {
         $productNewIds = array();
         $shoppinglistNew = $shoppinglist->replicate();
@@ -174,7 +183,8 @@ class ShoppinglistController extends Controller
         }
         $shoppinglistNew->products()->sync($productNewIds);
         return response()->json([
-            'success' => 'Product successfully deleted from Shoppinglist'
+            'success' => 'Rezept hinzugefügt. Das macht dir so schnell keiner nach!',
+            'error' => 'Da ist wohl etwas schiefgegangen. Versuch es doch nächste Woche noch einmal -\o/-'
         ]);
     }
 }
