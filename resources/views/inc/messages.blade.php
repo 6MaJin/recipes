@@ -9,8 +9,6 @@
             </div></div>
     @endforeach
 @endif
-
-
 @isset($meldung_success)
     <div class="container">
         <div class="alert alert-success">
@@ -31,3 +29,4 @@
     </div>
 @endif
 
+<div id="ajax-status" class="ajax-status d-none container alert alert-success"></div>

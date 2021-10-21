@@ -3,12 +3,7 @@
     <div class="container">
 
         <h1>Index ShoppingList</h1>
-        @foreach(Auth::user()->shoppinglists AS $test)
-        {{$test->name}}
-        @endforeach
-@foreach($admins AS $admin)
-    {{$admin->name}} <br>
-@endforeach
+
         <div class="row justifiy-content-center">
             <div class="col-md-12">
                 <div class="card">
@@ -22,14 +17,13 @@
                                 <th>Öffentlich</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
-
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($shoppinglists AS $shoppinglist)
                                 <tr>
                                     <td>
-                                        <a href="/shoppinglist/{{$shoppinglist -> id}}">{{$shoppinglist -> name}}</a>
+                                        <a href="/shoppinglist/{{$shoppinglist -> id}}/edit">{{$shoppinglist -> name}}</a>
                                     </td>
                                     <td>
                                         <a href="/user/{{$shoppinglist->user_id}}">{{$shoppinglist->user->name}}</a>

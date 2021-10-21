@@ -111,7 +111,6 @@ use Illuminate\Support\Facades\Route;
             </div>
         </div>
     </nav>
-
     <main class="py-4">
         @include('inc.messages')
 

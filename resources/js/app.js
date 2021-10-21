@@ -62,3 +62,7 @@ $(function () {
     );
 });
 
+
+function ajaxStatus (status) {
+    $('.ajax-status').html(status);
+}

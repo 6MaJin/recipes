@@ -13,7 +13,16 @@
                                 <label for="name">Name</label>
                                 <input value="{{old('name') ?? $shoppinglist->name}}" type="text" class="form-control"
                                        id="name" name="name">
+
+                                <div style="clear:both"></div>
+                                <div class="form-group">
+                                    <label for="note">Notes</label><br/>
+                                    <textarea class="flex-column" name="note" id="note" >{{old('note') ?? $shoppinglist->note}}</textarea>
+                                </div>
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i></button>
+
                             </div>
+                        </form>
                             <div class="form-group ml-5">
                                 <div id="sortable" class="product-list" data-id="{{$shoppinglist->id}}">
                                     @foreach($products AS $product)
@@ -44,13 +53,8 @@
 
                             </div>
 
-                            <div style="clear:both"></div>
-                            <div class="form-group">
-                                <label for="note">Notes</label><br/>
-                                <textarea class="flex-column" name="note" id="note" >{{old('note') ?? $shoppinglist->note}}</textarea>
-                            </div>
-                            <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i></button>
-                        </form>
+
+
                         <a class="btn btn-secondary float-right" href="{{ URL::previous() }}"><i
                                 class="fa fa-arrow-circle-up"></i></a>
                     </div>

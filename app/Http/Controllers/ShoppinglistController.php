@@ -96,7 +96,7 @@ class ShoppinglistController extends Controller
             'name' => $request->name,
             'note' => $request->note
         ]);
-        return view('shoppinglist.edit')->with('shoppinglist', $shoppinglist)->with([
+        return redirect('shoppinglist')->with('shoppinglist', $shoppinglist)->with([
             'meldung_success' => 'Die Liste ' . $shoppinglist->name . ' wurde editiert'
         ]);
 

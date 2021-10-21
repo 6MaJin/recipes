@@ -15,6 +15,8 @@ use App\Http\Middleware\Admin;
 |
 */
 
+Route::resource('shoppinglist', 'App\Http\Controllers\ShoppinglistController')/*->middleware('auth')*/;
+
 Route::get('/', 'App\Http\Controllers\HomeController@index' )->name('startseite');
 Route::post('/product/ajax-store','App\Http\Controllers\ProductController@ajaxStore')->name('product.ajax-store');
 Route::post('/shoppinglist/{shoppinglist}/update-order','App\Http\Controllers\ShoppinglistController@updateOrder')->name('shoppinglist.update-order');
@@ -22,10 +24,8 @@ Route::get('/shoppinglist/{shoppinglist}/ajax-add','App\Http\Controllers\Shoppin
 Route::post('/shoppinglist/ajax-delete','App\Http\Controllers\ShoppinglistController@ajaxDelete')->name('shoppinglist.ajax-delete');
 Route::post('/shoppinglist/ajax-set-public','App\Http\Controllers\ShoppinglistController@ajaxSetPublic')->name('shoppinglist.ajax-set-public');
 
-
 Route::get('/recipes', 'App\Http\Controllers\ShoppinglistController@recipes')->middleware('auth');
 
-Route::resource('shoppinglist', 'App\Http\Controllers\ShoppinglistController')/*->middleware('auth')*/;
 Route::resource('user', 'App\Http\Controllers\UserController')->middleware('admin');
 Route::resource('product', 'App\Http\Controllers\ProductController');
 

@@ -4,10 +4,6 @@
     <div class="container">
 
         <h1>Index ShoppingList</h1>
-        @foreach(Auth::user()->shoppinglists AS $test)
-            {{$test->name}}
-        @endforeach
-
         <div class="row justifiy-content-center">
             <div class="col-md-12">
                 <div class="card">
@@ -96,6 +92,9 @@
                 });
             });
         });
+
+
+
         $(function () {
             $('.add_recipe').click(function(e) {
                 var shoppinglist_id = $(this).data('id');
@@ -107,10 +106,16 @@
                     data: {
                         _token: "{{ csrf_token() }}",
                         shoppinglist_id: $(this).data('id'),
+                        'success': 'Hello there',
+                        'error': 'ERROR!'
                     },
 
-                    success: function () {
-                        console.log("It works");
+                    /*success: function (data) {
+                        $('.card-header').prepend("<div class='alert alert-success alert-solid alert-dismissible shadow-sm p-3 mb-5 rounded' role='alert'>"+data['success']+"</div>");
+
+                    },*/
+                    success: function (data) {
+                        ajaxStatus(data);
                     },
                     error: function (response) {
                         console.log('Error:', response);
@@ -126,7 +131,14 @@
         });
  });
 
+
+            function ajaxStatus (data) {
+            $('.ajax-status').removeClass('d-none').append(data['success']);
+            console.log('Kuckuck!');
+        }
     </script>
+
+
 
     <div class="mt-5 container">
         <ul>
@@ -154,5 +166,8 @@
                 Schnittlauch, Borretsch, Pimpinelle, Kerbel, Sauerampfer, Petersilie und Kresse.</p>
         </div>
     </div>
+
+@endsection
+@section('after_script')
 
 @endsection
