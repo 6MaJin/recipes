@@ -98,8 +98,6 @@
         });
         $(function () {
             $('.add_recipe').click(function(e) {
-
-
                 var shoppinglist_id = $(this).data('id');
                 /*var route = "/shoppinglist/"+shoppinglist_id+"/ajax-add";*/
 
@@ -109,14 +107,15 @@
                     data: {
                         _token: "{{ csrf_token() }}",
                         shoppinglist_id: $(this).data('id'),
-
                     },
+
                     success: function () {
                         console.log("It works");
                     },
                     error: function (response) {
                         console.log('Error:', response);
                     }
+
                 });
 
                 /*$.get(route , function(data){
