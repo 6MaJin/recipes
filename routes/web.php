@@ -15,7 +15,7 @@ use App\Http\Middleware\Admin;
 |
 */
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('startseite');
+Route::get('/', 'App\Http\Controllers\HomeController@index' )->name('startseite');
 Route::post('/product/ajax-store','App\Http\Controllers\ProductController@ajaxStore')->name('product.ajax-store');
 Route::post('/shoppinglist/{shoppinglist}/update-order','App\Http\Controllers\ShoppinglistController@updateOrder')->name('shoppinglist.update-order');
 Route::get('/shoppinglist/{shoppinglist}/ajax-add','App\Http\Controllers\ShoppinglistController@ajaxAdd')->name('shoppinglist.ajax-add');

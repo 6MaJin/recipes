@@ -42,7 +42,7 @@
                                             <label class="custom-control-label"
                                                    for="public_{{$shoppinglist -> id}}"></label>
                                         </div>-->
-                                        <button class="add btn btn-success" data-id="{{$shoppinglist -> id}}"><i class="fa fa-plus"></i></button>
+                                        <button class="add_recipe btn btn-success" data-id="{{$shoppinglist -> id}}"><i class="fa fa-plus"></i></button>
                                     </td>
                                     <td><a href="/shoppinglist/{{$shoppinglist->id}}/edit"
                                            class="btn btn-primary btn-sm rounded-circle"><i class="fa fa-edit"></i></a>
@@ -97,14 +97,33 @@
             });
         });
         $(function () {
-            $('.add').click(function(e) {
+            $('.add_recipe').click(function(e) {
 
 
                 var shoppinglist_id = $(this).data('id');
-                var route = "/shoppinglist/"+shoppinglist_id+"/ajax-add";
-                $.get(route , function(data){
+                /*var route = "/shoppinglist/"+shoppinglist_id+"/ajax-add";*/
 
-            });
+                $.ajax({
+                    method: "GET",
+                    url: "/shoppinglist/"+shoppinglist_id+"/ajax-add",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        shoppinglist_id: $(this).data('id'),
+
+                    },
+                    success: function () {
+                        console.log("It works");
+                    },
+                    error: function (response) {
+                        console.log('Error:', response);
+                    }
+                });
+
+                /*$.get(route , function(data){
+
+            });*/
+
+
         });
  });
 

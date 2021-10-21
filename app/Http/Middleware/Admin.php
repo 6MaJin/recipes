@@ -21,7 +21,9 @@ class Admin
             return $next($request);
         }
         else {
-            return ('/');
+            return redirect ('/shoppinglist')->with([
+                'error'=>'Frick off'
+            ]);
         }
 
     }
