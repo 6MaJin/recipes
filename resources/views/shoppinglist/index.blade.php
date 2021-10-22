@@ -21,7 +21,7 @@
                             </thead>
                             <tbody>
                             @foreach($shoppinglists AS $shoppinglist)
-                                <tr>
+                                <tr id="row_{{$shoppinglist->id}}" data-row_id="{{$shoppinglist->id}}">
                                     <td>
                                         <a href="/shoppinglist/{{$shoppinglist -> id}}/edit">{{$shoppinglist -> name}}</a>
                                     </td>
@@ -83,6 +83,7 @@
                     },
                     success: function () {
                         console.log("It works");
+
                     },
                     error: function (response) {
                         console.log('Error:', response);
@@ -93,28 +94,26 @@
 
 
         function removeShoppinglist(shoppinglist_id) {
-            /*var shoppinglist_id = $(this).data('shoppinglist_id');*/
-            var shoppinglist_id = {{ $shoppinglist->id }};
-            console.log('shoppinglist_id:'+shoppinglist_id);
-            /*$('#shoppinglist_id_' + shoppinglist_id).remove();*/
+
             $.ajax({
                 method: "POST",
-                url: "/shoppinglist/"+shoppinglist_id,
+                url: "/shoppinglist/ajax-delete-shoppinglist",
                 data: {
                     _token: "{{ csrf_token() }}",
-                    shoppinglist_id: {{ $shoppinglist->id }},
+                    shoppinglist_id: shoppinglist_id,
                 },
                 success: function (data) {
                     ajaxStatus(data);
+                    /*$("#row_id'"+shoppinglist_id+"']").remove();*/
+                    $('tbody').find("[data-row_id='"+shoppinglist_id+"']").remove();
                 },
             });
-            return false;
-
         }
 
         function ajaxStatus (data) {
-            $('.ajax-status').removeClass('d-none').append(data['success']);
+            $('.ajax-status').removeClass('d-none').append(data['success']+"<br>");
             console.log('Kuckuck!');
+
         }
 
     </script>

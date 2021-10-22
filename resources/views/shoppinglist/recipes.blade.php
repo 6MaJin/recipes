@@ -133,7 +133,7 @@
 
 
             function ajaxStatus (data) {
-            $('.ajax-status').removeClass('d-none').append(data['success']);
+            $('.ajax-status').removeClass('d-none').append(data['success']+"<br>");
             console.log('Kuckuck!');
         }
     </script>

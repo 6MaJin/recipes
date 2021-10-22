@@ -112,7 +112,6 @@ class ShoppinglistController extends Controller
     public function destroy(Shoppinglist $shoppinglist)
     {
         foreach ($shoppinglist->products as $product) {
-            $productIds[] = $product->id;
             $product->delete();
         }
         $shoppinglist->products()->detach();
@@ -120,9 +119,6 @@ class ShoppinglistController extends Controller
         return redirect('/shoppinglist')->with([
             'meldung_success' => 'Die Liste wurde gelöscht'
         ]);
-        /* return $this->index()->with([
-             'meldung_success' => 'Die Liste wurde gelöscht'
-         ]);*/
     }
 
     public function recipes(Shoppinglist $shoppinglist)
@@ -153,12 +149,16 @@ class ShoppinglistController extends Controller
     }
     public function ajaxDeleteShoppinglist(Request $request, Shoppinglist $shoppinglist)
     {
-
-        /*$shoppinglist::find($shoppinglist->id)->delete($shoppinglist->id);*/
         $shoppinglist_id = $request->input('shoppinglist_id');
-        /*$shoppinglist->products()->detach([$product_id]);*/
+        $shoppinglist = Shoppinglist::find($shoppinglist_id);
+        foreach ($shoppinglist->products as $product) {
+            $product->delete();
+        }
+        $shoppinglist->delete();
         return response()->json([
-            'success' => 'Shoppinglist successfully deleted'
+            'success' => 'Shoppinglist successfully deleted',
+            'error' => 'Nönö!',
+            'shoppinglist_id' => $shoppinglist_id
         ]);
     }
 

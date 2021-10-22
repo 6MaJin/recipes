@@ -25,7 +25,6 @@ Route::post('/shoppinglist/ajax-delete','App\Http\Controllers\ShoppinglistContro
 Route::post('/shoppinglist/ajax-set-public','App\Http\Controllers\ShoppinglistController@ajaxSetPublic')->name('shoppinglist.ajax-set-public');
 
 Route::get('/recipes', 'App\Http\Controllers\ShoppinglistController@recipes')->middleware('auth');
-
 Route::resource('user', 'App\Http\Controllers\UserController')->middleware('admin');
 Route::resource('product', 'App\Http\Controllers\ProductController');
 
