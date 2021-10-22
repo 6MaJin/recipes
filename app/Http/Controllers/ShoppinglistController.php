@@ -127,7 +127,7 @@ class ShoppinglistController extends Controller
 
     public function recipes(Shoppinglist $shoppinglist)
     {
-        $shoppinglists = Shoppinglist::orderBy('id', 'ASC')->paginate(5);;
+        $shoppinglists = Shoppinglist::orderBy('id', 'ASC')->paginate(5);
         return view('shoppinglist.recipes')->with('shoppinglist', $shoppinglist)->with('shoppinglists', $shoppinglists);
     }
 
@@ -154,7 +154,8 @@ class ShoppinglistController extends Controller
     public function ajaxDeleteShoppinglist(Request $request, Shoppinglist $shoppinglist)
     {
 
-        $shoppinglist::find($shoppinglist->id)->delete($shoppinglist->id);
+        /*$shoppinglist::find($shoppinglist->id)->delete($shoppinglist->id);*/
+        $shoppinglist_id = $request->input('shoppinglist_id');
         /*$shoppinglist->products()->detach([$product_id]);*/
         return response()->json([
             'success' => 'Shoppinglist successfully deleted'
