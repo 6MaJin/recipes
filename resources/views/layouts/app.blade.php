@@ -63,9 +63,7 @@ use Illuminate\Support\Facades\Route;
                     @auth
                     <a class="nav-link {{Request::is('shoppinglist*')  ? 'active' : '' }}" href="/shoppinglist">Shoppinglists</a>
                     @endauth
-                    <li class="nav-item">
-                        <a class="nav-link {{ Request::is('user*') ? 'active' : '' }}" href="/user">User</a>
-                    </li>
+
                     @auth
                         <li><a class="nav-link {{Request::is('recipes*') ? 'active' : ''}}" href="/recipes">Rezepte</a>
                         </li>

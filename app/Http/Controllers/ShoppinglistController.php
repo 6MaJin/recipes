@@ -18,12 +18,8 @@ class ShoppinglistController extends Controller
      */
     public function index()
     {
-
-        $user = Auth::user();
-        $admins = User::where('is_admin', '=', '1')->get();
-        $shoppinglists = Auth::user()->shoppinglists()->paginate(5);;
-/*        $shoppinglists = Shoppinglist::orderBy('id', 'ASC')->paginate(5);*/
-        return view('shoppinglist.index')->with('shoppinglists', $shoppinglists)->with('admins', $admins);
+        $shoppinglists = Auth::user()->shoppinglists()->orderBy('id', 'ASC')->paginate(5);;
+        return view('shoppinglist.index')->with('shoppinglists', $shoppinglists);
     }
 
     /**
@@ -123,7 +119,7 @@ class ShoppinglistController extends Controller
 
     public function recipes(Shoppinglist $shoppinglist)
     {
-        $shoppinglists = Shoppinglist::orderBy('id', 'ASC')->paginate(5);
+        $shoppinglists = Shoppinglist::where('public', '=', 1)->orderBy('id', 'ASC')->paginate(5);
         return view('shoppinglist.recipes')->with('shoppinglist', $shoppinglist)->with('shoppinglists', $shoppinglists);
     }
 

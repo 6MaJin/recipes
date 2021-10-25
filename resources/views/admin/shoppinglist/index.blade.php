@@ -12,8 +12,7 @@
                             <thead>
                             <tr>
                                 <th>Liste</th>
-                                <th>Besitzer</th>
-                                <th>Öffentlich</th>
+
                                 <th>Edit</th>
                                 <th>Delete</th>
 

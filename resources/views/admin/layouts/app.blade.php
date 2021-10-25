@@ -62,11 +62,11 @@ use Illuminate\Support\Facades\Route;
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                     </li>
-                    <a class="nav-link {{Request::is('backend/shoppinglist*')  ? 'active' : '' }}"  href="/admin/shoppinglist">Shoppinglists</a>
+                    <a class="nav-link {{Request::is('admin/shoppinglist*')  ? 'active' : '' }}"  href="/admin/shoppinglist">Shoppinglists</a>
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('backend/user*') ? 'active' : '' }}"  href="/admin/user">User</a>
+                        <a class="nav-link {{ Request::is('admin/user*') ? 'active' : '' }}"  href="/admin/user">User</a>
                     </li>
-                    <li><a class="nav-link {{Request::is('backend/recipe*') ? 'active' : ''}}" href="/admin/recipe">Rezepte</a></li>
+                    <li><a class="nav-link {{Request::is('admin/recipe*') ? 'active' : ''}}" href="/admin/recipes">Rezepte</a></li>
 
                 </ul>
 

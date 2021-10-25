@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Shoppinglist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class ShoppinglistController extends Controller
@@ -17,7 +18,7 @@ class ShoppinglistController extends Controller
      */
     public function index()
     {
-        $shoppinglists = Shoppinglist::orderBy('id', 'ASC')->paginate(5);
+        $shoppinglists = Auth::user()->shoppinglists()->orderBy('id', 'ASC')->paginate(5);;
         return view('admin.shoppinglist.index')->with('shoppinglists', $shoppinglists);
     }
 
@@ -139,8 +140,6 @@ class ShoppinglistController extends Controller
 
     public function ajaxDeleteShoppinglist(Request $request)
     {
-
-
         $shoppinglist_id = $request->input('shoppinglist_id');
         $shoppinglist = Shoppinglist::find($shoppinglist_id);
         $shoppinglist->delete();
@@ -157,4 +156,11 @@ class ShoppinglistController extends Controller
         $shoppinglist->public = $public;
         $shoppinglist->save();
     }
+
+    public function recipes(Shoppinglist $shoppinglist)
+    {
+        $shoppinglists = Shoppinglist:: orderBy('id', 'ASC')->paginate(5);
+        return view('admin.shoppinglist.recipes')->with('shoppinglists', $shoppinglists);
+    }
+
 }

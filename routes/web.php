@@ -35,6 +35,8 @@ Route::name('admin.')->prefix('admin')->middleware('admin')->group(function () {
     Route::post('/shoppinglist/{shoppinglist}/update-order','App\Http\Controllers\Admin\ShoppinglistController@updateOrder')->name('shoppinglist.update-order');
     Route::post('/shoppinglist/ajax-delete','App\Http\Controllers\Admin\ShoppinglistController@ajaxDelete')->name('shoppinglist.ajax-delete');
     Route::post('/shoppinglist/ajax-set-public','App\Http\Controllers\Admin\ShoppinglistController@ajaxSetPublic')->name('shoppinglist.ajax-set-public');
+    Route::get('/recipes', 'App\Http\Controllers\Admin\ShoppinglistController@recipes')->middleware('auth');
+
 
     Route::resource('shoppinglist', 'App\Http\Controllers\Admin\ShoppinglistController');
     Route::resource('user', 'App\Http\Controllers\Admin\UserController');
