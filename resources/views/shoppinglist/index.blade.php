@@ -15,19 +15,20 @@
                                 <th>Liste</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
+                                <th class="">Zuletzt bearbeitet</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($shoppinglists AS $shoppinglist)
                                 <tr id="row_{{$shoppinglist->id}}" data-row_id="{{$shoppinglist->id}}">
                                     <td>
-                                        <a href="/shoppinglist/{{$shoppinglist -> id}}/edit">{{$shoppinglist -> name}}</a>
+                                        <a href="/shoppinglist/{{$shoppinglist -> id}}">{{$shoppinglist -> name}}</a>
                                     </td>
                                     <td><a href="/shoppinglist/{{$shoppinglist->id}}/edit"
                                            class="btn btn-primary btn-sm rounded-circle"><i class="fa fa-edit"></i></a>
                                     </td>
-
                                     <td><button type="button" class="btn btn-outline-danger fa fa-minus" onclick="removeShoppinglist({{$shoppinglist->id}})" data-shoppinglist_id={{$shoppinglist->id}} id="shoppinglist_id={{$shoppinglist->id}}" ></button></td>
+                                    <td>{{$shoppinglist->updated_at}}</td>
                                 </tr>
                             @endforeach
                             </tbody>

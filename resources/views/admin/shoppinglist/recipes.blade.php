@@ -52,7 +52,18 @@
                                         </form>
                                     </td>
                                     <td>{{$shoppinglist -> updated_at  ?? $shoppinglist -> created_at}}</td>
+                                    <td>
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" data-id="{{$shoppinglist -> id}}"
+                                                   class="public_switch custom-control-input"
+                                                   name="public_{{$shoppinglist -> id}}"
+                                                   id="public_{{$shoppinglist -> id}}" {{$shoppinglist->public == 1 ? "checked" : ""}}>
+                                            <label class="custom-control-label"
+                                                   for="public_{{$shoppinglist -> id}}"></label>
+                                        </div>
+                                    </td>
                                 </tr>
+
                             @endforeach
                             </tbody>
                         </table>

@@ -1,8 +1,9 @@
 @extends('admin.layouts.app')
 @section('content')
     <div class="container">
+
         <h1>Index ShoppingList</h1>
-        {{--{{DB::table('shoppinglists')->where('id','=','5')->get()}}--}}
+
         <div class="row justifiy-content-center">
             <div class="col-md-12">
                 <div class="card">
@@ -12,43 +13,21 @@
                             <thead>
                             <tr>
                                 <th>Liste</th>
-
                                 <th>Edit</th>
                                 <th>Delete</th>
-
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($shoppinglists AS $shoppinglist)
-                                <tr>
+                                <tr id="row_{{$shoppinglist->id}}" data-row_id="{{$shoppinglist->id}}">
                                     <td>
-                                        <a href="/admin/shoppinglist/{{$shoppinglist -> id}}">{{$shoppinglist -> name}}</a>
+                                        <a href="/shoppinglist/{{$shoppinglist -> id}}/edit">{{$shoppinglist -> name}}</a>
                                     </td>
-                                    <td>
-                                        <a href="/admin/user/{{$shoppinglist->user_id}}">{{$shoppinglist->user->name}}</a>
-                                    </td>
-                                    <td>
-                                        <div class="custom-control custom-switch">
-                                            <input type="checkbox" data-id="{{$shoppinglist -> id}}"
-                                                   class="public_switch custom-control-input"
-                                                   name="public_{{$shoppinglist -> id}}"
-                                                   id="public_{{$shoppinglist -> id}}" {{$shoppinglist->public == 1 ? "checked" : ""}}>
-                                            <label class="custom-control-label"
-                                                   for="public_{{$shoppinglist -> id}}"></label>
-                                        </div>
-                                    </td>
-                                    <td><a href="/admin/shoppinglist/{{$shoppinglist->id}}/edit"
+                                    <td><a href="/shoppinglist/{{$shoppinglist->id}}/edit"
                                            class="btn btn-primary btn-sm rounded-circle"><i class="fa fa-edit"></i></a>
                                     </td>
-                                    <td>
-                                        <form method="POST" action="/admin/shoppinglist/{{$shoppinglist->id}}">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger btn-sm rounded-circle"><i
-                                                    class="fa fa-minus"></i></button>
-                                        </form>
-                                    </td>
-                                    <td>{{$shoppinglist -> updated_at  ?? $shoppinglist -> created_at}}</td>
+
+                                    <td><button type="button" class="btn btn-outline-danger fa fa-minus" onclick="removeShoppinglist({{$shoppinglist->id}})" data-shoppinglist_id={{$shoppinglist->id}} id="shoppinglist_id={{$shoppinglist->id}}" ></button></td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -58,7 +37,7 @@
             </div>
         </div>
         @auth
-            <a class="btn btn-success" href="/admin/shoppinglist/create"><i class="fa fa-plus"></i></a>
+            <a class="btn btn-success" href="/shoppinglist/create"><i class="fa fa-plus"></i></a>
         @endauth
         <div class="container">
             {{ $shoppinglists->links("pagination::bootstrap-4") }}

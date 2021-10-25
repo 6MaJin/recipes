@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 @section('content')
     <div class="container">
-        <h1>Index User</h1>
+        <h1>Admin User</h1>
 
         {{--{{DB::table('shoppinglists')->where('id','=','5')->get()}}--}}
         <div class="row justifiy-content-center">
@@ -18,6 +18,7 @@
                                     <th>Produkte</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
+                                    <th>Make Admin</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -31,14 +32,7 @@
                                             <a href="/shoppinglist/{{$shoppinglist->id}}">{{$shoppinglist->name}}</a><br/>
                                         @endforeach
                                     </td>
-                                    <td>
-                                        @foreach($user->shoppinglists as $shoppinglist)
-                                            <h4>{{$shoppinglist->name}}</h4>
-                                            @foreach($shoppinglist->products as $product)
-                                                <a href="/product/{{$product->id}}">{{$product->name}}</a><br/>
-                                            @endforeach
-                                        @endforeach
-                                    </td>
+
                                     <td><a href="/user/{{$user->id}}/edit" class="btn btn-primary btn-sm rounded-circle"><i class="fa fa-edit"></i></a></td>
                                     <td>
                                         <form method="POST" action="/user/{{$user->id}}">
@@ -46,11 +40,21 @@
                                             @method('DELETE')
                                             <button class="btn btn-danger btn-sm rounded-circle"><i class="fa fa-minus"></i></button>
                                         </form>
-<!--                                        <div class="d-flex float-right">{{$user->created_at}}</div>-->
                                     </td>
                                     <td>{{$shoppinglist -> created_at}}</td>
+                                    <td>
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" data-id="{{$user -> id}}"
+                                                   class="admin_switch custom-control-input"
+                                                   name="is_admin_{{$user -> id}}"
+                                                   id="is_admin_{{$user -> id}}" {{$user->is_admin == 1 ? "checked" : ""}}>
+                                            <label class="custom-control-label"
+                                                   for="is_admin_{{$user -> id}}"></label>
+                                        </div>
+                                    </td>
                                 </tr>
                                 @endforeach
+
                                 </tbody>
                             </table>
 
@@ -70,4 +74,29 @@
 
 
     </div>
+
+@endsection
+@section('after_script')
+    <script>
+        $(function () {
+            $('.admin_switch').change(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    method: "POST",
+                    url: "/shoppinglist/ajax-set-admin",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        user_id: $(this).data('id'),
+                        is_admin: $(this).is(':checked')==true?1:0
+                    },
+                    success: function () {
+                        console.log("It works");
+                    },
+                    error: function (response) {
+                        console.log('Error:', response);
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

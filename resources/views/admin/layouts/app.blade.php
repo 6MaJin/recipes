@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Styles -->
-    <link href="{{ asset('backend/css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/css/app.css') }}" rel="stylesheet">
 
 
     <style>
@@ -116,7 +116,7 @@ use Illuminate\Support\Facades\Route;
         @yield('content')
     </main>
 </div>
-<script src="{{ asset('backend/js/app.js') }}"></script>
+<script src="{{ asset('admin/js/app.js') }}"></script>
 @livewireScripts
 @yield('after_script')
 </body>

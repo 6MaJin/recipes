@@ -13,11 +13,9 @@
                             <thead>
                             <tr>
                                 <th>Liste</th>
-                                <th>Besitzer</th>
+                                <th>Eingestellt von:</th>
                                 <th>Add Recipe</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
-
+                                <th>Geändert am:</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -30,27 +28,10 @@
                                         <a href="/user/{{$shoppinglist->user_id}}">{{$shoppinglist->user->name}}</a>
                                     </td>
                                     <td>
-<!--                                        <div class="custom-control custom-switch">
-                                            <input type="checkbox" data-id="{{$shoppinglist -> id}}"
-                                                   class="public_switch custom-control-input"
-                                                   name="public_{{$shoppinglist -> id}}"
-                                                   id="public_{{$shoppinglist -> id}}" {{$shoppinglist->public == 1 ? "checked" : ""}}>
-                                            <label class="custom-control-label"
-                                                   for="public_{{$shoppinglist -> id}}"></label>
-                                        </div>-->
                                         <button class="add_recipe btn btn-success" data-id="{{$shoppinglist -> id}}"><i class="fa fa-plus"></i></button>
                                     </td>
-                                    <td><a href="/shoppinglist/{{$shoppinglist->id}}/edit"
-                                           class="btn btn-primary btn-sm rounded-circle"><i class="fa fa-edit"></i></a>
-                                    </td>
-                                    <td>
-                                        <form method="POST" action="/shoppinglist/{{$shoppinglist->id}}">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger btn-sm rounded-circle"><i
-                                                    class="fa fa-minus"></i></button>
-                                        </form>
-                                    </td>
+
+
                                     <td>{{$shoppinglist -> updated_at  ?? $shoppinglist -> created_at}}</td>
                                 </tr>
                             @endforeach

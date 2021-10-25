@@ -157,6 +157,15 @@ class ShoppinglistController extends Controller
         $shoppinglist->save();
     }
 
+    public function ajaxSetAdmin(Request $request)
+    {
+        $user_id = $request->input('id');
+        $is_admin = $request->input('is_admin');
+        $user = User::find($user_id);
+        $user->is_admin = $is_admin;
+        $user->save();
+    }
+
     public function recipes(Shoppinglist $shoppinglist)
     {
         $shoppinglists = Shoppinglist:: orderBy('id', 'ASC')->paginate(5);
