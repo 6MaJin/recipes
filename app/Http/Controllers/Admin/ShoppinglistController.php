@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Shoppinglist;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -157,14 +158,6 @@ class ShoppinglistController extends Controller
         $shoppinglist->save();
     }
 
-    public function ajaxSetAdmin(Request $request)
-    {
-        $user_id = $request->input('id');
-        $is_admin = $request->input('is_admin');
-        $user = User::find($user_id);
-        $user->is_admin = $is_admin;
-        $user->save();
-    }
 
     public function recipes(Shoppinglist $shoppinglist)
     {

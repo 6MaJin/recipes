@@ -83,7 +83,7 @@
                 e.preventDefault();
                 $.ajax({
                     method: "POST",
-                    url: "/shoppinglist/ajax-set-admin",
+                    url: "/admin/user/ajax-set-admin",
                     data: {
                         _token: "{{ csrf_token() }}",
                         user_id: $(this).data('id'),

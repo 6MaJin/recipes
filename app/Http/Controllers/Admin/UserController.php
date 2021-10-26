@@ -86,4 +86,12 @@ class UserController extends Controller
     {
         //
     }
+    public function ajaxSetAdmin(Request $request)
+    {
+        $user_id = $request->input('id');
+        $is_admin = $request->input('is_admin');
+        $user = User::find($user_id);
+        $user->is_admin = $is_admin;
+        $user->save();
+    }
 }

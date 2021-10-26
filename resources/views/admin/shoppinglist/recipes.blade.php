@@ -88,7 +88,7 @@
                 e.preventDefault();
                 $.ajax({
                     method: "POST",
-                    url: "/shoppinglist/ajax-set-public",
+                    url: "/admin/shoppinglist/ajax-set-public",
                     data: {
                         _token: "{{ csrf_token() }}",
                         shoppinglist_id: $(this).data('id'),
