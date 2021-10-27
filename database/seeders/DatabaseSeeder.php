@@ -17,16 +17,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Product::factory(50)->create();
+        Product::factory(10)->create();
         User::factory(10)->create()->each(function ($user) {
             Shoppinglist::factory(rand(1, 8))->create(
                 [
                     'user_id' => $user->id
                 ]
             )->each(function ($shoppinglist) {
-                $product_ids = range(1, 12);
+                $product_ids = range(1, 8);
                 shuffle($product_ids);
-                $product_ids = array_slice($product_ids, 0, rand(0, 33));
+                $product_ids = array_slice($product_ids, 0, rand(0, 7));
                 foreach ($product_ids as $product_id) {
 
                     DB::table('product_shoppinglist')

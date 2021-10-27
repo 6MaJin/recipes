@@ -68,5 +68,29 @@
                 });
             });
         });
+
+        function removeShoppinglist(shoppinglist_id) {
+
+            $.ajax({
+                method: "POST",
+                url: "/shoppinglist/ajax-delete-shoppinglist",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    shoppinglist_id: shoppinglist_id,
+                },
+                success: function (data) {
+                    ajaxStatus(data);
+                    /*$("#row_id'"+shoppinglist_id+"']").remove();*/
+                    $('tbody').find("[data-row_id='"+shoppinglist_id+"']").remove();
+                },
+            });
+        }
+
+        function ajaxStatus (data) {
+            $('.ajax-status').removeClass('d-none').append(data['success']+"<br>");
+            console.log('Kuckuck!');
+
+        }
+
     </script>
 @endsection

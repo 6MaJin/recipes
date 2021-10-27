@@ -57,6 +57,7 @@
 
                                 </tbody>
                             </table>
+                        {{ $user->is_admin }}
 
 
                         </div>
@@ -91,6 +92,7 @@
                     },
                     success: function () {
                         console.log("It works");
+                        console.log(data);
                     },
                     error: function (response) {
                         console.log('Error:', response);

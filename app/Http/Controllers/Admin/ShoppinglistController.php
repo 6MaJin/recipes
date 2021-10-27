@@ -116,8 +116,7 @@ class ShoppinglistController extends Controller
              'meldung_success' => 'Die Liste wurde gelöscht'
          ]);*/
     }
-
-    public function updateOrder(Request $request, Shoppinglist $shoppinglist)
+ public function updateOrder(Request $request, Shoppinglist $shoppinglist)
     {
         $order = $request->input('order');
         foreach ($order as $key => $value) {

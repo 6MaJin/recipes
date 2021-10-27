@@ -34,11 +34,11 @@ const app = new Vue({
 });
 
 $(function () {
-    $.ajaxSetup({
+    /*$.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
-    });
+    });*/
     $("#sortable").sortable(
         {
             update: function () {
@@ -53,6 +53,7 @@ $(function () {
                     data: {
                         order: order,
                     },
+                    _token: "{{ csrf_token() }}",
                     type: 'POST',
                     dataType: 'json',
                     url: '/shoppinglist/' + shoppinglist_id + '/update-order'
@@ -63,6 +64,3 @@ $(function () {
 });
 
 
-function ajaxStatus (status) {
-    $('.ajax-status').html(status);
-}
