@@ -14,7 +14,8 @@ use App\Http\Middleware\Admin;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+echo phpinfo();
+die();
 Route::resource('shoppinglist', 'App\Http\Controllers\ShoppinglistController')/*->middleware('auth')*/;
 Route::post('/shoppinglist/ajax-delete-shoppinglist','App\Http\Controllers\ShoppinglistController@ajaxDeleteShoppinglist')->name('shoppinglist.ajax-delete-shoppinglist');
 Route::get('/', 'App\Http\Controllers\HomeController@index' )->name('startseite');
