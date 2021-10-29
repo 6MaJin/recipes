@@ -25,7 +25,7 @@ class ShoppinglistTest extends TestCase
 
     public function it_has_name()
     {
-        $this->assertEmpty(Shoppinglist::class, $this->shoppinglist);
+        $this->assertEquals();
     }
 
 }

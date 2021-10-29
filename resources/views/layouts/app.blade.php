@@ -60,14 +60,20 @@ use Illuminate\Support\Facades\Route;
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                     </li>
+                    <li>
                     @auth
                     <a class="nav-link {{Request::is('shoppinglist*')  ? 'active' : '' }}" href="/shoppinglist">Shoppinglists</a>
                     @endauth
-
+                    </li>
                     @auth
+                        @if(Auth::user()->is_admin === 1)
+                    <li><a class="nav-link" href="/admin/shoppinglist">Admin-Login</a></li>
+                        @endif
+                    @endauth
                         <li><a class="nav-link {{Request::is('recipes*') ? 'active' : ''}}" href="/recipes">Rezepte</a>
                         </li>
-                    @endauth
+
+
                 </ul>
 
                 <!-- Right Side Of Navbar -->

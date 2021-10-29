@@ -28,7 +28,11 @@
                                         <a href="/user/{{$shoppinglist->user_id}}">{{$shoppinglist->user->name}}</a>
                                     </td>
                                     <td>
-                                        <button class="add_recipe btn btn-success" data-id="{{$shoppinglist -> id}}"><i class="fa fa-plus"></i></button>
+                                        @auth
+                                            <button class="add_recipe btn btn-success"
+                                                    data-id="{{$shoppinglist -> id}}"><i class="fa fa-plus"></i>
+                                            </button>
+                                        @endauth
                                     </td>
 
 
@@ -62,7 +66,7 @@
                     data: {
                         _token: "{{ csrf_token() }}",
                         shoppinglist_id: $(this).data('id'),
-                        public: $(this).is(':checked')==true?1:0
+                        public: $(this).is(':checked') == true ? 1 : 0
                     },
                     success: function () {
                         console.log("It works");
@@ -75,15 +79,14 @@
         });
 
 
-
         $(function () {
-            $('.add_recipe').click(function(e) {
+            $('.add_recipe').click(function (e) {
                 var shoppinglist_id = $(this).data('id');
                 /*var route = "/shoppinglist/"+shoppinglist_id+"/ajax-add";*/
 
                 $.ajax({
                     method: "GET",
-                    url: "/shoppinglist/"+shoppinglist_id+"/ajax-add-recipe",
+                    url: "/shoppinglist/" + shoppinglist_id + "/ajax-add-recipe",
                     data: {
                         _token: "{{ csrf_token() }}",
                         shoppinglist_id: $(this).data('id'),
@@ -109,12 +112,12 @@
             });*/
 
 
+            });
         });
- });
 
 
-            function ajaxStatus (data) {
-            $('.ajax-status').removeClass('d-none').append(data['success']+"<br>");
+        function ajaxStatus(data) {
+            $('.ajax-status').removeClass('d-none').append(data['success'] + "<br>");
             console.log('Kuckuck!');
         }
     </script>

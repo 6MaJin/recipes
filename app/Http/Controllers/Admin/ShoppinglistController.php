@@ -160,7 +160,7 @@ class ShoppinglistController extends Controller
 
     public function recipes(Shoppinglist $shoppinglist)
     {
-        $shoppinglists = Shoppinglist:: orderBy('id', 'ASC')->paginate(5);
+        $shoppinglists = Shoppinglist::orderBy('id', 'ASC')->paginate(5);
         return view('admin.shoppinglist.recipes')->with('shoppinglists', $shoppinglists);
     }
 

@@ -160,16 +160,16 @@ class ShoppinglistController extends Controller
 
     public function ajaxAddRecipe(Shoppinglist $shoppinglist)
     {
-        $productNewIds = array();
-        $shoppinglistNew = $shoppinglist->replicate();
-        $shoppinglistNew->user_id = Auth::user()->id;
-        $shoppinglistNew->push();
+        $productNewIds = array();                           //legt neues Array an  für neue Shoppinglist IDs
+        $shoppinglistNew = $shoppinglist->replicate();      //repliziert vorhandene Shoppinglist in neuer Shoppinglist
+        $shoppinglistNew->user_id = Auth::user()->id;       //weist neuer SHoppinglist ID des eingeloggten Users zu
+        $shoppinglistNew->push();                           //speichert kopierte Shoppinglist mit ihren Beziehungen
         foreach ($shoppinglist->products as $product) {
-            $productNew = $product->replicate();
-            $productNew->push();
-            $productNewIds[] = $productNew->id;
+            $productNew = $product->replicate();            //repliziert vorhandenes Produkt in neuer Shoppinglist
+            $productNew->push();                            //speichert Produkt in neuer Shoppinglist
+            $productNewIds[] = $productNew->id;             //speichert die IDs aller neuen Produkte in Array
         }
-        $shoppinglistNew->products()->sync($productNewIds);
+        $shoppinglistNew->products()->sync($productNewIds); //verbindet neue Produkte mit neuer Shoppinglist
         return response()->json([
             'success' => 'Rezept hinzugefügt. Das macht dir so schnell keiner nach!',
             'error' => 'Da ist wohl etwas schiefgegangen. Versuch es doch nächste Woche noch einmal -\o/-'

@@ -14,8 +14,7 @@ use App\Http\Middleware\Admin;
 | contains the "web" middleware group. Now create something great!
 |
 */
-echo phpinfo();
-die();
+
 Route::resource('shoppinglist', 'App\Http\Controllers\ShoppinglistController')/*->middleware('auth')*/;
 Route::post('/shoppinglist/ajax-delete-shoppinglist','App\Http\Controllers\ShoppinglistController@ajaxDeleteShoppinglist')->name('shoppinglist.ajax-delete-shoppinglist');
 Route::get('/', 'App\Http\Controllers\HomeController@index' )->name('startseite');
@@ -25,7 +24,7 @@ Route::get('/shoppinglist/{shoppinglist}/ajax-add-recipe','App\Http\Controllers\
 Route::post('/shoppinglist/ajax-delete','App\Http\Controllers\ShoppinglistController@ajaxDelete')->name('shoppinglist.ajax-delete');
 Route::post('/shoppinglist/ajax-set-public','App\Http\Controllers\ShoppinglistController@ajaxSetPublic')->name('shoppinglist.ajax-set-public');
 
-Route::get('/recipes', 'App\Http\Controllers\ShoppinglistController@recipes')->middleware('auth');
+Route::get('/recipes', 'App\Http\Controllers\ShoppinglistController@recipes');
 Route::resource('user', 'App\Http\Controllers\UserController')->middleware('admin');
 Route::resource('product', 'App\Http\Controllers\ProductController');
 
