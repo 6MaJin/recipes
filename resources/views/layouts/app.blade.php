@@ -67,7 +67,7 @@ use Illuminate\Support\Facades\Route;
                     </li>
                     @auth
                         @if(Auth::user()->is_admin === 1)
-                    <li><a class="nav-link" href="/admin/shoppinglist">Admin-Login</a></li>
+                    <li><a class="nav-link" href="/admin/user">Admin-Login</a></li>
                         @endif
                     @endauth
                         <li><a class="nav-link {{Request::is('recipes*') ? 'active' : ''}}" href="/recipes">Rezepte</a>
