@@ -39,28 +39,25 @@ $(function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    $("#sortable").sortable(
-        {
-            update: function () {
-                var order = [];
-                $("#sortable").find('[data-id]').each(function () {
-                        order.push($(this).data('id'));
-                })
-                console.log(order);
-                let shoppinglist_id = $(this).data('id');
-                // POST to server using $.post or $.ajax
-                $.ajax({
-                    data: {
-                        order: order,
-                    },
-                    _token: "{{ csrf_token() }}",
-                    type: 'POST',
-                    dataType: 'json',
-                    url: '/shoppinglist/' + shoppinglist_id + '/update-order'
-                });
-            }
+    $("#sortable").sortable({
+        update: function update() {
+            var order = [];
+            $("#sortable").find('[data-id]').each(function () {
+                order.push($(this).data('id'));
+            });
+            console.log(order);
+            var shoppinglist_id = $(this).data('id'); // POST to server using $.post or $.ajax
+
+            $.ajax({
+                data: {
+                    order: order
+                },
+                type: 'POST',
+                dataType: 'json',
+                url: '/shoppinglist/' + shoppinglist_id + '/update-order'
+            });
         }
-    );
+    });
 });
 
 
