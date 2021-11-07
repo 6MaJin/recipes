@@ -34,11 +34,11 @@ const app = new Vue({
 });
 
 $(function () {
-    /*$.ajaxSetup({
+    $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
-    });*/
+    });
     $("#sortable").sortable(
         {
             update: function () {

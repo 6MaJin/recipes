@@ -17,8 +17,7 @@ class CreateShoppinglistsTable extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->text('note')->nullable();
-
-
+            $table->string('bild')->nullable();
             $table->timestamps();
         });
     }
