@@ -21,9 +21,9 @@
                             @foreach($shoppinglists AS $shoppinglist)
                                 <tr id="row_{{$shoppinglist->id}}" data-row_id="{{$shoppinglist->id}}">
                                     <td>
-                                        <a href="/shoppinglist/{{$shoppinglist -> id}}/edit">{{$shoppinglist -> name}}</a>
+                                        <a href="admin/shoppinglist/{{$shoppinglist -> id}}/edit">{{$shoppinglist -> name}}</a>
                                     </td>
-                                    <td><a href="/shoppinglist/{{$shoppinglist->id}}/edit"
+                                    <td><a href="admin/shoppinglist/{{$shoppinglist->id}}/edit"
                                            class="btn btn-primary btn-sm rounded-circle"><i class="fa fa-edit"></i></a>
                                     </td>
 

@@ -150,7 +150,6 @@ class ShoppinglistController extends Controller
         $shoppinglist_id = $request->input('shoppinglist_id');
         $shoppinglist = Shoppinglist::find($shoppinglist_id);
         $shoppinglist->delete();
-        /*$shoppinglist->products()->detach([$product_id]);*/
         return response()->json([
             'success' => 'Shoppinglistt successfully deleted'
         ]);
