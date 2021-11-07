@@ -62,7 +62,8 @@ class ShoppinglistController extends Controller
      */
     public function show(Shoppinglist $shoppinglist, Product $product)
     {
-        return view('shoppinglist.show')->with('shoppinglist', $shoppinglist)->with('product', $product);
+        $products = $shoppinglist->products()->orderBy('product_shoppinglist.sort', 'ASC')->get();
+        return view('shoppinglist.show')->with('shoppinglist', $shoppinglist)->with('products', $products);
     }
 
     /**
