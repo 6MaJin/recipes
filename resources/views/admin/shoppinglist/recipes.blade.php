@@ -17,6 +17,8 @@
                                 <th>Add Recipe</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
+                                <th>Geändert am</th>
+                                <th>Freigeben</th>
 
                             </tr>
                             </thead>
@@ -24,10 +26,10 @@
                             @foreach($shoppinglists AS $shoppinglist)
                                 <tr>
                                     <td>
-                                        <a href="admin/shoppinglist/{{$shoppinglist -> id}}">{{$shoppinglist -> name}}</a>
+                                        <a href="/admin/shoppinglist/{{$shoppinglist -> id}}">{{$shoppinglist -> name}}</a>
                                     </td>
                                     <td>
-                                        <a href="admin/user/{{$shoppinglist->user_id}}">{{$shoppinglist->user->name}}</a>
+                                        <a href="/admin/user/{{$shoppinglist->user_id}}">{{$shoppinglist->user->name}}</a>
                                     </td>
                                     <td>
 <!--                                        <div class="custom-control custom-switch">
