@@ -2159,27 +2159,6 @@ $(function () {
   });
 });
 
-function removeShoppinglist(shoppinglist_id) {
-  $.ajax({
-    method: "POST",
-    url: "/shoppinglist/ajax-delete-shoppinglist",
-    data: {
-      _token: "{{ csrf_token() }}",
-      shoppinglist_id: shoppinglist_id
-    },
-    success: function success(data) {
-      ajaxStatus(data);
-      /*$("#row_id'"+shoppinglist_id+"']").remove();*/
-
-      $('tbody').find("[data-row_id='" + shoppinglist_id + "']").remove();
-    }
-  });
-}
-
-function ajaxStatus(status) {
-  $('.ajax-status').html(status);
-}
-
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

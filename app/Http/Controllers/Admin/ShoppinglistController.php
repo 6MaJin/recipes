@@ -106,6 +106,13 @@ class ShoppinglistController extends Controller
      * @param \App\Models\Shoppinglist $shoppinglist
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
+
+    public function recipes(Shoppinglist $shoppinglist)
+    {
+        $shoppinglists = Shoppinglist::orderBy('id', 'ASC')->paginate(5);
+        return view('admin.shoppinglist.recipes')->with('shoppinglist', $shoppinglist)->with('shoppinglists', $shoppinglists);
+    }
+
     public function destroy(Shoppinglist $shoppinglist)
     {
         $shoppinglist->delete();
@@ -156,12 +163,4 @@ class ShoppinglistController extends Controller
         $shoppinglist->public = $public;
         $shoppinglist->save();
     }
-
-
-    public function recipes(Shoppinglist $shoppinglist)
-    {
-        $shoppinglists = Shoppinglist::orderBy('id', 'ASC')->paginate(5);
-        return view('admin.shoppinglist.recipes')->with('shoppinglists', $shoppinglists);
-    }
-
 }
