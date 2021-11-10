@@ -18,8 +18,10 @@ class ShoppinglistController extends Controller
      */
     public function index()
     {
-        $shoppinglists = Auth::user()->shoppinglists()->orderBy('id', 'ASC')->paginate(5);;
-        return view('shoppinglist.index')->with('shoppinglists', $shoppinglists);
+
+        $shoppinglists = Auth::user()->shoppinglists()->orderBy('id', 'ASC')->paginate(5);
+        $products = Product::all();
+        return view('shoppinglist.index')->with('shoppinglists', $shoppinglists)->with('products', $products);
     }
 
     /**

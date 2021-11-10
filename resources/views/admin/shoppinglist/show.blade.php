@@ -70,9 +70,5 @@
                                     });
                             }
 
-                            function removeProduct(product_id) {
-                                return;
-                                $('.product-list').find("[data-id=" + product_id + "]").remove();
-                            }
                         </script>
 @endsection

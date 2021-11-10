@@ -27,7 +27,11 @@
                                     <td><a href="/shoppinglist/{{$shoppinglist->id}}/edit"
                                            class="btn btn-primary btn-sm rounded-circle"><i class="fa fa-edit"></i></a>
                                     </td>
-                                    <td><button type="button" class="btn btn-outline-danger fa fa-minus" onclick="removeShoppinglist({{$shoppinglist->id}})" data-shoppinglist_id={{$shoppinglist->id}} id="shoppinglist_id={{$shoppinglist->id}}" ></button></td>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-danger fa fa-minus"
+                                                onclick="removeShoppinglist({{$shoppinglist->id}})"
+                                                data-shoppinglist_id={{$shoppinglist->id}} id="shoppinglist_id={{$shoppinglist->id}}"></button>
+                                    </td>
                                     <td>{{$shoppinglist->updated_at}}</td>
                                 </tr>
                             @endforeach
@@ -44,6 +48,16 @@
             {{ $shoppinglists->links("pagination::bootstrap-4") }}
         </div>
     </div>
+    <div class="container bg-light">
+        <ul>
+            @foreach($products AS $product)
+                <li>{{ $product->id }} -
+                    {{ $product -> shoppinglists()->pluck('id')}}
+                </li>
+            @endforeach
+
+        </ul>
+    </div>
 @endsection
 @section('after_script')
     <script>
@@ -58,7 +72,7 @@
                     data: {
                         _token: "{{ csrf_token() }}",
                         shoppinglist_id: $(this).data('id'),
-                        public: $(this).is(':checked')==true?1:0
+                        public: $(this).is(':checked') == true ? 1 : 0
                     },
                     success: function () {
                         console.log("It works");
@@ -84,13 +98,13 @@
                 success: function (data) {
                     ajaxStatus(data);
                     /*$("#row_id'"+shoppinglist_id+"']").remove();*/
-                    $('tbody').find("[data-row_id='"+shoppinglist_id+"']").remove();
+                    $('tbody').find("[data-row_id='" + shoppinglist_id + "']").remove();
                 },
             });
         }
 
-        function ajaxStatus (data) {
-            $('.ajax-status').removeClass('d-none').append(data['success']+"<br>");
+        function ajaxStatus(data) {
+            $('.ajax-status').removeClass('d-none').append(data['success'] + "<br>");
             console.log('Kuckuck!');
 
         }
