@@ -79,41 +79,6 @@
         });
 
 
-        $(function () {
-            $('.add_recipe').click(function (e) {
-                var shoppinglist_id = $(this).data('id');
-                /*var route = "/shoppinglist/"+shoppinglist_id+"/ajax-add";*/
-
-                $.ajax({
-                    method: "GET",
-                    url: "/shoppinglist/" + shoppinglist_id + "/ajax-add-recipe",
-                    data: {
-                        _token: "{{ csrf_token() }}",
-                        shoppinglist_id: $(this).data('id'),
-                        'success': 'Hello there',
-                        'error': 'ERROR!'
-                    },
-
-                    /*success: function (data) {
-                        $('.card-header').prepend("<div class='alert alert-success alert-solid alert-dismissible shadow-sm p-3 mb-5 rounded' role='alert'>"+data['success']+"</div>");
-
-                    },*/
-                    success: function (data) {
-                        ajaxStatus(data);
-                    },
-                    error: function (response) {
-                        console.log('Error:', response);
-                    }
-
-                });
-
-                /*$.get(route , function(data){
-
-            });*/
-
-
-            });
-        });
 
 
         function ajaxStatus(data) {

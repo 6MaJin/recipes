@@ -59,5 +59,76 @@ $(function () {
         }
     });
 });
+/**
+ * First we will load all of this project's JavaScript dependencies which
+ * includes Vue and other libraries. It is a great starting point when
+ * building robust, powerful web applications using Vue and Laravel.
+ */
+
+require('./bootstrap');
+/*import $ from 'jquery';*/
+window.$ = window.jQuery = $;
+import 'jquery-ui/ui/widgets/sortable.js';
+
+window.Vue = require('vue').default;
+
+Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+
+$(function () {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $("#sortable").sortable({
+        update: function update() {
+            var order = [];
+            $("#sortable").find('[data-id]').each(function () {
+                order.push($(this).data('id'));
+            });
+            console.log(order);
+            var shoppinglist_id = $(this).data('id'); // POST to server using $.post or $.ajax
+
+            $.ajax({
+                data: {
+                    order: order
+                },
+                type: 'POST',
+                dataType: 'json',
+                url: '/shoppinglist/' + shoppinglist_id + '/update-order'
+            });
+        }
+    });
+});
+
+$(function () {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $('.add_recipe').click(function (e) {
+        var shoppinglist_id = $(this).data('id');
+
+        $.ajax({
+            method: "GET",
+            url: "/shoppinglist/" + shoppinglist_id + "/ajax-add-recipe",
+            data: {
+                shoppinglist_id: $(this).data('id'),
+                'success': 'Hello there',
+                'error': 'ERROR!'
+            },
+            success: function (data) {
+                ajaxStatus(data);
+            },
+            error: function (response) {
+                console.log('Error:', response);
+            }
+
+        });
+    });
+});
+
+
 
 

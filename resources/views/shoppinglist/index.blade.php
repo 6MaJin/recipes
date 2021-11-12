@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
 
-        <h1>Index ShoppingList</h1>
+        <h1 class="text-light">Index ShoppingList</h1>
 
         <div class="row justifiy-content-center">
             <div class="col-md-12">
