@@ -103,7 +103,10 @@ class ProductController extends Controller
             'name' => $request['name'],
             'note' => "Notiz"
         ]);
-        $product->save();
+
+            $product->save();
+
+
         $shoppinglist = Shoppinglist::find($request['shoppinglist_id']);
         $shoppinglist->products()->save($product);
         return json_encode(
@@ -114,6 +117,9 @@ class ProductController extends Controller
                 'product_name' => $product->name
             ]
         );
+
+
+
     }
 
 }

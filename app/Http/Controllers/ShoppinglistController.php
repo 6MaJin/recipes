@@ -18,8 +18,8 @@ class ShoppinglistController extends Controller
      */
     public function index()
     {
-
-        $shoppinglists = Auth::user()->shoppinglists()->orderBy('id', 'ASC')->paginate(5);
+        $user = Auth::user();
+        $shoppinglists = $user->shoppinglists()->orderBy('id', 'ASC')->paginate(5);
         $products = Product::all();
         return view('shoppinglist.index')->with('shoppinglists', $shoppinglists)->with('products', $products);
     }
@@ -76,6 +76,7 @@ class ShoppinglistController extends Controller
      */
     public function edit(Shoppinglist $shoppinglist)
     {
+        $productarray = $shoppinglist->products();
         $products = $shoppinglist->products()->orderBy('product_shoppinglist.sort', 'ASC')->get();
         return view('shoppinglist.edit')->with('shoppinglist', $shoppinglist)->with('products', $products);
     }
@@ -98,8 +99,6 @@ class ShoppinglistController extends Controller
         return redirect('shoppinglist')->with('shoppinglist', $shoppinglist)->with([
             'meldung_success' => 'Die Liste ' . $shoppinglist->name . ' wurde editiert'
         ]);
-
-
     }
 
     /**
@@ -120,10 +119,10 @@ class ShoppinglistController extends Controller
         ]);
     }
 
-    public function recipes(Shoppinglist $shoppinglist)
+    public function recipes()
     {
         $shoppinglists = Shoppinglist::where('public', '=', 1)->orderBy('id', 'ASC')->paginate(5);
-        return view('shoppinglist.recipes')->with('shoppinglist', $shoppinglist)->with('shoppinglists', $shoppinglists);
+        return view('shoppinglist.recipes')->with('shoppinglists', $shoppinglists);
     }
 
     public function updateOrder(Request $request, Shoppinglist $shoppinglist)
@@ -136,14 +135,14 @@ class ShoppinglistController extends Controller
         return "success";
     }
 
-    public function ajaxDelete(Request $request)
+    public function ajaxDeleteProduct(Request $request)
     {
         $product_id = $request->input('product_id');
         $shoppinglist_id = $request->input('shoppinglist_id');
         $shoppinglist = Shoppinglist::find($shoppinglist_id);
         $shoppinglist->products()->detach([$product_id]);
         return response()->json([
-            'success' => 'Product successfully deleted from Shoppinglist'
+            'message' => 'Produkt erfolgreich gelöscht'
         ]);
     }
     public function ajaxDeleteShoppinglist(Request $request, Shoppinglist $shoppinglist)

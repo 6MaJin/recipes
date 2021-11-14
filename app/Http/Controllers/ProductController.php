@@ -34,7 +34,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|Response
      */
     public function store(Request $request, Recipe $recipe)
@@ -51,7 +51,7 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param \App\Models\Product $product
      * @return \Illuminate\Http\Response
      */
     public function show(Product $product)
@@ -62,7 +62,7 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param \App\Models\Product $product
      * @return \Illuminate\Http\Response
      */
     public function edit(Product $product)
@@ -73,8 +73,8 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Product $product
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Product $product)
@@ -85,7 +85,7 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Product  $product
+     * @param \App\Models\Product $product
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|Response|\Illuminate\Routing\Redirector
      */
     public function destroy(Product $product, Shoppinglist $shoppinglist)
@@ -97,24 +97,25 @@ class ProductController extends Controller
     }
 
 
-    public function ajaxStore(Request $request)
+    public function ajaxStoreProduct(Request $request)
     {
         $request->validate(Product::$rules);
         $product = new Product([
             'name' => $request['name'],
             'note' => "Notiz"
         ]);
-        $product->save();
         $shoppinglist = Shoppinglist::find($request['shoppinglist_id']);
+
         $shoppinglist->products()->save($product);
-        return json_encode(
+
+        return response()->json(
             [
-                'status' => 'success',
+                'message' => 'Produkt hinzugefügt',
                 'product_id' => $product->id,
                 'shoppinglist_id' => $shoppinglist->id,
-                'product_name' => $product->name
+                'product_name' => $product->name,
+
             ]
         );
     }
-
 }

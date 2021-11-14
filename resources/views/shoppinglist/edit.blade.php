@@ -6,6 +6,7 @@
                 <div class="card">
                     <div class="card-header"><h3>{{$shoppinglist->name}}</h3></div>
                     <div class="card-body">
+                        <div class="ajax-alert alert alert-info d-none"></div>
                         <form action="/shoppinglist/{{$shoppinglist->id}}" method="POST">
                             @csrf
                             @method('PUT')
@@ -25,6 +26,7 @@
                         </form>
                             <div class="form-group ml-5">
                                 <div id="sortable" class="product-list" data-id="{{$shoppinglist->id}}">
+
                                     @foreach($products AS $product)
                                         <div id="product_{{ $product->id }}"
                                              class="btn btn-outline-success btn-sm mt-1 ui-sortable-handle">{{$product->name}}
@@ -32,8 +34,6 @@
                                                     class="float-right btn btn-outline-danger btn-sm"
                                                     data-id={{$product->id}}><i
                                                     class="fa fa-minus"> </i></button>
-                                            <!--                                                <i onclick="removeProduct(' + data.product_id + ')"
-                                                                                             class="float-right btn-sm btn btn-outline-danger fa fa-minus"></i>-->
                                         </div>
                                     @endforeach
                                 </div>
@@ -46,7 +46,7 @@
                                     <form action="">
                                         <input onfocus="this.value=''" type="text" id="add_product" id="name" value="">
                                         <button class="btn btn-outline-secondary" type="button" id="button-addon2"
-                                                onclick="ajaxStore()"><i class="fa fa-plus">Produkt hinzufügen</i>
+                                                onclick="ajaxStoreProduct()"><i class="fa fa-plus">Produkt hinzufügen</i>
                                         </button>
                                     </form>
                                 </div>
@@ -62,53 +62,47 @@
             </div>
         </div>
     </div>
+
+
 @endsection
 @section('after_script')
     <script>
-        /*function addProduct(product_id, product_name) {
-            if ($('.product-list').find("[data-id=" + product_id + "]").length === 0) {
-                $('.product-list').append('<div class="btn btn-outline-secondary btn-sm mt-1">' + product_name + '</div>');
 
-            }
-        }*/
-
-        function ajaxStore() {
+        function ajaxStoreProduct() {
             let product_name = $("#add_product").val();
 
             $.ajax({
                 method: "POST",
                 dataType: 'json',
-                url: "{{route('product.ajax-store')}}",
+                url: "{{route('product.ajax-store-product')}}",
                 data: {
                     _token: "{{ csrf_token() }}",
                     name: product_name,
                     shoppinglist_id: {{ $shoppinglist->id }},
-                }
-            })
-                .done(function (data) {
-                    console.log(data);
-                    if (data.status == 'success') {
-                        $('.product-list').append('<div id="product_' + data.product_id + '" class="btn btn-outline-success btn-sm mt-1" data-list_id="' + data.shoppinglist_id + '"  data-id="' + data.product_id + '">' + data.product_name + '<i onclick="removeProduct(' + data.product_id + ')" class="float-right btn-sm btn btn-outline-danger fa fa-minus"></i></div>');
-                    }
+                },
+                success: function (data) {
+                    $('.ajax-alert').removeClass('d-none').text(data['message']);
+                    $('.product-list').append('<div id="product_' + data.product_id + '" class="btn btn-outline-success btn-sm mt-1" data-list_id="' + data.shoppinglist_id + '"  data-id="' + data.product_id + '">' + data.product_name + '<i onclick="removeProduct(' + data.product_id + ')" class="float-right btn-sm btn btn-outline-danger fa fa-minus"></i></div>');
 
-                });
+                },
+                error: function (response) {
+                    console.log('Error:', response);
+                },
+            });
         }
-
-
-
         function removeProduct(product_id) {
             console.log('product_id:'+product_id);
             $('#product_' + product_id).remove();
             $.ajax({
                 method: "POST",
-                url: "/shoppinglist/ajax-delete",
+                url: "/shoppinglist/ajax-delete-product",
                 data: {
                     _token: "{{ csrf_token() }}",
                     shoppinglist_id: {{ $shoppinglist->id }},
                     product_id: product_id
                 },
                 success: function (data) {
-                    ajaxStatus(data);
+                    $('.ajax-alert').removeClass('d-none').text(data['message']);
                 },
                 error: function (response) {
                     console.log('Error:', response);
@@ -116,10 +110,6 @@
             });
             return false;
 
-        }
-        function ajaxStatus (data) {
-            $('.ajax-status').removeClass('d-none').append(data['success']);
-            console.log('Kuckuck!');
         }
     </script>
 @endsection

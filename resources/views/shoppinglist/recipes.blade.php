@@ -55,36 +55,7 @@
 @endsection
 @section('after_script')
     <script>
-        $(function () {
 
-
-            $('.public_switch').change(function (e) {
-                e.preventDefault();
-                $.ajax({
-                    method: "POST",
-                    url: "/shoppinglist/ajax-set-public",
-                    data: {
-                        _token: "{{ csrf_token() }}",
-                        shoppinglist_id: $(this).data('id'),
-                        public: $(this).is(':checked') == true ? 1 : 0
-                    },
-                    success: function () {
-                        console.log("It works");
-                    },
-                    error: function (response) {
-                        console.log('Error:', response);
-                    }
-                });
-            });
-        });
-
-
-
-
-        function ajaxStatus(data) {
-            $('.ajax-status').removeClass('d-none').append(data['success'] + "<br>");
-            console.log('Kuckuck!');
-        }
     </script>
 
 

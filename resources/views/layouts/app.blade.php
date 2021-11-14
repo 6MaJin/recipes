@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/vendor/theme.min.css') }}" rel="stylesheet">
 
 
     <style>
@@ -116,12 +117,11 @@ use Illuminate\Support\Facades\Route;
         </div>
     </nav>
     <main class="py-4">
-        @include('inc.messages')
-
         @yield('content')
     </main>
 </div>
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('/js/app.js') }}"></script>
+
 @livewireScripts
 @yield('after_script')
 </body>

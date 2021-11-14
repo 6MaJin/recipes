@@ -10041,7 +10041,6 @@ a.nav-link.active {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  width: 60%;
 }
 
 #sortable li {
@@ -10069,6 +10068,18 @@ a.nav-link.active {
 #note {
   min-width: 90%;
   min-height: 400px;
+}
+
+.table-date-width {
+  width: 190px;
+}
+
+.table-edit-width {
+  width: 66px;
+}
+
+.table-delete-width {
+  width: 66px;
 }
 
 @media screen and (max-width: 800px) {

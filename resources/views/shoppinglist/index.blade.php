@@ -7,63 +7,53 @@
         <div class="row justifiy-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Alle Listen</div>
-                    <div class="card-body">
-                        <table class="border-left border-right table-striped table">
+                    <div class="text-light card-header bg-dark">Alle Listen</div>
+                    <div class="card-body bg-dark">
+                        <table class="table-dark table-sm table-striped table">
                             <thead>
                             <tr>
-                                <th>Liste</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
-                                <th class="">Zuletzt bearbeitet</th>
+                                <th class="px-3">Liste</th>
+                                <th class="d-none d-sm-table-cell px-3 table-date-width">Zuletzt bearbeitet</th>
+                                <th class="px-3 table-edit-width">Edit</th>
+                                <th class="px-3 table-delete-width">Delete</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($shoppinglists AS $shoppinglist)
                                 <tr id="row_{{$shoppinglist->id}}" data-row_id="{{$shoppinglist->id}}">
-                                    <td>
+                                    <td class="px-3">
                                         <a href="/shoppinglist/{{$shoppinglist -> id}}">{{$shoppinglist -> name}}</a>
                                     </td>
-                                    <td><a href="/shoppinglist/{{$shoppinglist->id}}/edit"
+                                    <td class="d-none d-sm-table-cell px-3">{{$shoppinglist->updated_at}}</td>
+                                    <td class="px-3"><a href="/shoppinglist/{{$shoppinglist->id}}/edit"
                                            class="btn btn-primary btn-sm rounded-circle"><i class="fa fa-edit"></i></a>
                                     </td>
-                                    <td>
-                                        <button type="button" class="btn btn-outline-danger fa fa-minus"
+                                    <td class="px-3">
+                                        <button type="button" class="btn btn-outline-danger fa fa-minus btn-sm"
                                                 onclick="removeShoppinglist({{$shoppinglist->id}})"
                                                 data-shoppinglist_id={{$shoppinglist->id}} id="shoppinglist_id={{$shoppinglist->id}}"></button>
                                     </td>
-                                    <td>{{$shoppinglist->updated_at}}</td>
+
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
+                        @auth
+                            <a class="btn btn-success" href="{{ route('shoppinglist.create') }}"><i class="fa fa-plus"></i></a>
+                        @endauth
                     </div>
                 </div>
             </div>
         </div>
-        @auth
-            <a class="btn btn-success" href="/shoppinglist/create"><i class="fa fa-plus"></i></a>
-        @endauth
-        <div class="container">
-            {{ $shoppinglists->links("pagination::bootstrap-4") }}
-        </div>
-    </div>
-    <div class="container bg-light">
-        <ul>
-            @foreach($products AS $product)
-                <li>{{ $product->id }} -
-                    {{ $product -> shoppinglists()->pluck('id')}}
-                </li>
-            @endforeach
 
-        </ul>
+        <div class="container">
+            {{ $shoppinglists->links() }}
+        </div>
     </div>
 @endsection
 @section('after_script')
     <script>
         $(function () {
-
-
             $('.public_switch').change(function (e) {
                 e.preventDefault();
                 $.ajax({
