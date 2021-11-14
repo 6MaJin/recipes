@@ -46,7 +46,7 @@ use Illuminate\Support\Facades\Route;
 </head>
 <body style="background-image: url('{{ asset('bg_home.jpg')}}');">
 <div id="app">
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <nav id="navigation" class="navbar navbar-expand-md navbar-light bg-dark shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
                 {{ config('app.name', 'The List') }}
@@ -66,20 +66,22 @@ use Illuminate\Support\Facades\Route;
                     <a class="nav-link {{Request::is('shoppinglist*')  ? 'active' : '' }}" href="/shoppinglist">Shoppinglists</a>
                     @endauth
                     </li>
-                    @auth
-                        @if(Auth::user()->is_admin === 1)
-                    <li><a class="nav-link" href="/admin/user">Admin-Login</a></li>
-                        @endif
-                    @endauth
                         <li><a class="nav-link {{Request::is('recipes*') ? 'active' : ''}}" href="/recipes">Rezepte</a>
                         </li>
+
 
 
                 </ul>
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
-                    <!-- Authentication Links -->
+                    @auth
+                        @if(Auth::user()->is_admin === 1)
+                            <li><a class="nav-link" href="/admin/user">Admin-Login</a></li>
+                        @endif
+                    @endauth
+
+                <!-- Authentication Links -->
                     @guest
                         @if (Route::has('login'))
                             <li class="nav-item">

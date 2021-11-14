@@ -75,7 +75,17 @@ a.nav-link.active {
 .table-delete-width {
     width: 66px;
 }
-
+.card-header {
+    background-color: #555!important;
+    color: #fff;
+}
+.card-body {
+    background-color: #333;
+    color: #fff;
+}
+#navigation a {
+    color: #fff;
+}
 @media screen and (max-width: 800px) {
     #note {
         min-width:40%;
