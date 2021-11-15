@@ -10096,6 +10096,12 @@ a.nav-link.active {
   color: #fff;
 }
 
+body {
+  background-image: url("/img/bg_home.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
 @media screen and (max-width: 800px) {
   #note {
     min-width: 40%;

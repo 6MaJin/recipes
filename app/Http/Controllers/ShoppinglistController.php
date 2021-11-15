@@ -76,7 +76,6 @@ class ShoppinglistController extends Controller
      */
     public function edit(Shoppinglist $shoppinglist)
     {
-        $productarray = $shoppinglist->products();
         $products = $shoppinglist->products()->orderBy('product_shoppinglist.sort', 'ASC')->get();
         return view('shoppinglist.edit')->with('shoppinglist', $shoppinglist)->with('products', $products);
     }
@@ -96,6 +95,15 @@ class ShoppinglistController extends Controller
             'name' => $request->name,
             'note' => $request->note
         ]);
+
+        if($request->get('delete_image', false)) {
+            $shoppinglist->clearMediaCollection('images');
+        }
+
+        if ($request->hasFile('image')) {
+            $shoppinglist->clearMediaCollection('images');
+            $shoppinglist->addMedia($request->file('image'))->toMediaCollection('images');
+        }
         return redirect('shoppinglist')->with('shoppinglist', $shoppinglist)->with([
             'meldung_success' => 'Die Liste ' . $shoppinglist->name . ' wurde editiert'
         ]);

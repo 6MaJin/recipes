@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use phpDocumentor\Reflection\Types\Nullable;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Shoppinglist extends Model
+class Shoppinglist extends Model implements HasMedia
 {
+    use InteractsWithMedia;
     use HasFactory;
 
     protected $fillable = [
@@ -30,6 +33,6 @@ class Shoppinglist extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'product_shoppinglist', 'shoppinglist_id', 'product_id')->withTimestamps()->withPivot('sort');
+        return $this->belongsToMany(Product::class, 'product_shoppinglist', 'shoppinglist_id', 'product_id')->withPivot('sort', 'count')->withTimestamps();
     }
 }

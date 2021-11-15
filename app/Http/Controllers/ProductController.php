@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Recipe;
 use App\Models\Shoppinglist;
+use Dflydev\DotAccessData\Data;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -100,13 +101,19 @@ class ProductController extends Controller
     public function ajaxStoreProduct(Request $request)
     {
         $request->validate(Product::$rules);
-        $product = new Product([
-            'name' => $request['name'],
-            'note' => "Notiz"
-        ]);
         $shoppinglist = Shoppinglist::find($request['shoppinglist_id']);
+        if ($product = $shoppinglist->products()->where('products.name','=',$request->get('name'))->first()) {
+            $count = $product->pivot->count;
+            $count++;
+            $shoppinglist->products()->updateExistingPivot($product->id, ['count' => $count]);
+        } else {
+            $product = new Product([
+                'name' => $request['name'],
+                'note' => "Notiz"
+            ]);
 
-        $shoppinglist->products()->save($product);
+            $shoppinglist->products()->save($product);
+        }
 
         return response()->json(
             [

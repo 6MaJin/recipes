@@ -7,13 +7,28 @@
                     <div class="card-header"><h3>{{$shoppinglist->name}}</h3></div>
                     <div class="card-body">
                         <div class="ajax-alert alert alert-info d-none"></div>
-                        <form action="/shoppinglist/{{$shoppinglist->id}}" method="POST">
+                        <form action="/shoppinglist/{{$shoppinglist->id}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="form-group">
                                 <label for="name">Name</label>
                                 <input value="{{old('name') ?? $shoppinglist->name}}" type="text" class="form-control"
                                        id="name" name="name">
+
+                                <label for="image">Image</label>
+                                <input value="{{old('image')}}" type="file" class="form-control"
+                                       id="image" name="image">
+
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox"
+                                           class="custom-control-input"
+                                           name="delete_image"
+                                           value="1"
+                                           id="delete_image">
+                                    <label class="custom-control-label"
+                                           for="delete_image">Bild löschen?</label>
+                                </div>
+
 
                                 <div style="clear:both"></div>
                                 <div class="form-group">

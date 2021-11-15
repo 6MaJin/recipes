@@ -39,12 +39,15 @@ use Illuminate\Support\Facades\Route;
 
     </style>
 
-
     <!-- drabable head end -->
 
 
 </head>
-<body style="background-image: url('{{ asset('bg_home.jpg')}}');">
+<body @php
+    if(isset($shoppinglist->getMedia('images')[0])) {
+        echo ' style="background-image: url('.$shoppinglist->getMedia('images')[0]->getUrl().')"';
+    }
+    @endphp>
 <div id="app">
     <nav id="navigation" class="navbar navbar-expand-md navbar-light bg-dark shadow-sm">
         <div class="container">
