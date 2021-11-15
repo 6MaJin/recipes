@@ -43,11 +43,11 @@ use Illuminate\Support\Facades\Route;
 
 
 </head>
-<body @php
+<body {{--@php
     if(isset($shoppinglist->getMedia('images')[0])) {
         echo ' style="background-image: url('.$shoppinglist->getMedia('images')[0]->getUrl().')"';
     }
-    @endphp>
+    @endphp>--}}
 <div id="app">
     <nav id="navigation" class="navbar navbar-expand-md navbar-light bg-dark shadow-sm">
         <div class="container">

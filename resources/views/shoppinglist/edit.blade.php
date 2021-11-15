@@ -6,6 +6,15 @@
                 <div class="card">
                     <div class="card-header"><h3>{{$shoppinglist->name}}</h3></div>
                     <div class="card-body">
+
+                        @php
+                            if(isset($shoppinglist->getMedia('images')[0])) {@endphp
+
+                        <img class="img-fluid border-success" src="{{ $shoppinglist->getMedia('images')[0]->getUrl() }}" alt="">
+                        @php
+                            }
+                        @endphp
+
                         <div class="ajax-alert alert alert-info d-none"></div>
                         <form action="/shoppinglist/{{$shoppinglist->id}}" method="POST" enctype="multipart/form-data">
                             @csrf

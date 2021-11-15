@@ -91,6 +91,10 @@ body {
     background-size: cover;
     background-position: center;
 }
+img {
+    border: 2px solid blue!important;
+    border-radius: 2px!important;
+}
 @media screen and (max-width: 800px) {
     #note {
         min-width:40%;

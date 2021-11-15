@@ -10,7 +10,7 @@
                     <div class="card-header">Alle Listen</div>
                     <div class="card-body">
                         <table class="border-left border-right table-striped table">
-                            <thead>
+                            <thead class="text-light">
                             <tr>
                                 <th>Liste</th>
                                 <th>Eingestellt von:</th>
@@ -36,7 +36,7 @@
                                     </td>
 
 
-                                    <td>{{$shoppinglist -> updated_at  ?? $shoppinglist -> created_at}}</td>
+                                    <td class="text-light">{{$shoppinglist -> updated_at  ?? $shoppinglist -> created_at}}</td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -67,7 +67,7 @@
             @endforeach
         </ul>
         <img class="img-thumbnail" src="{{ asset('images/gruene_soße .jpeg') }}" alt="">
-        <div class="mt-5 recipe container-fluid">
+        <div class="card-body text-light mt-5 recipe container-fluid">
             <h1>Rezept: Grüne Soße</h1>
             <p>Grüne Soße, ein Klassiker der regionalen Küche. Sobald im Frühsommer die Kräuter sprießen werden
                 Schnittlauch, Borretsch, Pimpinelle, Kerbel, Sauerampfer, Petersilie und Kresse wieder zur Grundlage
