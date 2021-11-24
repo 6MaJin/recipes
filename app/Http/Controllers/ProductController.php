@@ -106,6 +106,7 @@ class ProductController extends Controller
             $count = $product->pivot->count;
             $count++;
             $shoppinglist->products()->updateExistingPivot($product->id, ['count' => $count]);
+
         } else {
             $product = new Product([
                 'name' => $request['name'],

@@ -4,17 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\Admin;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
+Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('startseite');
 Route::resource('shoppinglist', 'App\Http\Controllers\ShoppinglistController')->middleware('auth');
 Route::post('/shoppinglist/ajax-delete-shoppinglist','App\Http\Controllers\ShoppinglistController@ajaxDeleteShoppinglist')->name('shoppinglist.ajax-delete-shoppinglist');
 Route::get('/', 'App\Http\Controllers\HomeController@index' )->name('startseite');
@@ -37,7 +27,6 @@ Route::name('admin.')->prefix('admin')->middleware('admin')->group(function () {
     Route::post('/shoppinglist/ajax-set-public','App\Http\Controllers\Admin\ShoppinglistController@ajaxSetPublic')->name('shoppinglist.ajax-set-public');
     Route::post('/user/ajax-set-admin','App\Http\Controllers\Admin\UserController@ajaxSetAdmin')->name('user.ajax-set-admin');
     Route::get('/recipes', 'App\Http\Controllers\Admin\ShoppinglistController@recipes')->middleware('auth');
-
 
     Route::resource('shoppinglist', 'App\Http\Controllers\Admin\ShoppinglistController');
     Route::resource('user', 'App\Http\Controllers\Admin\UserController');

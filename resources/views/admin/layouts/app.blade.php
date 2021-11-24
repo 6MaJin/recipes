@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 
     <!-- Styles -->
     <link href="{{ asset('admin/css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/vendor/theme.min.css') }}" rel="stylesheet">
 
 
     <style>
@@ -47,7 +48,7 @@ use Illuminate\Support\Facades\Route;
 </head>
 <body>
 <div id="app">
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <nav class="navbar navbar-expand-md navbar-light bg-dark shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
                 {{ config('app.name', 'The List') }}

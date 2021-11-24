@@ -3,13 +3,14 @@
 
     <div class="container">
 
-        <h1>Index ShoppingList</h1>
+        <h1 class="text-light">Unsere Rezepte</h1>
+
         <div class="row justifiy-content-center">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Alle Listen</div>
                     <div class="card-body">
-                        <table class="border-left border-right table-striped table">
+                        <table class="border-bottom border-left border-right table-striped table">
                             <thead class="text-light">
                             <tr>
                                 <th>Liste</th>

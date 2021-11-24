@@ -6,7 +6,6 @@
                 <div class="card">
                     <div class="card-header"><h3>{{$shoppinglist->name}}</h3></div>
                     <div class="card-body">
-
                         @php
                             if(isset($shoppinglist->getMedia('images')[0])) {@endphp
 

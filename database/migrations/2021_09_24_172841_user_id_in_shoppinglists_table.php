@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class UserIdInShoppinglistsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::table('shoppinglists', function (Blueprint $table) {
@@ -20,12 +15,6 @@ class UserIdInShoppinglistsTable extends Migration
                 ->onDelete('cascade');
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::table('shoppinglists', function (Blueprint $table) {

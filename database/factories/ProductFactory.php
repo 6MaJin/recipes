@@ -24,7 +24,6 @@ class ProductFactory extends Factory
     {
         return [
             'name' => $this->faker->word,
-            'note' => $this->faker->realText(32),
         ];
     }
 }

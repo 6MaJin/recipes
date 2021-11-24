@@ -138,7 +138,6 @@ class ShoppinglistController extends Controller
         $order = $request->input('order');
         foreach ($order as $key => $value) {
             $shoppinglist->products()->updateExistingPivot($value, ['sort' => $key]);
-            Log::debug(print_r($request->all(), true));
         }
         return "success";
     }
@@ -146,9 +145,11 @@ class ShoppinglistController extends Controller
     public function ajaxDeleteProduct(Request $request)
     {
         $product_id = $request->input('product_id');
-        $shoppinglist_id = $request->input('shoppinglist_id');
+        $product = Product::find($product_id);
+        $product->delete();
+        /*$shoppinglist_id = $request->input('shoppinglist_id');
         $shoppinglist = Shoppinglist::find($shoppinglist_id);
-        $shoppinglist->products()->detach([$product_id]);
+        $shoppinglist->products()->detach([$product_id]);*/
         return response()->json([
             'message' => 'Produkt erfolgreich gelöscht'
         ]);
@@ -170,14 +171,14 @@ class ShoppinglistController extends Controller
 
     public function ajaxAddRecipe(Shoppinglist $shoppinglist)
     {
-        $productNewIds = array();                           //legt neues Array an  für neue Shoppinglist IDs
-        $shoppinglistNew = $shoppinglist->replicate();      //repliziert vorhandene Shoppinglist in neuer Shoppinglist
-        $shoppinglistNew->user_id = Auth::user()->id;       //weist neuer SHoppinglist ID des eingeloggten Users zu
-        $shoppinglistNew->push();                           //speichert kopierte Shoppinglist mit ihren Beziehungen
+        $productNewIds = array();
+        $shoppinglistNew = $shoppinglist->replicate();
+        $shoppinglistNew->user_id = Auth::user()->id;
+        $shoppinglistNew->push();                         
         foreach ($shoppinglist->products as $product) {
-            $productNew = $product->replicate();            //repliziert vorhandenes Produkt in neuer Shoppinglist
-            $productNew->push();                            //speichert Produkt in neuer Shoppinglist
-            $productNewIds[] = $productNew->id;             //speichert die IDs aller neuen Produkte in Array
+            $productNew = $product->replicate();
+            $productNew->push();
+            $productNewIds[] = $productNew->id;
         }
         $shoppinglistNew->products()->sync($productNewIds); //verbindet neue Produkte mit neuer Shoppinglist
         return response()->json([

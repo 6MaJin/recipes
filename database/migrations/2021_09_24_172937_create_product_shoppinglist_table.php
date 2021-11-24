@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateProductShoppinglistTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('product_shoppinglist', function (Blueprint $table) {
@@ -30,12 +25,6 @@ class CreateProductShoppinglistTable extends Migration
 
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('product_shoppinglist');

@@ -1,18 +1,13 @@
 <?php
-
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use phpDocumentor\Reflection\Types\Nullable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-
 class Shoppinglist extends Model implements HasMedia
 {
     use InteractsWithMedia;
     use HasFactory;
-
     protected $fillable = [
         'name',
         'note',

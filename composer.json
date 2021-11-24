@@ -15,7 +15,7 @@
         "laravel/ui": "^3.3",
         "laravelcollective/html": "^6.2",
         "livewire/livewire": "^2.6",
-        "spatie/laravel-medialibrary": "^9.8",
+        "spatie/laravel-medialibrary": "9.0.0",
         "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {

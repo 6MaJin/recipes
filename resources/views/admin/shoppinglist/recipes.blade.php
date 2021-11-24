@@ -3,7 +3,7 @@
 
     <div class="container">
 
-        <h1>Index ShoppingList</h1>
+        <h1 class="text-light">Unsere Rezepte</h1>
         <div class="row justifiy-content-center">
             <div class="col-md-12">
                 <div class="card">
@@ -26,10 +26,10 @@
                             @foreach($shoppinglists AS $shoppinglist)
                                 <tr>
                                     <td>
-                                        <a href="admin/shoppinglist/{{$shoppinglist -> id}}">{{$shoppinglist -> name}}</a>
+                                        <a href="/admin/shoppinglist/{{$shoppinglist -> id}}">{{$shoppinglist -> name}}</a>
                                     </td>
                                     <td>
-                                        <a href="admin/user/{{$shoppinglist->user_id}}">{{$shoppinglist->user->name}}</a>
+                                        <a href="/admin/user/{{$shoppinglist->user_id}}">{{$shoppinglist->user->name}}</a>
                                     </td>
                                     <td>
 <!--                                        <div class="custom-control custom-switch">
@@ -42,7 +42,7 @@
                                         </div>-->
                                         <button class="add_recipe btn btn-success" data-id="{{$shoppinglist -> id}}"><i class="fa fa-plus"></i></button>
                                     </td>
-                                    <td><a href="/shoppinglist/{{$shoppinglist->id}}/edit"
+                                    <td><a href="/admin/shoppinglist/{{$shoppinglist->id}}/edit"
                                            class="btn btn-primary btn-sm rounded-circle"><i class="fa fa-edit"></i></a>
                                     </td>
                                     <td>

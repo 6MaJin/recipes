@@ -10098,13 +10098,31 @@ a.nav-link.active {
 
 body {
   background-image: url("/img/bg_home.jpg");
-  background-size: cover;
-  background-position: center;
 }
 
 img {
   border: 2px solid blue !important;
   border-radius: 2px !important;
+}
+
+.dropdown-item {
+  color: #212529 !important;
+}
+
+#reg {
+  max-width: 200px;
+}
+
+.logo {
+  display: flex;
+}
+
+img {
+  border: none !important;
+}
+
+#terms {
+  max-width: 25px;
 }
 
 @media screen and (max-width: 800px) {

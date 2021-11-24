@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
 
-        <h1 class="text-light">Index ShoppingList</h1>
+        <h1 class="text-light">Deine Rezepte</h1>
 
         <div class="row justifiy-content-center">
             <div class="col-md-12">
@@ -29,7 +29,7 @@
                                            class="btn btn-primary btn-sm rounded-circle"><i class="fa fa-edit"></i></a>
                                     </td>
                                     <td class="px-3">
-                                        <button type="button" class="btn btn-outline-danger fa fa-minus btn-sm"
+                                        <button type="button" class="btn btn-danger fa fa-minus btn-sm"
                                                 onclick="removeShoppinglist({{$shoppinglist->id}})"
                                                 data-shoppinglist_id={{$shoppinglist->id}} id="shoppinglist_id={{$shoppinglist->id}}"></button>
                                     </td>

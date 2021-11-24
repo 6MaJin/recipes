@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateShoppinglistsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('shoppinglists', function (Blueprint $table) {
@@ -21,12 +16,6 @@ class CreateShoppinglistsTable extends Migration
             $table->timestamps();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('shoppinglists');
