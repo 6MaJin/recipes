@@ -113,8 +113,15 @@ img {
 #terms {
 max-width: 25px;
 }
+.shoplist {
+    width: 250px!important;
+}
+@media screen and (max-width: 1024px) {
 
-@media screen and (max-width: 800px) {
+.card {
+    max-width: 400px;
+}
+
     #note {
         min-width:40%;
         min-height:200px;

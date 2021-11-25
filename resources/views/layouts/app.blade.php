@@ -43,7 +43,7 @@ use Illuminate\Support\Facades\Route;
 
 
 </head>
-<body {{--@php
+<body> {{--@php
     if(isset($shoppinglist->getMedia('images')[0])) {
         echo ' style="background-image: url('.$shoppinglist->getMedia('images')[0]->getUrl().')"';
     }

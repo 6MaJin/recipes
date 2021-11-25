@@ -2144,8 +2144,7 @@ $(function () {
         order.push($(this).data('id'));
       });
       console.log(order);
-      var shoppinglist_id = $(this).data('id'); // POST to server using $.post or $.ajax
-
+      var shoppinglist_id = $(this).data('id');
       $.ajax({
         data: {
           order: order
@@ -2175,6 +2174,51 @@ $(function () {
     });
   });
 });
+/*
+ * A bridge between iPad and iPhone touch events and jquery draggable, sortable etc. mouse interactions.
+ * @author Oleg Slobodskoi
+ */
+
+/iPad|iPhone/.test(navigator.userAgent) && function ($) {
+  var proto = $.ui.mouse.prototype,
+      _mouseInit2 = proto._mouseInit;
+  $.extend(proto, {
+    _mouseInit: function _mouseInit() {
+      this.element.bind("touchstart." + this.widgetName, $.proxy(this, "_touchStart"));
+
+      _mouseInit2.apply(this, arguments);
+    },
+    _touchStart: function _touchStart(event) {
+      if (event.originalEvent.targetTouches.length != 1) {
+        return false;
+      }
+
+      this.element.bind("touchmove." + this.widgetName, $.proxy(this, "_touchMove")).bind("touchend." + this.widgetName, $.proxy(this, "_touchEnd"));
+
+      this._modifyEvent(event);
+
+      this._mouseDown(event);
+
+      return false;
+    },
+    _touchMove: function _touchMove(event) {
+      this._modifyEvent(event);
+
+      this._mouseMove(event);
+    },
+    _touchEnd: function _touchEnd(event) {
+      this.element.unbind("touchmove." + this.widgetName).unbind("touchend." + this.widgetName);
+
+      this._mouseUp(event);
+    },
+    _modifyEvent: function _modifyEvent(event) {
+      event.which = 1;
+      var target = event.originalEvent.targetTouches[0];
+      event.pageX = target.clientX;
+      event.pageY = target.clientY;
+    }
+  });
+}(jQuery);
 
 /***/ }),
 

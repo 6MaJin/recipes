@@ -1,28 +1,36 @@
 @extends('layouts.app')
 @section('content')
+
+
+
     <div class="container">
-        <div class="row justifiy-content-center">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header"><h3>{{$shoppinglist->name}}</h3></div>
-                    <div class="card-body">
-                        <img class="img-fluid" src="{{URL::asset($shoppinglist->bild)}}" alt="">
+        <div class="card-header"><h3>{{$shoppinglist->name}}</h3></div>
+        <div class="card-body">
+            <img class="img-fluid" src="{{URL::asset($shoppinglist->bild)}}" alt="">
 
 
-                        <div id="" class="product-list mb-5" data-id="{{$shoppinglist->id}}">
-                            @foreach($products AS $product)
-                                <div id="product_{{ $product->id }}"
-                                     class="btn btn-outline-success btn-sm mt-1">{{$product->name}}
-                                </div>
-                            @endforeach
+            <div class="form-group">
+                <div id="sortable" class="product-list text-center" data-id="{{$shoppinglist->id}}">
+
+
+                    @foreach($products AS $product)
+                        <div id="product_{{ $product->id }}"
+                             class="btn btn-primary btn-sm mt-1 ui-sortable-handle mr-auto ml-auto shoplist">{{$product->name}}
+                            <button type="button" onclick="removeProduct({{$product->id}})"
+                                    class="float-right btn btn-danger btn-sm ml-1"
+                                    data-id={{$product->id}}><i
+                                    class="fa fa-minus"> </i></button>
                         </div>
-                        <div class="flex-column" id="">{{$shoppinglist->note}}</div>
-
-                    </div>
+                    @endforeach
                 </div>
             </div>
+            <div class="flex-column" id="">{{$shoppinglist->note}}</div>
+
         </div>
+
     </div>
+
+
 @endsection
 @section('after_script')
     <script>
