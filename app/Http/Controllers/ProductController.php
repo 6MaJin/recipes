@@ -112,14 +112,16 @@ class ProductController extends Controller
                 'name' => $request['name'],
             ]);
             $shoppinglist->products()->save($product);
+
+            return response()->json(
+                [
+                    'message' => 'Produkt hinzugefügt',
+                    'product_id' => $product->id,
+                    'shoppinglist_id' => $shoppinglist->id,
+                    'product_name' => $product->name,
+                ]
+            );
         }
-        return response()->json(
-            [
-                'message' => 'Produkt hinzugefügt',
-                'product_id' => $product->id,
-                'shoppinglist_id' => $shoppinglist->id,
-                'product_name' => $product->name,
-            ]
-        );
+
     }
 }

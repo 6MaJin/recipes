@@ -5,6 +5,12 @@
         <div class="row justify-content-center card">
             <div id="reg" class="card-header logo text-center"><img class="img-fluid" src="/img/visika2.png" alt=""></div>
             <div id="reg" class="card-body justify-content-center text-center">
+                @auth
+                    <a class="nav-link {{Request::is('shoppinglist*')  ? 'active' : '' }}" href="/shoppinglist">Shoppinglists</a>
+                    @endauth
+                
+                   <a class="nav-link {{Request::is('recipes*') ? 'active' : ''}}" href="/recipes">Rezepte</a>
+
                 @if (session('status'))
                     <div class="alert alert-success" role="alert">
                         {{ session('status') }}
