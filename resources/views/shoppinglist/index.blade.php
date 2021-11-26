@@ -25,21 +25,24 @@
                                         <a href="/shoppinglist/{{$shoppinglist -> id}}">{{$shoppinglist -> name}}</a>
                                     </td>
                                     <td class="d-none d-sm-table-cell px-3">{{$shoppinglist->updated_at}}</td>
-                                    <td class="px-3"><a href="/shoppinglist/{{$shoppinglist->id}}/edit"
-                                           class="btn btn-primary btn-sm rounded-circle"><i class="fa fa-edit"></i></a>
+                                    <td class="px-3">
+                                        @if($shoppinglist->public == 0)
+                                            <a href="/shoppinglist/{{$shoppinglist->id}}/edit"
+                                               class="btn btn-primary btn-sm rounded-circle"><i class="fa fa-edit"></i></a>
+                                        @endif
                                     </td>
                                     <td class="px-3">
                                         <button type="button" class="btn btn-danger fa fa-minus btn-sm"
                                                 onclick="removeShoppinglist({{$shoppinglist->id}})"
                                                 data-shoppinglist_id={{$shoppinglist->id}} id="shoppinglist_id={{$shoppinglist->id}}"></button>
                                     </td>
-
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
                         @auth
-                            <a class="btn btn-success" href="{{ route('shoppinglist.create') }}"><i class="fa fa-plus"></i></a>
+                            <a class="btn btn-success" href="{{ route('shoppinglist.create') }}"><i
+                                    class="fa fa-plus"></i></a>
                         @endauth
                     </div>
                 </div>
