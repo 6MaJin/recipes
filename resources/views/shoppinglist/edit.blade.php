@@ -9,7 +9,8 @@
                         @php
                             if(isset($shoppinglist->getMedia('images')[0])) {@endphp
 
-                        <img class="img-fluid border-success" src="{{ $shoppinglist->getMedia('images')[0]->getUrl() }}" alt="">
+                        <img class="img-fluid border-success" src="{{ $shoppinglist->getMedia('images')[0]->getUrl() }}"
+                             alt="">
                         @php
                             }
                         @endphp
@@ -41,45 +42,40 @@
                                 <div style="clear:both"></div>
                                 <div class="form-group">
                                     <label for="note">Notes</label><br/>
-                                    <textarea class="flex-column" name="note" id="note" >{{old('note') ?? $shoppinglist->note}}</textarea>
+                                    <textarea class="flex-column" name="note"
+                                              id="note">{{old('note') ?? $shoppinglist->note}}</textarea>
                                 </div>
                                 <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i></button>
 
                             </div>
                         </form>
-                            <div class="form-group ml-5">
-                                <div id="sortable" class="product-list" data-id="{{$shoppinglist->id}}">
+                        <div class="form-group ml-5">
+                            <div id="sortable" class="product-list" data-id="{{$shoppinglist->id}}">
 
-                                    @foreach($products AS $product)
+                                @foreach($products AS $product)
+                                    <div>
                                         <div id="product_{{ $product->id }}"
-                                             class="btn btn-outline-success btn-sm mt-1 ui-sortable-handle">{{$product->name}}
-                                            <button type="button" onclick="removeProduct({{$product->id}})"
-                                                    class="float-right btn btn-outline-danger btn-sm"
-                                                    data-id={{$product->id}}><i
-                                                    class="fa fa-minus"> </i></button>
+                                             class="position-relative btn btn-outline-success btn-sm mt-1 ui-sortable-handle">{{$product->name}}
                                         </div>
-                                    @endforeach
-                                </div>
+                                        <button type="button" onclick="removeProduct({{$product->id}})"
+                                                class="delete-product-button position-relative btn btn-outline-danger btn-sm"
+                                                data-id={{$product->id}}><i
+                                                class="fa fa-minus"> </i></button>
+                                    </div>
+                                @endforeach
                             </div>
+                        </div>
 
 
-                            <div class="mb-3">
-                                <div class="container<!--livesearch-container-->">
-                                    {{--                                    <livewire:productfinder :shoppinglist="$shoppinglist"/>--}}
-                                    <form action="">
-                                        <input onfocus="this.value=''" type="text" id="add_product" id="name" value="">
-                                        <button class="btn btn-outline-secondary" type="button" id="button-addon2"
-                                                onclick="ajaxStoreProduct()"><i class="fa fa-plus">Produkt hinzufügen</i>
-                                        </button>
-                                    </form>
-                                </div>
-
+                        <div class="mb-3">
+                            <div class="container<!--livesearch-container-->">
+                                {{--                                    <livewire:productfinder :shoppinglist="$shoppinglist"/>--}}
+                                <input type="text" id="add_product" value="">
+                                <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+                                        onclick="ajaxStoreProduct()"><i class="fa fa-plus"></i> Produkt hinzufügen
+                                </button>
                             </div>
-
-
-
-                        <a class="btn btn-secondary float-right" href="{{ URL::previous() }}"><i
-                                class="fa fa-arrow-circle-up"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -104,18 +100,26 @@
                     shoppinglist_id: {{ $shoppinglist->id }},
                 },
                 success: function (data) {
-                    $('.ajax-alert').removeClass('d-none').text(data['message']);
-                    $('.product-list').append('<div id="product_' + data.product_id + '" class="btn btn-outline-success btn-sm mt-1" data-list_id="' + data.shoppinglist_id + '"  data-id="' + data.product_id + '">' + data.product_name + '<i onclick="removeProduct(' + data.product_id + ')" class="float-right btn-sm btn btn-outline-danger fa fa-minus"></i></div>');
-
+                    $('.ajax-alert').removeClass('d-none').text(data.message);
+                    if($('#product_'+data.product_id).length) {
+                        if(data.count > 1) {
+                            $('#product_'+data.product_id).text(data.count+'x '+data.product_name);
+                        } else {
+                            $('#product_'+data.product_id).text(data.product_name);
+                        }
+                    } else {
+                        $('.product-list').append('<div class="ui-sortable-handle"><div id="product_' + data.product_id + '" class="position-relative btn btn-outline-success btn-sm mt-1 ui-sortable-handle">' + data.product_name + '</div><button type="button" onclick="removeProduct(' + data.product_id + ')" class="delete-product-button position-relative btn btn-outline-danger btn-sm" data-id=' + data.product_id + '><i class="fa fa-minus"> </i></button></div>');
+                    }
                 },
                 error: function (response) {
                     console.log('Error:', response);
                 },
             });
         }
+
         function removeProduct(product_id) {
-            console.log('product_id:'+product_id);
-            $('#product_' + product_id).remove();
+            console.log('product_id:' + product_id);
+            $('#product_' + product_id).parent().remove();
             $.ajax({
                 method: "POST",
                 url: "/shoppinglist/ajax-delete-product",

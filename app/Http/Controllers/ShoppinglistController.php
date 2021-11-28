@@ -117,10 +117,6 @@ class ShoppinglistController extends Controller
      */
     public function destroy(Shoppinglist $shoppinglist)
     {
-        foreach ($shoppinglist->products as $product) {
-            $product->delete();
-        }
-        $shoppinglist->products()->detach();
         $shoppinglist->delete();
         return redirect('/shoppinglist')->with([
             'meldung_success' => 'Die Liste wurde gelöscht'
@@ -145,27 +141,20 @@ class ShoppinglistController extends Controller
     public function ajaxDeleteProduct(Request $request)
     {
         $product_id = $request->input('product_id');
-        $product = Product::find($product_id);
-        $product->delete();
-        /*$shoppinglist_id = $request->input('shoppinglist_id');
+        $shoppinglist_id = $request->input('shoppinglist_id');
         $shoppinglist = Shoppinglist::find($shoppinglist_id);
-        $shoppinglist->products()->detach([$product_id]);*/
+        $shoppinglist->products()->detach([$product_id]);
         return response()->json([
             'message' => 'Produkt erfolgreich gelöscht'
         ]);
     }
-    public function ajaxDeleteShoppinglist(Request $request, Shoppinglist $shoppinglist)
+    public function ajaxDeleteShoppinglist(Request $request)
     {
         $shoppinglist_id = $request->input('shoppinglist_id');
         $shoppinglist = Shoppinglist::find($shoppinglist_id);
-        foreach ($shoppinglist->products as $product) {
-            $product->delete();
-        }
         $shoppinglist->delete();
         return response()->json([
-            'success' => 'Shoppinglist successfully deleted',
-            'error' => 'Nönö!',
-            'shoppinglist_id' => $shoppinglist_id
+            'message' => 'Shoppinglist successfully deleted',
         ]);
     }
 
@@ -174,11 +163,9 @@ class ShoppinglistController extends Controller
         $productNewIds = array();
         $shoppinglistNew = $shoppinglist->replicate();
         $shoppinglistNew->user_id = Auth::user()->id;
-        $shoppinglistNew->push();                         
+        $shoppinglistNew->push();
         foreach ($shoppinglist->products as $product) {
-            $productNew = $product->replicate();
-            $productNew->push();
-            $productNewIds[] = $productNew->id;
+            $productNewIds[] = $product->id;
         }
         $shoppinglistNew->products()->sync($productNewIds); //verbindet neue Produkte mit neuer Shoppinglist
         return response()->json([

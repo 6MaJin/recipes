@@ -116,12 +116,20 @@ max-width: 25px;
 .shoplist {
     width: 250px!important;
 }
+.delete-product-button {
+    right: 33px;
+    top: 2px;
+}
+
+.ui-sortable-handle {
+    display: inline-block;
+}
+
 @media screen and (max-width: 1024px) {
 
 .card {
     max-width: 400px;
 }
-
     #note {
         min-width:40%;
         min-height:200px;

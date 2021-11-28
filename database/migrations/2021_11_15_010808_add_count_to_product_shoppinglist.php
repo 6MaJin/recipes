@@ -14,7 +14,7 @@ class AddCountToProductShoppinglist extends Migration
     public function up()
     {
         Schema::table('product_shoppinglist', function (Blueprint $table) {
-            $table->integer('count')->nullable()->default(0);
+            $table->integer('count')->nullable()->default(1);
         });
     }
 

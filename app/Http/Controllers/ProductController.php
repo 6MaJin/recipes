@@ -100,28 +100,34 @@ class ProductController extends Controller
 
     public function ajaxStoreProduct(Request $request)
     {
+        $count = 1;
+        $productName = $request->input('name');
         $request->validate(Product::$rules);
         $shoppinglist = Shoppinglist::find($request['shoppinglist_id']);
-        if ($product = $shoppinglist->products()->where('products.name','=',$request->get('name'))->first()) {
+        if ($product = $shoppinglist->products()->where('products.name', '=', $productName)->first()) {
             $count = $product->pivot->count;
             $count++;
             $shoppinglist->products()->updateExistingPivot($product->id, ['count' => $count]);
 
         } else {
-            $product = new Product([
-                'name' => $request['name'],
-            ]);
-            $shoppinglist->products()->save($product);
-
-            return response()->json(
-                [
-                    'message' => 'Produkt hinzugefügt',
-                    'product_id' => $product->id,
-                    'shoppinglist_id' => $shoppinglist->id,
-                    'product_name' => $product->name,
-                ]
-            );
+            if ($product = Product::where('name', '=', $productName)->first()) {
+                $shoppinglist->products()->attach($product->id);
+            } else {
+                $product = new Product([
+                    'name' => $productName,
+                ]);
+                $shoppinglist->products()->save($product);
+            }
         }
+        return response()->json(
+            [
+                'message' => 'Produkt hinzugefügt',
+                'product_id' => $product->id,
+                'shoppinglist_id' => $shoppinglist->id,
+                'product_name' => $product->name,
+                'count' => $count,
+            ]
+        );
 
     }
 }
