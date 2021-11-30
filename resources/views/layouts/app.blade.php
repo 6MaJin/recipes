@@ -65,9 +65,7 @@ use Illuminate\Support\Facades\Route;
                     <li class="nav-item">
                     </li>
                     <li>
-                    @auth
-                    <a class="nav-link {{Request::is('shoppinglist*')  ? 'active' : '' }}" href="/shoppinglist">Shoppinglists</a>
-                    @endauth
+
                     </li>
                         <li><a class="nav-link {{Request::is('recipes*') ? 'active' : ''}}" href="/recipes">Rezepte</a>
                         </li>
@@ -78,6 +76,9 @@ use Illuminate\Support\Facades\Route;
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
+                    @auth
+                        <a class="nav-link {{Request::is('shoppinglist*')  ? 'active' : '' }}" href="/shoppinglist">Shoppinglists</a>
+                    @endauth
                     @auth
                         @if(Auth::user()->is_admin === 1)
                             <li><a class="nav-link" href="/admin/user">Admin-Login</a></li>

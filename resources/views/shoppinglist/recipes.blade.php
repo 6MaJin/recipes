@@ -8,12 +8,12 @@
         <div class="row justifiy-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Alle Listen</div>
+                    <div class="card-header">Rezeptauswahl</div>
                     <div class="card-body">
                         <table class="border-bottom border-left border-right table-striped table">
                             <thead class="text-light">
                             <tr>
-                                <th>Liste</th>
+                                <th>Rezept</th>
                                 <th>Eingestellt von:</th>
                                 <th>Add Recipe</th>
                                 <th>Geändert am:</th>
@@ -46,9 +46,6 @@
                 </div>
             </div>
         </div>
-        @auth
-            <a class="btn btn-success" href="/shoppinglist/create"><i class="fa fa-plus"></i></a>
-        @endauth
         <div class="container">
             {{ $shoppinglists->links("pagination::bootstrap-4") }}
         </div>
@@ -58,35 +55,6 @@
     <script>
 
     </script>
-
-
-
-    <div class="mt-5 container">
-        <ul>
-            @foreach($shoppinglists AS $shoppinglist)
-                <li><a href="shoppinglist/{{$shoppinglist->id}}/edit">{{$shoppinglist->name}}</a></li>
-            @endforeach
-        </ul>
-        <img class="img-thumbnail" src="{{ asset('images/gruene_soße .jpeg') }}" alt="">
-        <div class="card-body text-light mt-5 recipe container-fluid">
-            <h1>Rezept: Grüne Soße</h1>
-            <p>Grüne Soße, ein Klassiker der regionalen Küche. Sobald im Frühsommer die Kräuter sprießen werden
-                Schnittlauch, Borretsch, Pimpinelle, Kerbel, Sauerampfer, Petersilie und Kresse wieder zur Grundlage
-                dieser cremig-kühlen Kräutersoße, die ideal zu Spargel, Roastbeef, gekochte Landeier, Grillgemüse oder
-                einfach Pellkartoffeln passt.
-                <br><br>
-
-                Aber Hand auf’s Herz: Wer kennt heute noch Borretsch, Pimpinelle, Kerbel und Sauerampfer? Grüne Soße
-                schmeckt nicht nur köstlich, sie enthält auch kaum bekannte Kräuter, das unsere älteren
-                Familienmitglieder für ihre Küche so wunderbar zu nutzen wussten. Lasst uns dieses Wissen auf leckere
-                Weise noch möglichst lange erhalten!
-                <br><br>
-
-                Sie möchten Grüne Soße auch zu Hause genießen? Hier ist unser Vorschlag für Grüne Soße mit den
-                regionalen Kräutern
-                Schnittlauch, Borretsch, Pimpinelle, Kerbel, Sauerampfer, Petersilie und Kresse.</p>
-        </div>
-    </div>
 
 @endsection
 @section('after_script')
