@@ -151,6 +151,8 @@ class ShoppinglistController extends Controller
 
     public function ajaxDeleteProduct(Request $request)
     {
+
+
         $product_id = $request->input('product_id');
         $shoppinglist_id = $request->input('shoppinglist_id');
         $shoppinglist = Shoppinglist::find($shoppinglist_id);
@@ -158,6 +160,8 @@ class ShoppinglistController extends Controller
         return response()->json([
             'message' => 'Produkt erfolgreich gelöscht'
         ]);
+
+
     }
 
     public function ajaxAddRecipe(Shoppinglist $shoppinglist)

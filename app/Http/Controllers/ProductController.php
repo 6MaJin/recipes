@@ -100,7 +100,7 @@ class ProductController extends Controller
 
     public function ajaxStoreProduct(Request $request)
     {
-        $count = 1;
+        $count = 2;
         $productName = $request->input('name');
         $request->validate(Product::$rules);
         $shoppinglist = Shoppinglist::find($request['shoppinglist_id']);
