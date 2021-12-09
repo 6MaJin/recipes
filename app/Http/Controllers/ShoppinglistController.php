@@ -123,6 +123,17 @@ class ShoppinglistController extends Controller
         ]);
     }
 
+    public function ajaxDeleteShoppinglist(Request $request)
+    {
+        $shoppinglist_id = $request->input('shoppinglist_id');
+        $shoppinglist = Shoppinglist::find($shoppinglist_id);
+        $shoppinglist->delete();
+        return response()->json([
+            'message' => 'Shoppinglist successfully deleted',
+        ]);
+    }
+
+
     public function recipes()
     {
         $shoppinglists = Shoppinglist::where('public', '=', 1)->orderBy('id', 'ASC')->paginate(5);
@@ -146,15 +157,6 @@ class ShoppinglistController extends Controller
         $shoppinglist->products()->detach([$product_id]);
         return response()->json([
             'message' => 'Produkt erfolgreich gelöscht'
-        ]);
-    }
-    public function ajaxDeleteShoppinglist(Request $request)
-    {
-        $shoppinglist_id = $request->input('shoppinglist_id');
-        $shoppinglist = Shoppinglist::find($shoppinglist_id);
-        $shoppinglist->delete();
-        return response()->json([
-            'message' => 'Shoppinglist successfully deleted',
         ]);
     }
 

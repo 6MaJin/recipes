@@ -93,7 +93,7 @@ class ShoppinglistController extends Controller
             'name' => $request->name,
             'note' => $request->note
         ]);
-        return view('admin.shoppinglist.edit')->with('shoppinglist', $shoppinglist)->with([
+        return view('admin.shoppinglist')->with('shoppinglist', $shoppinglist)->with([
             'meldung_success' => 'Die Liste ' . $shoppinglist->name . ' wurde editiert'
         ]);
 
@@ -116,7 +116,7 @@ class ShoppinglistController extends Controller
     public function destroy(Shoppinglist $shoppinglist)
     {
         $shoppinglist->delete();
-        return redirect('/admin/shoppinglist')->with([
+        return redirect('admin/recipes')->with([
             'meldung_success' => 'Die Liste wurde gelöscht'
         ]);
         /* return $this->index()->with([
