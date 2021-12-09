@@ -97,7 +97,6 @@ class ProductController extends Controller
 //        );
     }
 
-
     public function ajaxStoreProduct(Request $request)
     {
         $count = 2;
@@ -119,6 +118,7 @@ class ProductController extends Controller
                 $shoppinglist->products()->save($product);
             }
         }
+
         return response()->json(
             [
                 'message' => 'Produkt hinzugefügt',
