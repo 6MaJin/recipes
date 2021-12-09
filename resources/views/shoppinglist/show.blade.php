@@ -15,7 +15,7 @@
 
                     @foreach($products AS $product)
                         <div id="product_{{ $product->id }}"
-                             class="btn btn-primary btn-sm mt-1 ui-sortable-handle mr-auto ml-auto shoplist">{{$product->name}}
+                             class="btn btn-primary btn-sm mt-1 ui-sortable-handle mr-auto ml-auto shoplist">{{$product->pivot->count ."x ". $product->name}}
                             <button type="button" onclick="removeProduct({{$product->id}})"
                                     class="float-right btn btn-danger btn-sm ml-1"
                                     data-id={{$product->id}}><i
@@ -25,7 +25,6 @@
                 </div>
             </div>
             <div class="flex-column" id="">{{$shoppinglist->note}}</div>
-
         </div>
 
     </div>

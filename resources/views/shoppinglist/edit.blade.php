@@ -55,7 +55,7 @@
                                 @foreach($products AS $product)
                                     <div>
                                         <div id="product_{{ $product->id }}"
-                                             class="position-relative btn btn-outline-success btn-sm mt-1 ui-sortable-handle">{{$product->name}}
+                                             class="position-relative btn btn-outline-success btn-sm mt-1 ui-sortable-handle">{{$product->pivot->count."x ". $product->name}}
                                         </div>
                                         <button type="button" onclick="removeProduct({{$product->id}})"
                                                 class="delete-product-button position-relative btn btn-outline-danger btn-sm"
@@ -102,7 +102,7 @@
                 success: function (data) {
                     $('.ajax-alert').removeClass('d-none').text(data.message);
                     if($('#product_'+data.product_id).length) {
-                        if(data.count > 1) {
+                        if(data.count > 0) {
                             $('#product_'+data.product_id).text(data.count+'x '+data.product_name);
                         } else {
                             $('#product_'+data.product_id).text(data.product_name);
@@ -136,7 +136,6 @@
                 }
             });
             return false;
-
         }
     </script>
 @endsection

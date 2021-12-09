@@ -83,7 +83,7 @@
 
             $.ajax({
                 method: "POST",
-                url: "/admin/shoppinglist/ajax-delete-shoppinglist",
+                url: "/shoppinglist/ajax-delete-shoppinglist",
                 data: {
                     _token: "{{ csrf_token() }}",
                     shoppinglist_id: shoppinglist_id,
