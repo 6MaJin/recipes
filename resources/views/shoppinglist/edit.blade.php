@@ -105,10 +105,10 @@
                         if (data.count > 0) {
                             $('#product_' + data.product_id).text(data.count + 'x ' + data.product_name);
                         } else {
-                            $('#product_' + data.product_id).text(data.product_name);
+                            $('#product_' + data.product_id).text(data.count + 'x ' + data.product_name);
                         }
                     } else {
-                        $('.product-list').append('<div class="ui-sortable-handle"><div id="product_' + data.product_id + '" class="position-relative btn btn-outline-success btn-sm mt-1 ui-sortable-handle">' + data.product_name + '</div><button type="button" onclick="removeProduct(' + data.product_id + ')" class="delete-product-button position-relative btn btn-outline-danger btn-sm" data-id=' + data.product_id + '><i class="fa fa-minus"> </i></button></div>');
+                        $('.product-list').append('<div class="ui-sortable-handle"><div id="product_' + data.product_id + '" class="position-relative btn btn-outline-success btn-sm mt-1 ui-sortable-handle">' + data.count + 'x ' + data.product_name + '</div><button type="button" onclick="removeProduct(' + data.product_id + ')" class="delete-product-button position-relative btn btn-outline-danger btn-sm" data-id=' + data.product_id + '><i class="fa fa-minus"> </i></button></div>');
                     }
                 },
                 error: function (response) {
