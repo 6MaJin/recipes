@@ -129,7 +129,6 @@
                 },
                 success: function (data) {
 
-
                     if (data.count > 0) {
                         $('#product_' + data.product_id).text(data.count + 'x ' + data.product_name);
                     } else {
