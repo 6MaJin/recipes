@@ -158,24 +158,27 @@ class ShoppinglistController extends Controller
         $shoppinglist = Shoppinglist::find($shoppinglist_id);
 
         $product = $shoppinglist->products()->where('product_shoppinglist.product_id', '=', $product_id)->first();
-        $count = $product->pivot->count;
-
-        if($count > 1) {
-            $count--;
-            $shoppinglist->products()->updateExistingPivot($product->id, ['count' => $count]);
-            return response()->json([
-                'message' => 'Blablub',
-                'product_id' => $product->id,
-                'shoppinglist_id' => $shoppinglist->id,
-                'product_name' => $product->name,
-                'count' => $count,
-            ]);
-        } else {
-            $shoppinglist->products()->detach([$product_id]);
-            return response()->json([
-                'message' => 'Produkt erfolgreich gelöscht'
-            ]);
+        if($product) {
+            $count = $product->pivot->count;
+            if($count > 1) {
+                $count--;
+                $shoppinglist->products()->updateExistingPivot($product->id, ['count' => $count]);
+                return response()->json([
+                    'message' => 'Blablub',
+                    'product_id' => $product->id,
+                    'shoppinglist_id' => $shoppinglist->id,
+                    'product_name' => $product->name,
+                    'count' => $count,
+                ]);
+            } else {
+                $shoppinglist->products()->detach([$product_id]);
+                return response()->json([
+                    'message' => 'Produkt erfolgreich gelöscht'
+                ]);
+            }
         }
+
+
     }
 
     public function ajaxAddRecipe(Shoppinglist $shoppinglist)
