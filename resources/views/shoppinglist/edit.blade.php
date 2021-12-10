@@ -119,7 +119,16 @@
 
         function removeProduct(product_id) {
             console.log('product_id:' + product_id);
-            $('#product_' + product_id).parent().remove();
+
+            if() {
+
+            }
+
+            else {
+                $('#product_' + product_id).parent().remove();
+
+            }
+
             $.ajax({
                 method: "POST",
                 url: "/shoppinglist/ajax-delete-product",
