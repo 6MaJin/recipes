@@ -28,7 +28,7 @@
                                     <td class="px-3">
                                         @if($shoppinglist->public == 0)
                                             <a href="/shoppinglist/{{$shoppinglist->id}}/edit"
-                                               class="btn btn-primary btn-sm rounded-circle"><i class="fa fa-edit"></i></a>
+                                               class="btn btn-secondary btn-sm rounded-circle"><i class="fa fa-edit"></i></a>
                                         @endif
                                     </td>
                                     <td class="px-3">

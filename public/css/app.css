@@ -10056,13 +10056,22 @@ a.nav-link.active {
   margin-left: -1.3em;
 }
 
-.btn-outline-success {
+.btn-outline-success, .btn-primary {
   width: 150px;
+}
+
+.btn-primary {
+  width: 250px;
 }
 
 .list-button {
   cursor: pointer;
   display: block;
+}
+
+.pl-show {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #note {

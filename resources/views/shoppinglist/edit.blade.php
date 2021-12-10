@@ -45,7 +45,7 @@
                                     <textarea class="flex-column" name="note"
                                               id="note">{{old('note') ?? $shoppinglist->note}}</textarea>
                                 </div>
-                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i></button>
+                                <button class="btn btn-secondary" type="submit"><i class="fa fa-save"></i></button>
 
                             </div>
                         </form>
