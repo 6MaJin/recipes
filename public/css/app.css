@@ -10061,7 +10061,7 @@ a.nav-link.active {
 }
 
 .btn-primary {
-  width: 250px;
+  width: 160px;
 }
 
 .list-button {
@@ -10072,6 +10072,7 @@ a.nav-link.active {
 .pl-show {
   margin-left: auto;
   margin-right: auto;
+  width: 200px;
 }
 
 #note {
