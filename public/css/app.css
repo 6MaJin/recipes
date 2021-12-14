@@ -10070,8 +10070,6 @@ a.nav-link.active {
 }
 
 .pl-show {
-  margin-left: auto;
-  margin-right: auto;
   width: 200px;
 }
 
@@ -10100,6 +10098,7 @@ a.nav-link.active {
 .card-body {
   background-color: #333;
   color: #fff;
+  text-align: center;
 }
 
 #navigation a {
@@ -10156,5 +10155,11 @@ img {
   #note {
     min-width: 40%;
     min-height: 200px;
+  }
+
+  .ui-sortable-handle {
+    display: inline-block;
+    left: 14px;
+    position: relative;
   }
 }

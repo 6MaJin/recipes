@@ -65,8 +65,6 @@ a.nav-link.active {
     display: block;
 }
 .pl-show {
-    margin-left: auto;
-    margin-right: auto;
     width: 200px;
 }
 #note {
@@ -90,6 +88,7 @@ a.nav-link.active {
 .card-body {
     background-color: #333;
     color: #fff;
+    text-align: center;
 }
 #navigation a {
     color: #fff;
@@ -141,6 +140,11 @@ max-width: 25px;
     #note {
         min-width:40%;
         min-height:200px;
+    }
+    .ui-sortable-handle {
+        display: inline-block;
+        left: 14px;
+        position: relative;
     }
 }
 

@@ -13,25 +13,27 @@
                                 @foreach($products AS $product)
                                     <div>
                                         <div id="product_{{ $product->id }}"
-                                             class="pl-show btn btn-primary btn-sm mt-1 ui-sortable-handle">{{$product->pivot->count."x ". $product->name}}</div><button type="button" onclick="removeProduct({{$product->id}})"
+                                             class="pl-show btn btn-primary mt-1 ui-sortable-handle">{{$product->pivot->count."x ". $product->name}}</div><button type="button" onclick="removeProduct({{$product->id}})"
                                                 class="delete-product-button position-relative btn btn-outline-danger btn-sm"
                                                 data-id={{$product->id}}><i
                                                 class="fa fa-minus"> </i></button>
                                     </div>
                                 @endforeach
+
+                            </div>
+                            <div class="mb-3">
+                                <div class="container<!--livesearch-container-->">
+                                    {{--                                    <livewire:productfinder :shoppinglist="$shoppinglist"/>--}}
+                                    <input type="text" id="add_product" value="">
+                                    <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+                                            onclick="ajaxStoreProduct()"><i class="fa fa-plus"></i> Produkt hinzufügen
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
 
-                        <div class="mb-3">
-                            <div class="container<!--livesearch-container-->">
-                                {{--                                    <livewire:productfinder :shoppinglist="$shoppinglist"/>--}}
-                                <input type="text" id="add_product" value="">
-                                <button class="btn btn-outline-secondary" type="button" id="button-addon2"
-                                        onclick="ajaxStoreProduct()"><i class="fa fa-plus"></i> Produkt hinzufügen
-                                </button>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
