@@ -10070,7 +10070,7 @@ a.nav-link.active {
 }
 
 .pl-show {
-  width: 200px;
+  width: 205px;
 }
 
 #note {
@@ -10140,7 +10140,7 @@ img {
 
 .delete-product-button {
   right: 33px;
-  top: 2px;
+  top: -2px;
 }
 
 .ui-sortable-handle {
