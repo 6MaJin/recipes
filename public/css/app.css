@@ -10056,6 +10056,11 @@ a.nav-link.active {
   margin-left: -1.3em;
 }
 
+.card-header:first-child {
+  border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+  text-align: center;
+}
+
 .btn-outline-success, .btn-primary {
   width: 150px;
 }
@@ -10089,6 +10094,10 @@ a.nav-link.active {
 
 .table-delete-width {
   width: 66px;
+}
+
+#button-addon2 {
+  width: 205px !important;
 }
 
 .card-header {
