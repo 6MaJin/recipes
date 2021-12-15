@@ -56,29 +56,7 @@
 @endsection
 @section('after_script')
     <script>
-        $(function () {
-            $('.public_switch').change(function (e) {
-                e.preventDefault();
-                $.ajax({
-                    method: "POST",
-                    url: "/shoppinglist/ajax-set-public",
-                    data: {
-                        _token: "{{ csrf_token() }}",
-                        shoppinglist_id: $(this).data('id'),
-                        public: $(this).is(':checked') == true ? 1 : 0
-                    },
-                    success: function () {
-                        console.log("It works");
-
-                    },
-                    error: function (response) {
-                        console.log('Error:', response);
-                    }
-                });
-            });
-        });
-
-
+        $('.ajax-alert').removeClass('d-none').text(data['message']);
         function removeShoppinglist(shoppinglist_id) {
 
             $.ajax({
@@ -95,6 +73,28 @@
                 },
             });
         }
+
+        $('.add_recipe').click(function (e) {
+            var shoppinglist_id = $(this).data('id');
+
+            $.ajax({
+                method: "GET",
+                url: "/shoppinglist/" + shoppinglist_id + "/ajax-add-recipe",
+                data: {
+                    shoppinglist_id: $(this).data('id'),
+                    'message': 'Hello there',
+                    'error': 'ERROR!'
+                },
+                success: function (data) {
+                    ajaxStatus(data);
+                    $('.ajax-alert').removeClass('d-none').text(data['message']);
+                },
+                error: function (response) {
+                    console.log('Error:', response);
+                }
+
+            });
+        });
 
         function ajaxStatus(data) {
             $('.ajax-status').removeClass('d-none').append(data['success'] + "<br>");

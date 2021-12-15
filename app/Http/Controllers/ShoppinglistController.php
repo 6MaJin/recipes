@@ -164,7 +164,7 @@ class ShoppinglistController extends Controller
                 $count--;
                 $shoppinglist->products()->updateExistingPivot($product->id, ['count' => $count]);
                 return response()->json([
-                    'message' => 'Blablub',
+                    'message' => 'Produkt erfolgreich gelöscht',
                     'product_id' => $product->id,
                     'shoppinglist_id' => $shoppinglist->id,
                     'product_name' => $product->name,
@@ -192,8 +192,7 @@ class ShoppinglistController extends Controller
         }
         $shoppinglistNew->products()->sync($productNewIds); //verbindet neue Produkte mit neuer Shoppinglist
         return response()->json([
-            'success' => 'Rezept hinzugefügt. Das macht dir so schnell keiner nach!',
-            'error' => 'Da ist wohl etwas schiefgegangen. Versuch es doch nächste Woche noch einmal -\o/-'
+            'message' => 'Rezept hinzugefügt. Das macht dir so schnell keiner nach!',
         ]);
     }
 }

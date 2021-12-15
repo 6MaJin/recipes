@@ -2162,11 +2162,12 @@ $(function () {
       url: "/shoppinglist/" + shoppinglist_id + "/ajax-add-recipe",
       data: {
         shoppinglist_id: $(this).data('id'),
-        'success': 'Hello there',
+        'message': 'Hello there',
         'error': 'ERROR!'
       },
       success: function success(data) {
         ajaxStatus(data);
+        $('.ajax-alert').removeClass('d-none').text(data['message']);
       },
       error: function error(response) {
         console.log('Error:', response);

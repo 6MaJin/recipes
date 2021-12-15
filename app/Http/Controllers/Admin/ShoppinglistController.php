@@ -151,7 +151,7 @@ class ShoppinglistController extends Controller
         $shoppinglist = Shoppinglist::find($shoppinglist_id);
         $shoppinglist->delete();
         return response()->json([
-            'success' => 'Shoppinglistt successfully deleted'
+            'success' => 'Shoppinglist successfully deleted'
         ]);
     }
 

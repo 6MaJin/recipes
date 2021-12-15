@@ -1,6 +1,7 @@
 @extends('layouts/app')
 @section('content')
     <div class="container">
+        <div class="ajax-alert alert alert-info d-none"></div>
         <div class="row">
             <div class="col-md-12 justify-content-center d-inline-flex">
                 <div class="card">

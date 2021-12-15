@@ -2,6 +2,7 @@
 @section('content')
 
     <div class="container">
+        <div class="ajax-alert alert alert-info d-none"></div>
 
         <h1 class="text-light">Unsere Rezepte</h1>
 
@@ -16,7 +17,7 @@
                                 <th>Rezept</th>
                                 <th>Eingestellt von:</th>
                                 <th>Add Recipe</th>
-                                <th>Geändert am:</th>
+
                             </tr>
                             </thead>
                             <tbody>
@@ -37,7 +38,6 @@
                                     </td>
 
 
-                                    <td class="text-light">{{$shoppinglist -> updated_at  ?? $shoppinglist -> created_at}}</td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -54,8 +54,11 @@
 @section('after_script')
     <script>
 
-    </script>
+        function ajaxStatus(data) {
+            $('.ajax-status').removeClass('d-none').text(data['message'] + "<br>");
 
+        }
+    </script>
 @endsection
 @section('after_script')
 
