@@ -177,8 +177,10 @@ class ShoppinglistController extends Controller
                 ]);
             }
         }
+    }
 
-
+    public function test() {
+        return view('/test');
     }
 
     public function ajaxAddRecipe(Shoppinglist $shoppinglist)
@@ -186,6 +188,7 @@ class ShoppinglistController extends Controller
         $productNewIds = array();
         $shoppinglistNew = $shoppinglist->replicate();
         $shoppinglistNew->user_id = Auth::user()->id;
+        $shoppinglistNew->public = 0;
         $shoppinglistNew->push();
         foreach ($shoppinglist->products as $product) {
             $productNewIds[] = $product->id;

@@ -60,6 +60,4 @@
         }
     </script>
 @endsection
-@section('after_script')
 
-@endsection

@@ -68,7 +68,7 @@ $(function () {
             data: {
                 shoppinglist_id: $(this).data('id'),
                 'message': 'Hello there',
-                'error': 'ERROR!'
+                'error': 'ERROR!',
             },
             success: function (data) {
                 ajaxStatus(data);

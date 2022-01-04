@@ -82,6 +82,7 @@
                 url: "/shoppinglist/" + shoppinglist_id + "/ajax-add-recipe",
                 data: {
                     shoppinglist_id: $(this).data('id'),
+
                     'message': 'Hello there',
                     'error': 'ERROR!'
                 },

@@ -20,7 +20,7 @@
                             <tbody>
                             @foreach($shoppinglists AS $shoppinglist)
                                 <tr id="row_{{$shoppinglist->id}}" data-row_id="{{$shoppinglist->id}}">
-                                    <td>
+                                    <td class="float-left">
                                         <a href="/admin/shoppinglist/{{$shoppinglist -> id}}/edit">{{$shoppinglist -> name}}</a>
                                     </td>
                                     <td><a href="/admin/shoppinglist/{{$shoppinglist->id}}/edit"

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\Admin;
 
+Route::get('/test', 'App\Http\Controllers\ShoppinglistController@test');
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('startseite');
 Route::resource('shoppinglist', 'App\Http\Controllers\ShoppinglistController')->middleware('auth');
 Route::post('/shoppinglist/ajax-delete-shoppinglist','App\Http\Controllers\ShoppinglistController@ajaxDeleteShoppinglist')->name('shoppinglist.ajax-delete-shoppinglist');
