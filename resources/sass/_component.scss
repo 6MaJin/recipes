@@ -156,6 +156,10 @@ max-width: 25px;
 
 @media screen and (max-width: 1024px) {
 
+    .hidden-sm {
+        display: none!important;
+    }
+
 .card {
     max-width: 400px;
 }

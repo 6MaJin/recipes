@@ -85,6 +85,9 @@ use Illuminate\Support\Facades\Route;
                         @endif
                     @endauth
 
+                        @auth
+                            <a class="nav-link {{Request::is('shoppinglist*')  ? 'active' : '' }}" href="/shoppinglist">Shoppinglists</a>
+                        @endauth
                 <!-- Authentication Links -->
                     @guest
                         @if (Route::has('login'))

@@ -8,7 +8,6 @@ use App\Models\Shoppinglist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-
 class ShoppinglistController extends Controller
 {
     /**
@@ -42,7 +41,6 @@ class ShoppinglistController extends Controller
      */
     public function store(Request $request)
     {
-        /*dd($request);*/
         $request->validate(Shoppinglist::$rules);
         $shoppinglist = new Shoppinglist([
             'name' => $request['name'],

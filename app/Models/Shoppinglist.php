@@ -15,8 +15,8 @@ class Shoppinglist extends Model implements HasMedia
         'public'
     ];
     public static $rules = [
-        'name'=> 'regex:/(^[A-Za-z0-9 ])+/|required',
-        'note'=> 'regex:/(^[A-Za-z0-9 ]+$)+/|nullable',
+        'name'=> 'string|required',
+        'note'=> 'string|nullable',
         'user_id' => 'integer',
         'public' => 'boolean'
     ];

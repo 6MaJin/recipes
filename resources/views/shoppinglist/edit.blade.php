@@ -24,19 +24,7 @@
                                 <input value="{{old('name') ?? $shoppinglist->name}}" type="text" class="form-control"
                                        id="name" name="name">
 
-                                <label for="image">Image</label>
-                                <input value="{{old('image')}}" type="file" class="form-control"
-                                       id="image" name="image">
 
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox"
-                                           class="custom-control-input"
-                                           name="delete_image"
-                                           value="1"
-                                           id="delete_image">
-                                    <label class="custom-control-label"
-                                           for="delete_image">Bild löschen?</label>
-                                </div>
 
 
                                 <div style="clear:both"></div>
@@ -47,6 +35,19 @@
                                 </div>
                                 <button class="btn btn-secondary" type="submit"><i class="fa fa-save"></i></button>
 
+                            </div>
+                            <label for="image">Image</label>
+                            <input value="{{old('image')}}" type="file" class="form-control"
+                                   id="image" name="image">
+
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox"
+                                       class="custom-control-input"
+                                       name="delete_image"
+                                       value="1"
+                                       id="delete_image">
+                                <label class="custom-control-label"
+                                       for="delete_image">Bild löschen?</label>
                             </div>
                         </form>
                         <div class="form-group ml-5">

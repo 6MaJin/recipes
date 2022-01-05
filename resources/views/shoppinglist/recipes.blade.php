@@ -9,7 +9,7 @@
         <div class="row justifiy-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Rezeptauswahl</div>
+                    <div class="card-header">Rezepte</div>
                     <div class="card-body">
                         <table class="border-bottom border-left border-right table-striped table">
                             <thead class="text-light">
@@ -17,7 +17,7 @@
                                 <th>Rezept</th>
                                 <th>Eingestellt von:</th>
                                 <th>Add Recipe</th>
-
+                                <th class="hidden-sm">Geändert am:</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -38,6 +38,7 @@
                                     </td>
 
 
+                                    <td class="hidden-sm text-light">{{$shoppinglist -> updated_at  ?? $shoppinglist -> created_at}}</td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -46,7 +47,7 @@
                 </div>
             </div>
         </div>
-        <div class="container">
+          <div class="container">
             {{ $shoppinglists->links("pagination::bootstrap-4") }}
         </div>
     </div>
@@ -59,5 +60,9 @@
 
         }
     </script>
-@endsection
 
+
+
+
+
+@endsection
