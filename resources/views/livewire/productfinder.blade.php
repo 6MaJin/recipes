@@ -1,15 +1,13 @@
 <div class="livesearch input-group">
-    <input wire:model="search" class="form-control" type="text" name="add_product" id="add_product" placeholder="Add Products..."/>
-    <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="button" id="button-addon2"  onclick="ajaxStoreProduct()"><i class="fa fa-plus">Speichere Produkt</i>
-        </button>
-    </div>
-    <ul>
-        {{--@foreach($products as $product)--}}
-        @foreach(Auth::user()->shoppinglists->products as $product)
+    <input wire:model="search" type="text" id="add_product" value="">
+    <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+            onclick="ajaxStoreProduct()"><i class="fa fa-plus"></i> Produkt hinzufügen
+    </button>
 
-          <li class="list-group-item" onclick="ajaxStoreProduct({{$product->id}},'{{$product->name}}')">{{ $product->name }}</li>
-        <li class="list-group-item"  onclick="ajaxStoreProduct()">{{ $product->name }}</li>
+    <ul>
+        @foreach($products as $product)
+
+        <li class="list-group-item">{{ $product->name }}</li>
 
         @endforeach
     </ul>

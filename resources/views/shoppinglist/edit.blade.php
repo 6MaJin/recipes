@@ -50,31 +50,24 @@
                                        for="delete_image">Bild löschen?</label>
                             </div>
                         </form>
-                        <div class="form-group ml-5">
-                            <div id="sortable" class="product-list" data-id="{{$shoppinglist->id}}">
+                        <div class="form-group">
+                            <div id="sortable" class="product-list text-center" data-id="{{$shoppinglist->id}}">
 
                                 @foreach($products AS $product)
                                     <div>
                                         <div id="product_{{ $product->id }}"
-                                             class="position-relative btn btn-outline-success btn-sm mt-1 ui-sortable-handle">{{$product->pivot->count."x ". $product->name}}
-                                        </div>
-                                        <button type="button" onclick="removeProduct({{$product->id}})"
-                                                class="delete-product-button position-relative btn btn-outline-danger btn-sm"
-                                                data-id={{$product->id}}><i
+                                             class="pl-show btn btn-primary mb-1 ui-sortable-handle">{{$product->pivot->count."x ". $product->name}}</div><button type="button" onclick="removeProduct({{$product->id}})"
+                                                                                                                                                                  class="delete-product-button position-relative btn btn-outline-danger btn-sm"
+                                                                                                                                                                  data-id={{$product->id}}><i
                                                 class="fa fa-minus"> </i></button>
                                     </div>
                                 @endforeach
+
                             </div>
-                        </div>
-
-
-                        <div class="mb-3">
-                            <div class="container<!--livesearch-container-->">
-                                {{--                                    <livewire:productfinder :shoppinglist="$shoppinglist"/>--}}
-                                <input type="text" id="add_product" value="">
-                                <button class="btn btn-outline-secondary" type="button" id="button-addon2"
-                                        onclick="ajaxStoreProduct()"><i class="fa fa-plus"></i> Produkt hinzufügen
-                                </button>
+                            <div class="mb-3">
+                                <div class="container livesearch-container">
+                                    <livewire:productfinder :shoppinglist="$shoppinglist"/>
+                                </div>
                             </div>
                         </div>
                     </div>

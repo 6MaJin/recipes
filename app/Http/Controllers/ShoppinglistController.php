@@ -64,7 +64,7 @@ class ShoppinglistController extends Controller
      * @param \App\Models\Shoppinglist $shoppinglist
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function show(Shoppinglist $shoppinglist, Product $product)
+    public function show(Shoppinglist $shoppinglist)
     {
         $products = $shoppinglist->products()->orderBy('product_shoppinglist.sort', 'ASC')->get();
         return view('shoppinglist.show')->with('shoppinglist', $shoppinglist)->with('products', $products);
