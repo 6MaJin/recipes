@@ -6,6 +6,7 @@
                 <div class="card">
                     <div class="card-header">Alle Listen</div>
                     <div class="card-body">
+
                         <form action="/shoppinglist" method="POST">
                             @csrf
                             <div class="form-group">
@@ -13,6 +14,19 @@
                                 <input class="form-control {{ $errors->has('name') ? 'border-danger' : '' }} " value="{{old('name')}}" type="text" id="name" name="name">
                                 <small class="form-text text-danger">{!!  $errors->first('name') !!}</small>
                             </div>
+
+                            <label for="image">Image</label>
+                            <input value="{{old('image')}}" type="file" class="form-control"
+                                   id="image" name="image">
+
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox"
+                                       class="custom-control-input"
+                                       name="delete_image"
+                                       value="1"
+                                       id="delete_image">
+                            </div>
+
                             <div class="form-group">
                                 <label for="note">Notes</label>
                                 <textarea class="form-control" name="note" id="note" cols="30" rows="10">{{old('note')}}</textarea>

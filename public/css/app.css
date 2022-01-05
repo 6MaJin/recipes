@@ -10123,6 +10123,27 @@ body {
   max-width: 200px;
 }
 
+.navbar-expand-md .navbar-nav .dropdown-menu {
+  position: absolute;
+  background-color: #555;
+}
+
+.navbar-expand-md .navbar-nav .dropdown-menu {
+  position: absolute;
+  background-color: #555;
+}
+
+.navbar-expand-md:hover .navbar-nav:hover .dropdown-menu:hover {
+  position: absolute;
+  background-color: orange;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+  color: #16181b;
+  text-decoration: none;
+  background-color: orange !important;
+}
+
 .logo {
   display: flex;
 }

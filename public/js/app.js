@@ -2174,6 +2174,11 @@ $(function () {
       }
     });
   });
+
+  function ajaxStatus(data) {
+    $('.ajax-status').removeClass('d-none').append(data['message'] + "<br>");
+    console.log('Kuckuck!');
+  }
 });
 /*
  * A bridge between iPad and iPhone touch events and jquery draggable, sortable etc. mouse interactions.

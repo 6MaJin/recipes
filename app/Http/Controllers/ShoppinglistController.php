@@ -49,6 +49,10 @@ class ShoppinglistController extends Controller
             'note' => $request['note'],
             'user_id' => auth()->id()
         ]);
+        if ($request->hasFile('image')) {
+            $shoppinglist->clearMediaCollection('images');
+            $shoppinglist->addMedia($request->file('image'))->toMediaCollection('images');
+        }
         $shoppinglist->save();
         return redirect('/shoppinglist')->with([
             'meldung_success' => 'Die Liste ' . $shoppinglist->name . ' wurde angelegt'
