@@ -24,7 +24,6 @@ a.nav-link.active {
     z-index: 2;
     height: auto;
     max-height: 100vh;
-    overflow-y: auto;
 }
 
 .card-header {
@@ -49,10 +48,12 @@ a.nav-link.active {
     position: absolute;
     margin-left: -1.3em;
 }
+
 .card-header:first-child {
     border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
     text-align: center;
 }
+
 .btn-outline-success, .btn-primary {
     width: 150px;
 }
@@ -65,32 +66,38 @@ a.nav-link.active {
     cursor: pointer;
     display: block;
 }
+
 .pl-show {
     width: 205px;
     height: 35px;
 }
 
 #note {
-    min-width:90%;
-    min-height:400px;
+    min-width: 90%;
+    min-height: 400px;
 }
 
 .table-date-width {
     width: 190px;
 }
+
 .table-edit-width {
     width: 66px;
 }
+
 .table-delete-width {
     width: 66px;
 }
+
 #button-addon2 {
-    width: 205px!important;
+    width: 205px !important;
 }
+
 .card-header {
-    background-color: #555!important;
+    background-color: #555 !important;
     color: #fff;
 }
+
 .card-body {
     background-color: #333;
     color: #fff;
@@ -113,6 +120,7 @@ body {
     position: absolute;
     background-color: #555;
 }
+
 .navbar-expand-md .navbar-nav .dropdown-menu {
     position: absolute;
     background-color: #555;
@@ -126,7 +134,7 @@ body {
 .dropdown-item:focus, .dropdown-item:hover {
     color: #16181b;
     text-decoration: none;
-    background-color: orange!important;
+    background-color: orange !important;
 }
 
 .logo {
@@ -134,15 +142,17 @@ body {
 }
 
 img {
-    border: none!important;
+    border: none !important;
 }
 
 #terms {
-max-width: 25px;
+    max-width: 25px;
 }
+
 .shoplist {
-    width: 250px!important;
+    width: 250px !important;
 }
+
 .delete-product-button {
     right: 33px;
     top: -2px;
@@ -155,20 +165,23 @@ max-width: 25px;
 @media screen and (max-width: 1024px) {
 
     .hidden-sm {
-        display: none!important;
+        display: none !important;
     }
 
-.card {
-    max-width: 400px;
-}
+    .card {
+        max-width: 400px;
+    }
     #note {
-        min-width:40%;
-        min-height:200px;
+        min-width: 40%;
+        min-height: 200px;
     }
     .ui-sortable-handle {
         display: inline-block;
         left: 14px;
         position: relative;
+    }
+    .livesearch {
+        left: 60px;
     }
 }
 

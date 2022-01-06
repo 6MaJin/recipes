@@ -59,11 +59,13 @@
                                                 class="delete-product-button position-relative btn btn-outline-danger btn-sm"
                                                 data-id={{$product->id}}><i
                                                 class="fa fa-minus"> </i></button>
+                                        {{ count($product->shoppinglists) }}
 
 
-                                        @if($product->shoppinglists)
-                                            <p>{{$product->shoppinglists}}</p>
-                                            @endif
+
+                                        @if(!$product->shoppinglists)
+                                            <p>{{$product->shoppinglists->pluck('name')}}</p>
+                                        @endif
 
 
                                     </div>

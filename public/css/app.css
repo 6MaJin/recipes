@@ -10019,7 +10019,6 @@ a.nav-link.active {
 .livesearch-container {
   position: relative;
   z-index: 1;
-  width: 227px;
 }
 
 .livesearch {
@@ -10029,7 +10028,6 @@ a.nav-link.active {
   z-index: 2;
   height: auto;
   max-height: 100vh;
-  overflow-y: auto;
 }
 
 .card-header {
@@ -10186,5 +10184,9 @@ img {
     display: inline-block;
     left: 14px;
     position: relative;
+  }
+
+  .livesearch {
+    left: 60px;
   }
 }

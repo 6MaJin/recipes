@@ -84,11 +84,7 @@ use Illuminate\Support\Facades\Route;
                             <li><a class="nav-link" href="/admin/user">Admin-Login</a></li>
                         @endif
                     @endauth
-
-                        @auth
-                            <a class="nav-link {{Request::is('shoppinglist*')  ? 'active' : '' }}" href="/shoppinglist">Shoppinglists</a>
-                        @endauth
-                <!-- Authentication Links -->
+                 <!-- Authentication Links -->
                     @guest
                         @if (Route::has('login'))
                             <li class="nav-item">

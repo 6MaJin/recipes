@@ -160,6 +160,7 @@ class ShoppinglistController extends Controller
         $shoppinglist = Shoppinglist::find($shoppinglist_id);
 
         $product = $shoppinglist->products()->where('product_shoppinglist.product_id', '=', $product_id)->first();
+        $product_base = Product::find($product_id);
         if($product) {
             $count = $product->pivot->count;
             if($count > 1) {
@@ -172,11 +173,16 @@ class ShoppinglistController extends Controller
                     'product_name' => $product->name,
                     'count' => $count,
                 ]);
-            } else {
+            } elseif($count = 1) {
+                if(count($product->shoppinglists) == 1 ) {
+                    $product_base->delete();
+                }
+
                 $shoppinglist->products()->detach([$product_id]);
                 return response()->json([
                     'message' => 'Produkt erfolgreich gelöscht'
                 ]);
+
             }
         }
     }
