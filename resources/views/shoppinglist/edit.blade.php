@@ -25,8 +25,6 @@
                                        id="name" name="name">
 
 
-
-
                                 <div style="clear:both"></div>
                                 <div class="form-group">
                                     <label for="note">Notes</label><br/>
@@ -56,10 +54,18 @@
                                 @foreach($products AS $product)
                                     <div>
                                         <div id="product_{{ $product->id }}"
-                                             class="pl-show btn btn-primary mb-1 ui-sortable-handle">{{$product->pivot->count."x ". $product->name}}</div><button type="button" onclick="removeProduct({{$product->id}})"
-                                                                                                                                                                  class="delete-product-button position-relative btn btn-outline-danger btn-sm"
-                                                                                                                                                                  data-id={{$product->id}}><i
+                                             class="pl-show btn btn-primary mb-1 ui-sortable-handle">{{$product->pivot->count."x ". $product->name}}</div>
+                                        <button type="button" onclick="removeProduct({{$product->id}})"
+                                                class="delete-product-button position-relative btn btn-outline-danger btn-sm"
+                                                data-id={{$product->id}}><i
                                                 class="fa fa-minus"> </i></button>
+
+
+                                        @if($product->shoppinglists)
+                                            <p>{{$product->shoppinglists}}</p>
+                                            @endif
+
+
                                     </div>
                                 @endforeach
 
