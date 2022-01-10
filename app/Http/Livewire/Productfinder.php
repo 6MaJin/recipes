@@ -29,6 +29,7 @@ class Productfinder extends Component
                 ->join('product_shoppinglist', 'shoppinglists.id', '=', 'product_shoppinglist.shoppinglist_id')
                 ->join('products', 'products.id', '=', 'product_shoppinglist.product_id')
                 ->where('users.id', '=', $user->id)
+                ->where('products.name', 'LIKE', '%' . $this->search . '%')
                 ->get();
         } else {
             $products = Array();
