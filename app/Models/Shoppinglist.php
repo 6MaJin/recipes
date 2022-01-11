@@ -20,14 +20,13 @@ class Shoppinglist extends Model implements HasMedia
         'user_id' => 'integer',
         'public' => 'boolean'
     ];
-
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'product_shoppinglist', 'shoppinglist_id', 'product_id')->withPivot('sort', 'count')->withTimestamps();
+        return $this->belongsToMany(Product::class)
+            ->withPivot('sort', 'count')->withTimestamps();
     }
 }

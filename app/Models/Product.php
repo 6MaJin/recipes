@@ -15,7 +15,7 @@ class Product extends Model
         'name'=> 'string|required',
     ];
     public function shoppinglists () {
-        return $this->belongsToMany(Shoppinglist::class, 'product_shoppinglist', 'product_id', 'shoppinglist_id')->withPivot('sort', 'count')->withTimestamps();
+        return $this->belongsToMany(Shoppinglist::class)->withPivot('sort', 'count')->withTimestamps();
     }
 
 }

@@ -8,6 +8,7 @@ use App\Models\Shoppinglist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+
 class ShoppinglistController extends Controller
 {
     /**
@@ -47,15 +48,17 @@ class ShoppinglistController extends Controller
             'note' => $request['note'],
             'user_id' => auth()->id()
         ]);
+        $shoppinglist->save();
+        if ($request->get('delete_image', false)) {
+            $shoppinglist->clearMediaCollection('images');
+        }
         if ($request->hasFile('image')) {
             $shoppinglist->clearMediaCollection('images');
             $shoppinglist->addMedia($request->file('image'))->toMediaCollection('images');
         }
-        $shoppinglist->save();
-        return redirect('/shoppinglist')->with([
+       return redirect('/shoppinglist')->with([
             'meldung_success' => 'Die Liste ' . $shoppinglist->name . ' wurde angelegt'
         ]);
-
     }
 
     /**
@@ -97,11 +100,9 @@ class ShoppinglistController extends Controller
             'name' => $request->name,
             'note' => $request->note
         ]);
-
-        if($request->get('delete_image', false)) {
+        if ($request->get('delete_image', false)) {
             $shoppinglist->clearMediaCollection('images');
         }
-
         if ($request->hasFile('image')) {
             $shoppinglist->clearMediaCollection('images');
             $shoppinglist->addMedia($request->file('image'))->toMediaCollection('images');
@@ -161,9 +162,9 @@ class ShoppinglistController extends Controller
 
         $product = $shoppinglist->products()->where('product_shoppinglist.product_id', '=', $product_id)->first();
         $product_base = Product::find($product_id);
-        if($product) {
+        if ($product) {
             $count = $product->pivot->count;
-            if($count > 1) {
+            if ($count > 1) {
                 $count--;
                 $shoppinglist->products()->updateExistingPivot($product->id, ['count' => $count]);
                 return response()->json([
@@ -173,8 +174,8 @@ class ShoppinglistController extends Controller
                     'product_name' => $product->name,
                     'count' => $count,
                 ]);
-            } elseif($count = 1) {
-                if(count($product->shoppinglists) == 1 ) {
+            } elseif ($count = 1) {
+                if (count($product->shoppinglists) == 1) {
                     $product_base->delete();
                 }
 
@@ -187,7 +188,8 @@ class ShoppinglistController extends Controller
         }
     }
 
-    public function test() {
+    public function test()
+    {
         return view('/test');
     }
 

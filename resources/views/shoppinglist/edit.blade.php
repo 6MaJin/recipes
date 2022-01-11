@@ -24,7 +24,6 @@
                                 <input value="{{old('name') ?? $shoppinglist->name}}" type="text" class="form-control"
                                        id="name" name="name">
 
-
                                 <div style="clear:both"></div>
                                 <div class="form-group">
                                     <label for="note">Notes</label><br/>
@@ -49,8 +48,7 @@
                             </div>
                         </form>
                         <div class="form-group">
-                            <div id="sortable" class="product-list text-center" data-id="{{$shoppinglist->id}}">
-
+                            <div id="sortable" class="product-list text-center">
                                 @foreach($products AS $product)
                                     <div>
                                         <div id="product_{{ $product->id }}"
@@ -60,17 +58,11 @@
                                                 data-id={{$product->id}}><i
                                                 class="fa fa-minus"> </i></button>
                                         {{ count($product->shoppinglists) }}
-
-
-
                                         @if(!$product->shoppinglists)
                                             <p>{{$product->shoppinglists->pluck('name')}}</p>
                                         @endif
-
-
                                     </div>
                                 @endforeach
-
                             </div>
                             <div class="mb-3">
                                 <div class="container livesearch-container">

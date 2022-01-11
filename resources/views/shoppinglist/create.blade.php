@@ -7,7 +7,7 @@
                     <div class="card-header">Alle Listen</div>
                     <div class="card-body">
 
-                        <form action="/shoppinglist" method="POST">
+                        <form action="/shoppinglist" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label for="name">Name</label>
@@ -25,6 +25,8 @@
                                        name="delete_image"
                                        value="1"
                                        id="delete_image">
+                                <label class="custom-control-label"
+                                       for="delete_image">Bild löschen?</label>
                             </div>
 
                             <div class="form-group">

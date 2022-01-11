@@ -10,6 +10,7 @@ use Livewire\Component;
 use PhpParser\ErrorHandler\Collecting;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+
 class Productfinder extends Component
 {
     public $search;
@@ -17,25 +18,28 @@ class Productfinder extends Component
 
     public function render()
     {
-        if(strlen($this->search)>1) {
+        if (strlen($this->search) > 1) {
             $user = Auth::user();
-            /*$products = Product::where('name', 'LIKE', '%' . $this->search . '%')->get();*/
 
-            /*$products = Product::where('name', 'LIKE', '%' . $this->search . '%')
-                ->where('products.id', '=', 'product_shoppinglist.product_id')
-                ->get();*/
-            $products = DB::table('users')
-                ->join('shoppinglists', 'users.id', '=', 'shoppinglists.user_id')
-                ->join('product_shoppinglist', 'shoppinglists.id', '=', 'product_shoppinglist.shoppinglist_id')
-                ->join('products', 'products.id', '=', 'product_shoppinglist.product_id')
+            /*$products = DB::table('products')
+                ->join('product_shoppinglist', 'products.id', '=', 'product_shoppinglist.product_id')
+                ->join('shoppinglists', 'shoppinglists.id', '=', 'product_shoppinglist.shoppinglist_id')
+                ->join('users', 'users.id', '=', 'shoppinglists.user_id')
                 ->where('users.id', '=', $user->id)
                 ->where('products.name', 'LIKE', '%' . $this->search . '%')
-                ->get();
+                ->select('products.name')
+                ->get();*/
+            $products = Product::whereHas('shoppinglists', function ($q) use ($user) {
+                return $q->where('user_id', $user->id);
+            })
+            ->where('products.name', 'LIKE', '%' . $this->search . '%')
+            ->get();
         } else {
-            $products = Array();
+            $products = array();
         }
+
         return view('livewire.productfinder', [
-                'products' => $products,
+            'products' => $products,
         ]);
     }
 }
