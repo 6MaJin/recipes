@@ -154,12 +154,9 @@ class ShoppinglistController extends Controller
 
     public function ajaxDeleteProduct(Request $request)
     {
-
-
         $product_id = $request->input('product_id');
         $shoppinglist_id = $request->input('shoppinglist_id');
         $shoppinglist = Shoppinglist::find($shoppinglist_id);
-
         $product = $shoppinglist->products()->where('product_shoppinglist.product_id', '=', $product_id)->first();
         $product_base = Product::find($product_id);
         if ($product) {
@@ -170,20 +167,17 @@ class ShoppinglistController extends Controller
                 return response()->json([
                     'message' => 'Produkt erfolgreich gelöscht',
                     'product_id' => $product->id,
-                    'shoppinglist_id' => $shoppinglist->id,
                     'product_name' => $product->name,
                     'count' => $count,
                 ]);
-            } elseif ($count = 1) {
+            } else {
                 if (count($product->shoppinglists) == 1) {
                     $product_base->delete();
                 }
-
                 $shoppinglist->products()->detach([$product_id]);
                 return response()->json([
                     'message' => 'Produkt erfolgreich gelöscht'
                 ]);
-
             }
         }
     }
