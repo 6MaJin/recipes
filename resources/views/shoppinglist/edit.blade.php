@@ -52,7 +52,8 @@
                                 @foreach($products AS $product)
                                     <div>
                                         <div id="product_{{ $product->id }}"
-                                             class="pl-show btn btn-primary mb-1 ui-sortable-handle">{{$product->pivot->count."x ". $product->name}}</div>
+                                             class="pl-show btn btn-primary mb-1 ui-sortable-handle">
+                                            {{$product->pivot->count."x ". $product->name}}</div>
                                         <button type="button" onclick="removeProduct({{$product->id}})"
                                                 class="delete-product-button position-relative btn btn-outline-danger btn-sm"
                                                 data-id={{$product->id}}><i
