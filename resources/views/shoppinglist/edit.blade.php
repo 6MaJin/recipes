@@ -57,7 +57,6 @@
                                                 class="delete-product-button position-relative btn btn-outline-danger btn-sm"
                                                 data-id={{$product->id}}><i
                                                 class="fa fa-minus"> </i></button>
-                                        {{ count($product->shoppinglists) }}
                                         @if(!$product->shoppinglists)
                                             <p>{{$product->shoppinglists->pluck('name')}}</p>
                                         @endif
@@ -128,8 +127,6 @@
                     } else {
                         $('#product_' + product_id).parent().remove();
                     }
-
-
                     $('.ajax-alert').removeClass('d-none').text(data['message']);
                 },
                 error: function (response) {

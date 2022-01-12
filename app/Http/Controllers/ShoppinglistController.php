@@ -56,7 +56,7 @@ class ShoppinglistController extends Controller
             $shoppinglist->clearMediaCollection('images');
             $shoppinglist->addMedia($request->file('image'))->toMediaCollection('images');
         }
-       return redirect('/shoppinglist')->with([
+        return redirect('/shoppinglist')->with([
             'meldung_success' => 'Die Liste ' . $shoppinglist->name . ' wurde angelegt'
         ]);
     }
@@ -96,20 +96,25 @@ class ShoppinglistController extends Controller
     {
         $request->validate(Shoppinglist::$rules);
 
-        $shoppinglist->update([
-            'name' => $request->name,
-            'note' => $request->note
-        ]);
-        if ($request->get('delete_image', false)) {
-            $shoppinglist->clearMediaCollection('images');
+        if($shoppinglist->user_id == Auth::user()->id) {
+
+            $shoppinglist->update([
+                'name' => $request->name,
+                'note' => $request->note
+            ]);
+            if ($request->get('delete_image', false)) {
+                $shoppinglist->clearMediaCollection('images');
+            }
+            if ($request->hasFile('image')) {
+                $shoppinglist->clearMediaCollection('images');
+                $shoppinglist->addMedia($request->file('image'))->toMediaCollection('images');
+            }
+            return redirect('shoppinglist')->with('shoppinglist', $shoppinglist)->with([
+                'meldung_success' => 'Die Liste ' . $shoppinglist->name . ' wurde editiert'
+            ]);
+
         }
-        if ($request->hasFile('image')) {
-            $shoppinglist->clearMediaCollection('images');
-            $shoppinglist->addMedia($request->file('image'))->toMediaCollection('images');
-        }
-        return redirect('shoppinglist')->with('shoppinglist', $shoppinglist)->with([
-            'meldung_success' => 'Die Liste ' . $shoppinglist->name . ' wurde editiert'
-        ]);
+
     }
 
     /**
@@ -202,4 +207,19 @@ class ShoppinglistController extends Controller
             'message' => 'Rezept hinzugefügt. Das macht dir so schnell keiner nach!',
         ]);
     }
+
+    public function createSList() {
+
+    }
+
+    public function slistIndex() {
+
+    }
+
+    public function slistShow(Shoppinglist $shoppinglist)
+    {
+        $products = $shoppinglist->products()->orderBy('product_shoppinglist.sort', 'ASC')->get();
+        return view('shoppinglist.show')->with('shoppinglist', $shoppinglist)->with('products', $products);
+    }
+
 }

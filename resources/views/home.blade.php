@@ -6,10 +6,10 @@
             <div id="reg" class="card-header logo text-center"><img class="img-fluid" src="/img/visika2.png" alt=""></div>
             <div id="reg" class="card-body justify-content-center text-center">
                 @auth
-                    <a class="mb-3 btn btn-secondary nav-link {{Request::is('shoppinglist*')  ? 'active' : '' }}" href="/shoppinglist">Shoppinglists</a>
+                    <a class="mb-3 btn btn-secondary nav-link {{Request::is('shoppinglist*')  ? 'active' : '' }}" href="/shoppinglist">Deine Rezepte</a>
                     @endauth
 
-                   <a class="mb-3 btn btn-secondary nav-link {{Request::is('recipes*') ? 'active' : ''}}" href="/recipes">Rezepte</a>
+                   <a class="mb-3 btn btn-secondary nav-link {{Request::is('recipes*') ? 'active' : ''}}" href="/recipes">Unsere Rezepte</a>
 
                 @if (session('status'))
                     <div class="alert alert-success" role="alert">

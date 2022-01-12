@@ -18,9 +18,9 @@ class Productfinder extends Component
 
     public function render()
     {
-        if (strlen($this->search) > 1) {
-            $user = Auth::user();
+        $user = Auth::user();
 
+        if (strlen($this->search) > 1) {
             /*$products = DB::table('products')
                 ->join('product_shoppinglist', 'products.id', '=', 'product_shoppinglist.product_id')
                 ->join('shoppinglists', 'shoppinglists.id', '=', 'product_shoppinglist.shoppinglist_id')

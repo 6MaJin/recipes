@@ -48,7 +48,6 @@ $(function () {
             });
             console.log(order);
             var shoppinglist_id = $(this).data('id');
-
             $.ajax({
                 data: {
                     order: order
