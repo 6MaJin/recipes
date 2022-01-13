@@ -21,14 +21,15 @@ class Productfinder extends Component
         $user = Auth::user();
 
         if (strlen($this->search) > 1) {
-            /*$products = DB::table('products')
+            $products = DB::table('products')
                 ->join('product_shoppinglist', 'products.id', '=', 'product_shoppinglist.product_id')
                 ->join('shoppinglists', 'shoppinglists.id', '=', 'product_shoppinglist.shoppinglist_id')
                 ->join('users', 'users.id', '=', 'shoppinglists.user_id')
                 ->where('users.id', '=', $user->id)
                 ->where('products.name', 'LIKE', '%' . $this->search . '%')
                 ->select('products.name')
-                ->get();*/
+                ->exists()
+                ->get();
             $products = Product::whereHas('shoppinglists', function ($q) use ($user) {
                 return $q->where('user_id', $user->id);
             })
