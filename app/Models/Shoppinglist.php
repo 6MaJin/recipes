@@ -12,13 +12,15 @@ class Shoppinglist extends Model implements HasMedia
         'name',
         'note',
         'user_id',
-        'public'
+        'public',
+        'is_recipe'
     ];
     public static $rules = [
         'name'=> 'string|required',
         'note'=> 'string|nullable',
         'user_id' => 'integer',
-        'public' => 'boolean'
+        'public' => 'boolean',
+        'is_recipe' => 'boolean',
     ];
     public function user()
     {
