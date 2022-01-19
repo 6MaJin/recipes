@@ -204,7 +204,7 @@ class ShoppinglistController extends Controller
         }
         $shoppinglistNew->products()->sync($productNewIds); //verbindet neue Produkte mit neuer Shoppinglist
         return response()->json([
-            'message' => 'Rezept hinzugefügt. Das macht dir so schnell keiner nach!',
+            'message' => 'Rezept hinzugefügt.',
         ]);
     }
 

@@ -58,33 +58,15 @@ $(function () {
             });
         }
     });
+
     $('.add_recipe').click(function (e) {
         var shoppinglist_id = $(this).data('id');
-
         $.ajax({
             method: "GET",
             url: "/shoppinglist/" + shoppinglist_id + "/ajax-add-recipe",
-            data: {
-                shoppinglist_id: $(this).data('id'),
-                'message': 'Hello there',
-                'error': 'ERROR!',
-            },
-            success: function (data) {
-                ajaxStatus(data);
-                $('.ajax-alert').removeClass('d-none').text(data['message']);
-
-            },
-            error: function (response) {
-                console.log('Error:', response);
-            }
-
         });
     });
-    function ajaxStatus(data) {
-        $('.ajax-status').removeClass('d-none').append(data['message'] + "<br>");
-        console.log('Kuckuck!');
 
-    }
 
 });
 /*
